@@ -3,15 +3,42 @@
 <head>
 	<title>Phaser3 - JAM Boilerplate</title>
 	<style>
+	body {
+		background: #000;
+	}
 	.dg.ac {
 		top: 50px !important;
 	}
 	.dg main a {
 		margin: 0;
 	}
+	#game {
+		display: block;
+		margin: auto;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+        bottom: 0;
+        border: 3px solid #333;
+	}
+
+    canvas#game:-moz-full-screen {
+      height: 100vh;
+    }
+
+    canvas#game:-webkit-full-screen {
+      height: 100vh;
+    }
+
+    canvas#game:fullscreen {
+      height: 100vh;
+    }
 	</style>
+
 </head>
 <body>
 	<canvas id='game' autofocus></canvas>
+	<button id='fullScreen'>fullscreen</button>
 </body>
 </html>

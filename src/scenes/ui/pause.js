@@ -30,8 +30,9 @@ export default class PauseScene extends Scene {
         getDataManager().save({
           data: gs.stats.mainScene,
           useHash: true
+        }, () => {
+          console.log('saved successful')
         })
-        // TODO: notify if the data was or not stored
       }
     })
 

@@ -66,3 +66,7 @@ if(constants.DAT_GUI_ENABLE) {
     getSceneManager().changeToScene(val)
   })
 }
+
+document.getElementById('fullScreen').onclick = () => {
+  window['game']['canvas'][game.device.fullscreen.request]()
+}

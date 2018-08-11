@@ -1,8 +1,9 @@
+import constants from '../config/constants'
 /** Class used for saving and loading data on window.loaclStorage */
 class DataManager {
   constructor(keyName) {
     // default value to use as key for the data to store and load
-    this.localStorageKey = keyName || 'phaser3-jamBoilerplate'
+    this.localStorageKey = keyName || constants.LOCALSTORAGE_KEY
   }
 
   /**
@@ -14,7 +15,7 @@ class DataManager {
    * * {string} key
    * * {boolean} useHash
    */
-  save(props) {
+  save(props, callback) {
     // check if a hash code should be used
     if (props.useHash) {
       // TODO: add to the data to store a property with a unique value for making
@@ -26,6 +27,7 @@ class DataManager {
       this.getSHA256(propsString).then(hashValue => {
         props.data.hashCode = hashValue
         localStorage.setItem(props.key || this.localStorageKey, JSON.stringify(props.data))
+        callback()
       })
 
       return;

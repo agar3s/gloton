@@ -31,6 +31,8 @@ const RUNNING_STATS = true
 // display dat.gui plugin
 const DAT_GUI_ENABLE = true
 
+const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
+
 export default {
   WIDTH: 800 * SCALE,
   HEIGHT: 600 * SCALE,
@@ -42,5 +44,6 @@ export default {
   DISPLAY_SCENE_TITLE,
   RUNNING_STATS,
   DAT_GUI_ENABLE,
+  LOCALSTORAGE_KEY,
   KEY: 'value'
 }
