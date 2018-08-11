@@ -25,6 +25,8 @@ export default class Player {
 
     this.graphics = this.scene.add.graphics()
     this.graphics.lineStyle(2, 0xffffff, 1)
+
+    this.resetKeys()
   }
 
   update () {
@@ -76,10 +78,19 @@ export default class Player {
     console.log('expulse')
   }
 
-  pause () {
-    // reset keys to avoid sticky events.
+  resetKeys() {
     Object.keys(this.keys).forEach(keyName => {
       this.keys[keyName].reset()
     })
+  }
+
+  pause () {
+    // reset keys to avoid sticky events.
+    this.resetKeys()
+  }
+
+  destroy() {
+    this.sprite.destroy()
+    this.cursor.destroy()
   }
 }

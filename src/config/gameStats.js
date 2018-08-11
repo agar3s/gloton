@@ -17,7 +17,7 @@ let stats = {
     current: 'bootScene'
   },
   player: {
-    chainLength: 80,
+    chainLength: 30,
     speed: 150
   }
 }

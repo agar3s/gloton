@@ -20,7 +20,7 @@ function initGui() {
 
   let folderPlayer = gui.addFolder('player')
   gui.remember(gs.stats.player)
-  folderPlayer.add(gs.stats.player, 'chainLength', 30, 500)
+  folderPlayer.add(gs.stats.player, 'chainLength', 30, 240)
   .onChange((val) => {
     gs.notifyListener('player.chainLength', val)
   })
