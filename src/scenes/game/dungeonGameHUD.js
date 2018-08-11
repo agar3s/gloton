@@ -39,6 +39,14 @@ export default class DungeonGameHUDScene extends Scene {
         this.sceneManager.overlay('dungeonMapHUDScene')
       }
     })
+
+    this.input.keyboard.on('keydown_Q', (event) => {
+      this.sceneManager.overlay('dungeonInventoryHUDScene')
+    })
+
+    this.input.keyboard.on('keydown_E', (event) => {
+      this.sceneManager.overlay('dungeonMapHUDScene')
+    })
   }
 
   updateData (parent, key, data) {

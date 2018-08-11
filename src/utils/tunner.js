@@ -14,23 +14,14 @@ function initGui() {
   })
   folderGame.open()
 
-  let folderMain = gui.addFolder('main scene')
-  gui.remember(gs.stats.mainScene, gs.stats.mainScene.logoPosition)
-  folderMain.add(gs.stats.mainScene, 'rotationRatio', -0.12, 0.12)
+  let folderPlayer = gui.addFolder('player')
+  gui.remember(gs.stats.player)
+  folderPlayer.add(gs.stats.player, 'chainLength', 30, 500)
   .onChange((val) => {
-    gs.notifyListener('mainScene.rotationRatio', val)
+    gs.notifyListener('player.chainLength', val)
   })
 
-  folderMain.add(gs.stats.mainScene.logoPosition, 'x', 0, 800)
-  .onChange((val) => {
-    gs.notifyListener('mainScene.logoPosition.x', val)
-  })
-
-  folderMain.add(gs.stats.mainScene.logoPosition, 'y', 0, 600)
-  .onChange((val) => {
-    gs.notifyListener('mainScene.logoPosition.y', val)
-  })
-  folderMain.open()
+  folderPlayer.open()
 
   let folderScene = gui.addFolder('Current Scene')
   var obj = {'restart': function(){}}

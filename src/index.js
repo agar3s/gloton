@@ -36,6 +36,12 @@ window.game = new Phaser.Game({
   canvas: document.getElementById('game'),
   backgroundColor: constants.BACKGROUND_COLOR,
   pixelArt: true,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: {y: 0}
+    }
+  },
   scene: [
     BootScene,
     SplashScene,
@@ -82,4 +88,8 @@ if(constants.DAT_GUI_ENABLE) {
 
 document.getElementById('fullScreen').onclick = () => {
   window['game']['canvas'][game.device.fullscreen.request]()
+}
+
+document.getElementById('game').oncontextmenu = function (e) {
+  e.preventDefault()
 }

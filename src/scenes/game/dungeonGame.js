@@ -1,6 +1,8 @@
 import Scene from '../scene'
 import gs from '../../config/gameStats'
 
+import Player from '../../gameObjects/player'
+
 export default class DungeonGameScene extends Scene {
   constructor () {
     super({key: 'dungeonGameScene'})
@@ -34,6 +36,8 @@ export default class DungeonGameScene extends Scene {
         this.changeToScene('successGameScene')
       }
     })
+
+    this.player = new Player({scene: this})
   }
 
   shutdown() {
@@ -43,6 +47,7 @@ export default class DungeonGameScene extends Scene {
 
   update () {
     super.update()
+    this.player.update()
   }
 
   updateLanguageTexts () {

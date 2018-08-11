@@ -14,6 +14,9 @@ let stats = {
   scene: {
     restart: false,
     current: 'bootScene'
+  },
+  player: {
+    chainLength: 80
   }
 }
 function getNames(property) {
@@ -74,7 +77,9 @@ let set = (key, newValue) => {
 }
 
 let notifyListener = (key, newValue) => {
-  changeListeners[key](newValue)
+  if(changeListeners[key]) {
+    changeListeners[key](newValue)
+  }
 }
 
 let setAll = (key, data) => {
