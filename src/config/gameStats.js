@@ -17,8 +17,10 @@ let stats = {
     current: 'bootScene'
   },
   player: {
-    chainLength: 30,
-    speed: 150
+    chainLength: 60,
+    chainSpeed: 3,
+    speed: 150,
+    chaintoTarget: false
   }
 }
 function getNames(property) {
