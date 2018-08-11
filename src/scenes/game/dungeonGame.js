@@ -23,6 +23,13 @@ export default class DungeonGameScene extends Scene {
       this.resume()
     }, this)
     
+    this.graphics = this.add.graphics()
+    this.graphics.lineStyle(2, 0x999999, 0.2)
+    for (var j = 0; j < 40; j++) {
+      for (var i = 0; i < 40; i++) {
+        this.graphics.strokeRect(-200 + i*16, -200 + j*16, 16, 16)
+      }
+    }
     
     // basic box item
     this.box = new Item({scene: this, x: 250, y: 120})
@@ -33,7 +40,9 @@ export default class DungeonGameScene extends Scene {
 
     this.player = new Player({scene: this, x: 160, y: 120})
 
-    //this.physics.add.overlap(this.player.handSprite, this.box.sprite)
+    this.physics.add.overlap(this.player.handSprite, this.box.sprite, (hand, collider) => {
+      this.player.hook(this.box)
+    })
     console.log(this.box.sprite)
     console.log(this.player.handSprite)
 
@@ -50,6 +59,7 @@ export default class DungeonGameScene extends Scene {
         this.changeToScene('failGameScene')
       }
     })
+    this.fail.setVisible(false)
 
     this.success = this.createButton({
       x: 200,
@@ -59,6 +69,7 @@ export default class DungeonGameScene extends Scene {
         this.changeToScene('successGameScene')
       }
     })
+    this.success.setVisible(false)
 
   }
 
@@ -80,7 +91,7 @@ export default class DungeonGameScene extends Scene {
     super.update()
     this.player.update()
 
-    this.physics.world.collide(this.player.handSprite, this.box.sprite)
+    //this.physics.world.collide(this.player.handSprite, this.box.sprite)
   }
 
   updateLanguageTexts () {
