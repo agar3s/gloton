@@ -33,6 +33,8 @@ export default class DungeonGameScene extends Scene {
     
     // basic box item
     this.box = new Item({scene: this, x: 250, y: 120})
+    this.box2 = new Item({scene: this, x: 70, y: 120})
+    this.box3 = new Item({scene: this, x: 120, y: 220})
     //staticGroup({
     //        key: 'ball',
     //    frameQuantity: 30
@@ -42,6 +44,21 @@ export default class DungeonGameScene extends Scene {
 
     this.physics.add.overlap(this.player.handSprite, this.box.sprite, (hand, collider) => {
       this.player.hook(this.box)
+    })
+    this.physics.add.overlap(this.player.sprite, this.box.sprite, (hand, collider) => {
+      this.player.grabItem(this.box)
+    })
+    this.physics.add.overlap(this.player.handSprite, this.box2.sprite, (hand, collider) => {
+      this.player.hook(this.box2)
+    })
+    this.physics.add.overlap(this.player.sprite, this.box2.sprite, (hand, collider) => {
+      this.player.grabItem(this.box2)
+    })
+    this.physics.add.overlap(this.player.handSprite, this.box3.sprite, (hand, collider) => {
+      this.player.hook(this.box3)
+    })
+    this.physics.add.overlap(this.player.sprite, this.box3.sprite, (hand, collider) => {
+      this.player.grabItem(this.box3)
     })
     console.log(this.box.sprite)
     console.log(this.player.handSprite)
