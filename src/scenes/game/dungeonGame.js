@@ -2,6 +2,7 @@ import Scene from '../scene'
 import gs from '../../config/gameStats'
 
 import Player from '../../gameObjects/player'
+import Item from '../../gameObjects/item'
 
 export default class DungeonGameScene extends Scene {
   constructor () {
@@ -21,7 +22,20 @@ export default class DungeonGameScene extends Scene {
     this.events.on('resume', () => {
       this.resume()
     }, this)
+    
+    
+    // basic box item
+    this.box = new Item({scene: this, x: 250, y: 120})
+    //staticGroup({
+    //        key: 'ball',
+    //    frameQuantity: 30
+    //})
+
     this.player = new Player({scene: this, x: 160, y: 120})
+
+    //this.physics.add.overlap(this.player.handSprite, this.box.sprite)
+    console.log(this.box.sprite)
+    console.log(this.player.handSprite)
 
     this.cameras.main.startFollow(this.player.sprite)
 
@@ -65,6 +79,8 @@ export default class DungeonGameScene extends Scene {
   update () {
     super.update()
     this.player.update()
+
+    this.physics.world.collide(this.player.handSprite, this.box.sprite)
   }
 
   updateLanguageTexts () {
