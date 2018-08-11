@@ -39,13 +39,14 @@ export default class Player {
 
   update () {
 
+    // get input from player
     let y = this.keys.W.isDown?-1:this.keys.S.isDown?1:0
     let x = this.keys.A.isDown?-1:this.keys.D.isDown?1:0
     let speed = gs.stats.player.speed
+    
     this.sprite.body.setVelocity(0)
     this.sprite.body.setVelocityX(x*speed)
     this.sprite.body.setVelocityY(y*speed)
-
     this.sprite.body.velocity.normalize().scale(speed)
 
     // update cursor's position
@@ -54,46 +55,13 @@ export default class Player {
       this.cursor.x = this.mousePointer.x + this.scene.cameras.main._scrollX
       this.cursor.y = this.mousePointer.y + this.scene.cameras.main._scrollY
     } else {
-      this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
-
-      let distanceToTarget = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
-      if(gs.stats.player.chaintoTarget && (this.hand.lenght*this.hand.lenght >= distanceToTarget)) {
-        this.hand.going = false
-      }else if(this.hand.lenght > gs.stats.player.chainLength) {
-        this.hand.lenght = gs.stats.player.chainLength
-        this.hand.going = false
-      }
-      if(this.hand.lenght <= 0) {
-        this.hand.locked = false
-        this.graphics.clear()
-      } else {
-        this.graphics.clear()
-        this.graphics.lineStyle(2, 0x12aa99, 1)
-        this.graphics.save()
-        this.graphics.beginPath()
-        this.graphics.moveTo(this.sprite.x, this.sprite.y)
-        this.graphics.lineTo(this.sprite.x + (Math.cos(angle))*this.hand.lenght, this.sprite.y+ (Math.sin(angle))*this.hand.lenght)
-        this.graphics.strokePath()
-        this.graphics.restore()
-      }
+      this.updateHand()
+      this.drawHand(angle)
     }
-
-
 
     // draw the ray
     if(gs.stats.game.debug) {
-      this.debugGraphic.clear()
-      this.debugGraphic.lineStyle(1, 0xffffff, 1)
-      this.debugGraphic.save()
-      this.debugGraphic.beginPath()
-      this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
-      this.debugGraphic.lineTo(this.cursor.x, this.cursor.y)
-      this.debugGraphic.strokePath()
-      this.debugGraphic.lineStyle(1, 0xff00ff, 1)
-      this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
-      this.debugGraphic.lineTo(this.sprite.x + (Math.cos(angle))*gs.stats.player.chainLength, this.sprite.y+ (Math.sin(angle))*gs.stats.player.chainLength)
-      this.debugGraphic.strokePath()
-      this.debugGraphic.restore()
+      this.drawDebug(angle)
     }
     // load gui
     if(constants.DAT_GUI_ENABLE) {     
@@ -135,5 +103,47 @@ export default class Player {
   destroy() {
     this.sprite.destroy()
     this.cursor.destroy()
+  }
+
+  updateHand () {
+    this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
+
+    let distanceToTarget = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
+    if(gs.stats.player.chaintoTarget && (this.hand.lenght*this.hand.lenght >= distanceToTarget)) {
+      this.hand.going = false
+    }else if(this.hand.lenght > gs.stats.player.chainLength) {
+      this.hand.lenght = gs.stats.player.chainLength
+      this.hand.going = false
+    }
+    if(this.hand.lenght <= 0) {
+      this.hand.locked = false
+      this.graphics.clear()
+    }
+  }
+
+  drawHand(angle) {
+    this.graphics.clear()
+    this.graphics.lineStyle(2, 0x12aa99, 1)
+    this.graphics.save()
+    this.graphics.beginPath()
+    this.graphics.moveTo(this.sprite.x, this.sprite.y)
+    this.graphics.lineTo(this.sprite.x + (Math.cos(angle))*this.hand.lenght, this.sprite.y+ (Math.sin(angle))*this.hand.lenght)
+    this.graphics.strokePath()
+    this.graphics.restore()
+  }
+
+  drawDebug(angle) {
+    this.debugGraphic.clear()
+    this.debugGraphic.lineStyle(1, 0xffffff, 1)
+    this.debugGraphic.save()
+    this.debugGraphic.beginPath()
+    this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
+    this.debugGraphic.lineTo(this.cursor.x, this.cursor.y)
+    this.debugGraphic.strokePath()
+    this.debugGraphic.lineStyle(1, 0xff00ff, 1)
+    this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
+    this.debugGraphic.lineTo(this.sprite.x + (Math.cos(angle))*gs.stats.player.chainLength, this.sprite.y+ (Math.sin(angle))*gs.stats.player.chainLength)
+    this.debugGraphic.strokePath()
+    this.debugGraphic.restore()
   }
 }
