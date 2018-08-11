@@ -15,7 +15,10 @@ export default class DungeonGameScene extends Scene {
     this.events.on('shutdown', () => {
       this.shutdown()
     }, this)
+    this.player = new Player({scene: this})
 
+    this.cameras.main.startFollow(this.player.sprite)
+    
     this.sceneManager.addGameScene(this.scene.key)
     this.sceneManager.overlay('dungeonGameHUDScene')
 
@@ -37,7 +40,6 @@ export default class DungeonGameScene extends Scene {
       }
     })
 
-    this.player = new Player({scene: this})
   }
 
   shutdown() {

@@ -4,8 +4,6 @@ export default class Player {
   constructor(params) {
     this.scene = params.scene
 
-    const {W, A, S, D, Q, E} = Phaser.Input.Keyboard.KeyCodes
-
     this.keys = this.scene.input.keyboard.addKeys('A,W,S,D')
 
     this.sprite = this.scene.physics.add
@@ -14,10 +12,7 @@ export default class Player {
     this.cursor = this.scene.add
       .sprite(200, 200, 'cursor')
 
-    this.scene.input.on('pointermove', pointer => {
-      this.cursor.x = pointer.x
-      this.cursor.y = pointer.y
-    })
+    this.mousePointer = this.scene.input.mouse.manager.activePointer
 
     this.scene.input.on('pointerdown', pointer => {
     })
@@ -41,7 +36,12 @@ export default class Player {
 
     this.sprite.body.velocity.normalize().scale(speed)
 
-    let angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.cursor.x+this.scene.cameras.main._scrollX, this.cursor.y+this.scene.cameras.main._scrollY)
+    // update cursor's position
+    this.cursor.x = this.mousePointer.x + this.scene.cameras.main._scrollX
+    this.cursor.y = this.mousePointer.y + this.scene.cameras.main._scrollY
+
+    // draw the ray
+    let angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
     this.graphics.clear()
     this.graphics.lineStyle(1, 0xffffff, 1)
     this.graphics.save()

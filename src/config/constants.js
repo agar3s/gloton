@@ -7,7 +7,7 @@
   this valus loaded in the constructor.
 */
 
-const SCALE = 1
+const SCALE = 2
 const BACKGROUND_COLOR = 0x000
 
 // time in milliseconds to keep visible the "splash" scene
@@ -35,8 +35,8 @@ const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
 const SCENE_AFTER_BOOT = 'dungeonGameScene'
 
 export default {
-  WIDTH: 640 * SCALE,
-  HEIGHT: 480 * SCALE,
+  WIDTH: 320,
+  HEIGHT: 240,
   SCALE,
   BACKGROUND_COLOR,
   FAKE_LOADER_ACTIVE,

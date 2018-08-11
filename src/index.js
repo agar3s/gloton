@@ -42,6 +42,7 @@ window.game = new Phaser.Game({
       gravity: {y: 0}
     }
   },
+  resolution: constants.SCALE,
   scene: [
     BootScene,
     SplashScene,
