@@ -11,8 +11,14 @@ import MainMenuScene from './scenes/ui/mainMenu'
 import OptionsScene from './scenes/ui/options'
 import CreditsScene from './scenes/ui/credits'
 
-import HUDGameScene from './scenes/game/HUDGame'
-import BaseGameScene from './scenes/game/baseGame'
+import DungeonGameScene from './scenes/game/dungeonGame'
+import DungeonGameHUDScene from './scenes/game/dungeonGameHUD'
+import DungeonInventoryHUDScene from './scenes/game/dungeonInventoryHUD'
+import DungeonMapHUDScene from './scenes/game/dungeonMapHUD'
+import FailGameScene from './scenes/game/failGame'
+import MissionGameScene from './scenes/game/missionGame'
+import SuccessGameScene from './scenes/game/successGame'
+import WorldGameScene from './scenes/game/worldGame'
 
 import PauseScene from './scenes/ui/pause'
 
@@ -29,6 +35,7 @@ window.game = new Phaser.Game({
   height: constants.HEIGHT,
   canvas: document.getElementById('game'),
   backgroundColor: constants.BACKGROUND_COLOR,
+  pixelArt: true,
   scene: [
     BootScene,
     SplashScene,
@@ -36,8 +43,14 @@ window.game = new Phaser.Game({
     MainMenuScene,
     OptionsScene,
     CreditsScene,
-    HUDGameScene,
-    BaseGameScene,
+    DungeonGameScene,
+    DungeonGameHUDScene,
+    DungeonInventoryHUDScene,
+    DungeonMapHUDScene,
+    FailGameScene,
+    MissionGameScene,
+    SuccessGameScene,
+    WorldGameScene,
     PauseScene
   ]
 })

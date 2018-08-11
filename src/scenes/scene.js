@@ -105,4 +105,6 @@ export default class Scene extends Phaser.Scene {
 
   updateCustomStats() {}
 
+  updateLanguageTexts() {}
+
 }

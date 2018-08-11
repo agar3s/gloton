@@ -32,10 +32,11 @@ const RUNNING_STATS = true
 const DAT_GUI_ENABLE = true
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
+const SCENE_AFTER_BOOT = 'dungeonGameScene'
 
 export default {
-  WIDTH: 800 * SCALE,
-  HEIGHT: 600 * SCALE,
+  WIDTH: 640 * SCALE,
+  HEIGHT: 480 * SCALE,
   SCALE,
   BACKGROUND_COLOR,
   FAKE_LOADER_ACTIVE,
@@ -45,5 +46,6 @@ export default {
   RUNNING_STATS,
   DAT_GUI_ENABLE,
   LOCALSTORAGE_KEY,
+  SCENE_AFTER_BOOT,
   KEY: 'value'
 }

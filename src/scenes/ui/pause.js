@@ -15,32 +15,37 @@ export default class PauseScene extends Scene {
     graphics.fillRect(0, 0, 800, 600)
     // graphics
     // buttons
-    this.back = this.createButton({
+    this.resume = this.createButton({
       x: 100,
       y: 200,
-      keyText: 'back',
+      keyText: 'resume',
       onClick: _ => this.close()
     })
 
-    this.save = this.createButton({
+    this.audio = this.createButton({
       x: 100,
-      y: 100,
-      keyText: 'save_data',
-      onClick: (self) => {
-        getDataManager().save({
-          data: gs.stats.mainScene,
-          useHash: true
-        }, () => {
-          console.log('saved successful')
-        })
+      y: 250,
+      keyText: 'audio',
+      onClick: _ => {
+
+      }
+    })
+
+    this.language = this.createButton({
+      x: 100,
+      y: 300,
+      keyText: 'language',
+      onClick: _ => {
+        this.translator.changeLanguage()
+        this.sceneManager.updateLanguageTexts()
       }
     })
 
     this.exit = this.createButton({
       x: 100,
-      y: 150,
+      y: 350,
       keyText: 'exit',
-      onClick: _ => this.changeToScene('mainMenu')
+      onClick: _ => this.changeToScene('mainMenuScene')
     })
 
     this.titleText.y += 40
@@ -55,5 +60,12 @@ export default class PauseScene extends Scene {
   shutdown() {
     this.sceneManager.resumeGame()
     this.events.off('shutdown')
+  }
+
+  updateLanguageTexts () {
+    this.resume.reloadText()
+    this.audio.reloadText()
+    this.language.reloadText()
+    this.exit.reloadText()
   }
 }

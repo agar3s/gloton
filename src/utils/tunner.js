@@ -42,10 +42,14 @@ function initGui() {
     'bootScene',
     'splashScene',
     'madeWithScene',
-    'mainMenu',
+    'mainMenuScene',
     'optionsScene',
     'creditsScene',
-    'baseGameScene'
+    'dungeonGameScene',
+    'failGameScene',
+    'missionGameScene',
+    'successGameScene',
+    'worldGameScene'
   ]).onChange((val) => {
     gs.notifyListener('scene.current', val)
   })

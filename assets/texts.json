@@ -13,6 +13,13 @@
 		"pause": "pause",
 		"angle": "Angle: $[0]",
 		"laps": "Laps: $[0]",
+		"next": "Next",
+		"fail": "Fail",
+		"success": "Success",
+		"inventory": "inventory",
+		"map": "map",
+		"resume": "resume",
+		"audio": "audio",
 		"key": "value"
 	},
 	"es": {
@@ -29,6 +36,13 @@
 		"pause": "pausar",
 		"angle": "Angulo: $[0]",
 		"laps": "Vueltas: $[0]",
+		"next": "Siguiente",
+		"fail": "Fracaso",
+		"success": "Exito",
+		"inventory": "Inventario",
+		"map": "Mapa",
+		"resume": "continuar",
+		"audio": "audio",
 		"key": "valor"
 	}
 }

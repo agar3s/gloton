@@ -1,4 +1,5 @@
 import Scene from '../scene'
+import constants from '../../config/constants'
 
 //const env = 'PRODUCTION'
 const env = 'DEV'
@@ -7,7 +8,7 @@ export default class BootScene extends Scene {
   constructor () {
     super({key: 'bootScene'})
 
-    this.nextScene = 'splashScene'
+    this.nextScene = constants.SCENE_AFTER_BOOT
   }
 
   preload () {

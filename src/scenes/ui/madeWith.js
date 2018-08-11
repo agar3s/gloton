@@ -4,7 +4,7 @@ export default class MadeWithScene extends Scene {
   constructor () {
     super({key: 'madeWithScene'})
     this.timesplash = this.constants.TIME_MADE_WITH
-    this.nextScene = 'mainMenu'
+    this.nextScene = 'mainMenuScene'
   }
 
   create (params) {

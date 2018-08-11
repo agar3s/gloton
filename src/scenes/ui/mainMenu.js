@@ -5,7 +5,7 @@ import tunner from '../../utils/tunner'
 
 export default class MainMenuScene extends Scene {
   constructor() {
-    super({ key: 'mainMenu' })
+    super({ key: 'mainMenuScene' })
   }
 
   create(params) {
@@ -22,7 +22,7 @@ export default class MainMenuScene extends Scene {
       style: this.fonts.BM_keney,
       text: this.getText('start'),
       onClick: (self) => {
-        this.changeToScene('baseGameScene')
+        this.changeToScene('worldGameScene')
       },
       onHover: (self) => {
         self.setTint(0xff99ff)
