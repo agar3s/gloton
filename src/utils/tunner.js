@@ -24,6 +24,14 @@ function initGui() {
   .onChange((val) => {
     gs.notifyListener('player.chainLength', val)
   })
+  folderPlayer.add(gs.stats.player, 'chainSpeed', 2, 10)
+  .onChange((val) => {
+    gs.notifyListener('player.chainSpeed', val)
+  })
+  folderPlayer.add(gs.stats.player, 'chaintoTarget')
+  .onChange((val) => {
+    gs.notifyListener('game.chaintoTarget', val)
+  })
 
   folderPlayer.add(gs.stats.player, 'speed', 30, 300)
   .onChange((val) => {
