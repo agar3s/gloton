@@ -35,7 +35,7 @@ export default class Scene extends Phaser.Scene {
     // if you don't want to display it
     this.titleText = this.make.text({
       x: this.cameras.main.width / 2,
-      y: 30,
+      y: 10,
       text: this.scene.key,
       style: this.fonts.default
     })

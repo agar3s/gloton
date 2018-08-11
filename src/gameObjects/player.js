@@ -127,6 +127,20 @@ export default class Player {
     if(this.hand.lenght <= 0) {
       this.hand.locked = false
       this.graphics.clear()
+      
+      if(this.hookedItem) {
+        this.hookedItem.sprite.body.setVelocityX(0)
+        this.hookedItem.sprite.body.setVelocityY(0)
+        this.hookedItem = undefined
+      }
+    }
+
+    if(this.hookedItem) {
+      // a vector in direction to the player
+      let newAngle = angle + Math.PI
+
+      this.hookedItem.sprite.body.setVelocityX(Math.cos(newAngle)*100)
+      this.hookedItem.sprite.body.setVelocityY(Math.sin(newAngle)*100)
     }
   }
 
@@ -154,5 +168,14 @@ export default class Player {
     this.debugGraphic.lineTo(this.sprite.x + (Math.cos(angle))*gs.stats.player.chainLength, this.sprite.y+ (Math.sin(angle))*gs.stats.player.chainLength)
     this.debugGraphic.strokePath()
     this.debugGraphic.restore()
+  }
+
+  hook (item) {
+    if(this.hookedItem === item || !this.hand.going) return
+    this.hookedItem = item
+    this.hand.going = false
+    console.log('hook item!!')
+    // put a delay before to start pullingout
+
   }
 }

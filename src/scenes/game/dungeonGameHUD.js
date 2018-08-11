@@ -14,8 +14,8 @@ export default class DungeonGameHUDScene extends Scene {
     this.titleText.x += 20
 
     this.pause = this.createButton({
-      x: 50,
-      y: 50,
+      x: 0,
+      y: 0,
       keyText: 'pause',
       onClick: (self) => {
         this.sceneManager.overlay('pauseScene')
