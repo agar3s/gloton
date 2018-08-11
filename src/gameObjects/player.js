@@ -13,6 +13,9 @@ export default class Player {
     this.cursor = this.scene.add
       .sprite(params.x, params.y, 'cursor')
 
+    this.handSprite = this.scene.physics.add
+      .sprite(params.x, params.y, 'hand')
+
     this.mousePointer = this.scene.input.mouse.manager.activePointer
 
     this.scene.input.on('pointerdown', pointer => {
@@ -54,9 +57,12 @@ export default class Player {
     if(!this.hand.locked) {
       this.cursor.x = this.mousePointer.x + this.scene.cameras.main._scrollX
       this.cursor.y = this.mousePointer.y + this.scene.cameras.main._scrollY
+
+      this.handSprite.x = this.sprite.x
+      this.handSprite.y = this.sprite.y
     } else {
-      this.updateHand()
-      this.drawHand(angle)
+      this.updateHand(angle)
+      this.drawHand()
     }
 
     // draw the ray
@@ -74,7 +80,7 @@ export default class Player {
   }
 
   launch () {
-    console.log('launch')
+    if(this.hand.locked) return
     // lock the hand/cursor
     this.hand.locked = true
     this.hand.lenght = 0
@@ -105,8 +111,11 @@ export default class Player {
     this.cursor.destroy()
   }
 
-  updateHand () {
+  updateHand (angle) {
     this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
+
+    this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.sprite.x
+    this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.sprite.y
 
     let distanceToTarget = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
     if(gs.stats.player.chaintoTarget && (this.hand.lenght*this.hand.lenght >= distanceToTarget)) {
@@ -121,13 +130,13 @@ export default class Player {
     }
   }
 
-  drawHand(angle) {
+  drawHand() {
     this.graphics.clear()
     this.graphics.lineStyle(2, 0x12aa99, 1)
     this.graphics.save()
     this.graphics.beginPath()
     this.graphics.moveTo(this.sprite.x, this.sprite.y)
-    this.graphics.lineTo(this.sprite.x + (Math.cos(angle))*this.hand.lenght, this.sprite.y+ (Math.sin(angle))*this.hand.lenght)
+    this.graphics.lineTo(this.handSprite.x, this.handSprite.y)
     this.graphics.strokePath()
     this.graphics.restore()
   }

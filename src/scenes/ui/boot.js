@@ -91,6 +91,7 @@ export default class BootScene extends Scene {
     // prototype assets
     this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })
     this.load.spritesheet('cursor', urlBase + 'assets/cursor.png', { frameWidth: 9, frameHeight: 9 })
+    this.load.spritesheet('hand', urlBase + 'assets/hand.png', { frameWidth: 5, frameHeight: 5 })
 
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
