@@ -12,6 +12,10 @@ function initGui() {
   .onChange((val) => {
     gs.notifyListener('game.backgroundColor', val)
   })
+  folderGame.add(gs.stats.game, 'debug')
+  .onChange((val) => {
+    gs.notifyListener('game.debug', val)
+  })
   folderGame.open()
 
   let folderPlayer = gui.addFolder('player')
@@ -19,6 +23,11 @@ function initGui() {
   folderPlayer.add(gs.stats.player, 'chainLength', 30, 500)
   .onChange((val) => {
     gs.notifyListener('player.chainLength', val)
+  })
+
+  folderPlayer.add(gs.stats.player, 'speed', 30, 300)
+  .onChange((val) => {
+    gs.notifyListener('player.speed', val)
   })
 
   folderPlayer.open()

@@ -2,7 +2,8 @@
 // base game stats
 let stats = {
   game: {
-    backgroundColor: '#000'
+    backgroundColor: '#000',
+    debug: true
   },
   mainScene: {
     rotationRatio: 0.01,
@@ -16,7 +17,8 @@ let stats = {
     current: 'bootScene'
   },
   player: {
-    chainLength: 80
+    chainLength: 80,
+    speed: 150
   }
 }
 function getNames(property) {
