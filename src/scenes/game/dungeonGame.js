@@ -49,8 +49,9 @@ export default class DungeonGameScene extends Scene {
   }
 
   shutdown() {
+    console.log('destroy the player....')
     this.events.off('shutdown')
-
+    this.player.destroy()
   }
 
   pause () {
