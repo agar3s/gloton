@@ -1,6 +1,8 @@
 import Scene from '../scene'
 import gs from '../../config/gameStats'
 
+import Player from '../../gameObjects/player'
+
 export default class DungeonGameScene extends Scene {
   constructor () {
     super({key: 'dungeonGameScene'})
@@ -13,6 +15,15 @@ export default class DungeonGameScene extends Scene {
     this.events.on('shutdown', () => {
       this.shutdown()
     }, this)
+    this.events.on('pause', () => {
+      this.pause()
+    }, this)
+    this.events.on('resume', () => {
+      this.resume()
+    }, this)
+    this.player = new Player({scene: this, x: 160, y: 120})
+
+    this.cameras.main.startFollow(this.player.sprite)
 
     this.sceneManager.addGameScene(this.scene.key)
     this.sceneManager.overlay('dungeonGameHUDScene')
@@ -34,6 +45,7 @@ export default class DungeonGameScene extends Scene {
         this.changeToScene('successGameScene')
       }
     })
+
   }
 
   shutdown() {
@@ -41,8 +53,17 @@ export default class DungeonGameScene extends Scene {
 
   }
 
+  pause () {
+    this.physics.pause()
+    this.player.pause()
+  }
+  resume () {
+    this.physics.resume()
+  }
+
   update () {
     super.update()
+    this.player.update()
   }
 
   updateLanguageTexts () {

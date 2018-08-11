@@ -68,4 +68,5 @@ export default class PauseScene extends Scene {
     this.language.reloadText()
     this.exit.reloadText()
   }
+
 }

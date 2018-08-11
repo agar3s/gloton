@@ -82,11 +82,16 @@ export default class BootScene extends Scene {
     if(env == 'PRODUCTION') {
       urlBase = awsPrefix
     }
+
     // load logo
     this.load.spritesheet('logo', urlBase + 'assets/phaserLogo.png', { frameWidth: 382, frameHeight: 331 })    
     // load fonts
     this.load.bitmapFont(this.fonts.BM_keney.font, urlBase + 'assets/fonts/keneyFont_0.png', urlBase + 'assets/fonts/keneyFont.fnt')
-  
+
+    // prototype assets
+    this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })
+    this.load.spritesheet('cursor', urlBase + 'assets/cursor.png', { frameWidth: 9, frameHeight: 9 })
+
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
 
