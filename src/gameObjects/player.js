@@ -16,8 +16,8 @@ export default class Player {
     this.sprite = this.scene.physics.add.sprite(
       params.x,
       params.y,
-      params.textureKey || 'player',
-      params.textureFrame || 0
+      params.textureKey,
+      params.textureFrame
     )
 
     this.sprite.setBounce(0, 0)
@@ -32,7 +32,7 @@ export default class Player {
       .sprite(params.x, params.y, 'cursor')
 
     this.handSprite = this.scene.physics.add
-      .sprite(params.x, params.y, 'hand')
+      .sprite(params.x, params.y-20, 'hand')
 
     this.mousePointer = this.scene.input.mouse.manager.activePointer
 
@@ -80,15 +80,20 @@ export default class Player {
     this.sprite.body.setVelocityX(x*speed)
     this.sprite.body.setVelocityY(y*speed)
     this.sprite.body.velocity.normalize().scale(speed)
+    
 
+    this.anchorHand = {
+      x: this.sprite.x + 0,
+      y: this.sprite.y - this.sprite.height/2
+    }
     // update cursor's position
-    let angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
+    let angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y - this.sprite.height/2, this.cursor.x, this.cursor.y)
     if(!this.hand.locked) {
       this.cursor.x = this.mousePointer.x + this.scene.cameras.main._scrollX
       this.cursor.y = this.mousePointer.y + this.scene.cameras.main._scrollY
 
-      this.handSprite.x = this.sprite.x
-      this.handSprite.y = this.sprite.y
+      this.handSprite.x = this.anchorHand.x
+      this.handSprite.y = this.anchorHand.y
 
       if(gs.stats.player.raycast){
         this.updateRaycast(angle)
@@ -136,8 +141,8 @@ export default class Player {
     if(this.hand.locked) return
 
     this.scene.throwItem({
-      x: this.sprite.x,
-      y: this.sprite.y,
+      x: this.anchorHand.x,
+      y: this.anchorHand.y,
       key: 'box',
       vx: Math.cos(this.handSprite.rotation)*500,
       vy: Math.sin(this.handSprite.rotation)*500,
@@ -172,10 +177,10 @@ export default class Player {
 
   updatePushingHand (angle) {
     this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
-    this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.sprite.x
-    this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.sprite.y
+    this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.anchorHand.x
+    this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.anchorHand.y
 
-    let distanceToTarget = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
+    let distanceToTarget = Phaser.Math.Distance.Squared(this.anchorHand.x, this.anchorHand.y, this.cursor.x, this.cursor.y)
     if(gs.stats.player.chaintoTarget && (this.hand.lenght*this.hand.lenght >= distanceToTarget)) {
       this.hand.going = false
     }else if(this.hand.lenght > gs.stats.player.chainLength) {
@@ -184,9 +189,10 @@ export default class Player {
     }
     return angle
   }
+  
   updatePullingHand (angle) {
     if(this.hookedItem) {
-      angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.handSprite.x, this.handSprite.y)
+      angle = Phaser.Math.Angle.Between(this.anchorHand.x, this.anchorHand.y, this.handSprite.x, this.handSprite.y)
       
       this.hookedItem.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
       this.handSprite.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
@@ -194,8 +200,8 @@ export default class Player {
       this.handSprite.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
     }else {
       this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
-      this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.sprite.x
-      this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.sprite.y
+      this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.anchorHand.x
+      this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.anchorHand.y
     }
     if(this.hand.lenght <= 0) {
       this.hand.locked = false
@@ -209,7 +215,7 @@ export default class Player {
     this.graphics.lineStyle(2, 0x12aa99, 1)
     this.graphics.save()
     this.graphics.beginPath()
-    this.graphics.moveTo(this.sprite.x, this.sprite.y)
+    this.graphics.moveTo(this.anchorHand.x, this.anchorHand.y)
     this.graphics.lineTo(this.handSprite.x, this.handSprite.y)
     this.graphics.strokePath()
     this.graphics.restore()
@@ -220,12 +226,12 @@ export default class Player {
     this.debugGraphic.lineStyle(1, 0xffffff, 1)
     this.debugGraphic.save()
     this.debugGraphic.beginPath()
-    this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
+    this.debugGraphic.moveTo(this.anchorHand.x, this.anchorHand.y)
     this.debugGraphic.lineTo(this.cursor.x, this.cursor.y)
     this.debugGraphic.strokePath()
     this.debugGraphic.lineStyle(1, 0xff00ff, 1)
-    this.debugGraphic.moveTo(this.sprite.x, this.sprite.y)
-    this.debugGraphic.lineTo(this.sprite.x + (Math.cos(angle))*gs.stats.player.chainLength, this.sprite.y+ (Math.sin(angle))*gs.stats.player.chainLength)
+    this.debugGraphic.moveTo(this.anchorHand.x, this.anchorHand.y)
+    this.debugGraphic.lineTo(this.anchorHand.x + (Math.cos(angle))*gs.stats.player.chainLength, this.anchorHand.y+ (Math.sin(angle))*gs.stats.player.chainLength)
     this.debugGraphic.strokePath()
     this.debugGraphic.restore()
   }
@@ -257,15 +263,15 @@ export default class Player {
   updateRaycast(angle){
     let dynamicSpeed = Math.random()*600 + 200
     this.raycast.body.setVelocity(Math.cos(angle)*dynamicSpeed, Math.sin(angle)*dynamicSpeed)
-    let rayDistance = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.raycast.x, this.raycast.y)
+    let rayDistance = Phaser.Math.Distance.Squared(this.anchorHand.x, this.anchorHand.y, this.raycast.x, this.raycast.y)
 
     let maxDistance = gs.stats.player.chainLength*gs.stats.player.chainLength
     if(gs.stats.player.chaintoTarget) {
-      maxDistance = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
+      maxDistance = Phaser.Math.Distance.Squared(this.anchorHand.x, this.anchorHand.y, this.cursor.x, this.cursor.y)
     }
     if(rayDistance > maxDistance) {
-      this.raycast.x = this.sprite.x-2.5
-      this.raycast.y = this.sprite.y-2.5
+      this.raycast.x = this.anchorHand.x - 2.5
+      this.raycast.y = this.anchorHand.y - 2.5
       if(this.raycastCollider){
         this.raycastCollider.setHighlight(false)
         this.raycastCollider = undefined
@@ -277,16 +283,17 @@ export default class Player {
     if(this.raycastCollider && this.raycastCollider !=collider){
       this.raycastCollider.setHighlight(false)
     }
-    this.raycast.x = this.sprite.x-2.5
-    this.raycast.y = this.sprite.y-2.5
+
+    this.raycast.x = this.anchorHand.x - 2.5
+    this.raycast.y = this.anchorHand.y - 2.5
     this.raycastCollider = collider
     this.raycastCollider.setHighlight(true)
   }
 
   resetRayCast() {
     this.raycast.body.setVelocity(0,0)
-    this.raycast.x = this.sprite.x-2.5
-    this.raycast.y = this.sprite.y-2.5
+    this.raycast.x = this.anchorHand.x - 2.5
+    this.raycast.y = this.anchorHand.y - 2.5
   }
 
 }
