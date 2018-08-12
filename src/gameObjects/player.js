@@ -22,6 +22,31 @@ export default class Player {
 
     this.sprite.setBounce(0, 0)
 
+    // ├── setup the animations for the PC ─┐
+    // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
+    // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
+    this.scene.anims.create({
+      key: 'pc-idle',
+      frames: [{
+        key: 'mochilaAtlas',
+        frame: 'characters/pc/idle-001',
+        duration: 2500
+      }, {
+        key: 'mochilaAtlas',
+        frame: 'characters/pc/idle-002',
+        duration: 800
+      }],
+      repeat: -1
+    })
+    this.scene.anims.create({
+      key: 'pc-openning',
+      frames: this.scene.generateFrameNames('characters/pc', 'openning', 1),
+      frameRate: 1,
+      repeat: 1
+    })
+    
+    this.sprite.anims.play('pc-idle')
+
     // defines the raycast
     this.raycast = this.scene.add.zone(params.x, params.y).setSize(5, 5)
     this.scene.physics.world.enable(this.raycast)

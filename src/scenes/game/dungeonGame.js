@@ -79,8 +79,12 @@ export default class DungeonGameScene extends Scene {
     this.anims.create({
       key: 'door-open',
       frames: this.generateFrameNames('mazes/maze01', 'door-open', 20),
-      frameRate: 12,
       repeat: 0
+    })
+
+    const doorAnimationMs = [60,60,60,60,60,60,60,60,60,60,150,60,250,60,60,60,120,120,120,120]
+    this.anims.anims.get('door-open').frames.forEach((frame, index)=>{
+      frame.duration = doorAnimationMs[index]
     })
   }
 
@@ -96,25 +100,6 @@ export default class DungeonGameScene extends Scene {
       textureKey: this.constants.ATLAS_KEY,
       textureFrame: 'characters/pc/idle-001'
     })
-    
-    
-    // ├── setup the animations for the PC ─┐
-    // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
-    // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
-    this.anims.create({
-      key: 'pc-idle',
-      frames: this.generateFrameNames('characters/pc', 'idle'),
-      frameRate: 1,
-      repeat: -1
-    })
-    this.anims.create({
-      key: 'pc-openning',
-      frames: this.generateFrameNames('characters/pc', 'openning', 1),
-      frameRate: 1,
-      repeat: 1
-    })
-    
-    this.player.sprite.anims.play('pc-idle')
 
 
     //this.player.sprite.setCollideWorldBounds(true)
@@ -195,8 +180,15 @@ export default class DungeonGameScene extends Scene {
     })
     // handle the event of the PC colliding with the door
     this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
+      if(door.opening) return
+      door.opening = true
       door.anims.play('door-open')
       playerSprite.anims.play('pc-openning')
+      door.on('animationcomplete', (animation, frame) => {
+        playerSprite.anims.play('pc-idle')
+        this.door.destroy()
+      }, this)
+
     }, null, this)
   }
 
