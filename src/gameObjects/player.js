@@ -10,6 +10,8 @@ export default class Player {
     this.sprite = this.scene.physics.add
       .sprite(params.x, params.y, 'player', 0)
 
+    this.sprite.setBounce(0, 0)
+
     this.cursor = this.scene.add
       .sprite(params.x, params.y, 'cursor')
 
@@ -140,9 +142,9 @@ export default class Player {
     if(this.hookedItem) {
       angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.handSprite.x, this.handSprite.y)
       
-      this.hookedItem.sprite.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
+      this.hookedItem.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
       this.handSprite.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
-      this.hookedItem.sprite.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
+      this.hookedItem.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
       this.handSprite.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
     }else {
       this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
@@ -195,10 +197,11 @@ export default class Player {
     console.log('save item!!')
     this.hand.locked = false
     this.graphics.clear()
-    this.hookedItem.sprite.body.setVelocityX(0)
+    this.hookedItem.body.setVelocityX(0)
     this.handSprite.body.setVelocityX(0)
-    this.hookedItem.sprite.body.setVelocityY(0)
+    this.hookedItem.body.setVelocityY(0)
     this.handSprite.body.setVelocityY(0)
+    this.hookedItem.release()
     this.hookedItem = undefined
   }
 }

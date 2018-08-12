@@ -32,36 +32,32 @@ export default class DungeonGameScene extends Scene {
     }
     
     // basic box item
-    this.box = new Item({scene: this, x: 250, y: 120})
-    this.box2 = new Item({scene: this, x: 70, y: 120})
-    this.box3 = new Item({scene: this, x: 120, y: 220})
-    //staticGroup({
-    //        key: 'ball',
-    //    frameQuantity: 30
-    //})
+    this.items = this.add.group()
+    for (var i = 0; i < 1; i++) {
+      this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
+    }
 
     this.player = new Player({scene: this, x: 160, y: 120})
 
-    this.physics.add.overlap(this.player.handSprite, this.box.sprite, (hand, collider) => {
-      this.player.hook(this.box)
+    this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
+      if(this.player.hand.going){
+        collider.grab()
+        this.player.hook(collider)
+      }
     })
-    this.physics.add.overlap(this.player.sprite, this.box.sprite, (hand, collider) => {
-      this.player.grabItem(this.box)
+    this.physics.add.overlap(this.player.sprite, this.items, (hand, collider) => {
+      if(collider.grabbed){
+        this.player.grabItem(collider)
+        collider.destroy()
+        Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
+
+        this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
+        this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
+      }
     })
-    this.physics.add.overlap(this.player.handSprite, this.box2.sprite, (hand, collider) => {
-      this.player.hook(this.box2)
-    })
-    this.physics.add.overlap(this.player.sprite, this.box2.sprite, (hand, collider) => {
-      this.player.grabItem(this.box2)
-    })
-    this.physics.add.overlap(this.player.handSprite, this.box3.sprite, (hand, collider) => {
-      this.player.hook(this.box3)
-    })
-    this.physics.add.overlap(this.player.sprite, this.box3.sprite, (hand, collider) => {
-      this.player.grabItem(this.box3)
-    })
-    console.log(this.box.sprite)
-    console.log(this.player.handSprite)
+
+    this.physics.add.collider(this.items, this.items)
+
 
     this.cameras.main.startFollow(this.player.sprite)
 
@@ -107,8 +103,6 @@ export default class DungeonGameScene extends Scene {
   update () {
     super.update()
     this.player.update()
-
-    //this.physics.world.collide(this.player.handSprite, this.box.sprite)
   }
 
   updateLanguageTexts () {
@@ -116,4 +110,12 @@ export default class DungeonGameScene extends Scene {
     this.success.reloadText()
   }
 
+  addItem (props) {
+    let item = new Item(props)
+    this.add.displayList.add(item)
+    this.add.updateList.add(item)
+    this.physics.add.world.enableBody(item, Phaser.Physics.Arcade.DYNAMIC_BODY)
+    item.setProperties()
+    this.items.add(item)
+  }
 }
