@@ -32,7 +32,10 @@ const RUNNING_STATS = true
 const DAT_GUI_ENABLE = true
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
-const SCENE_AFTER_BOOT = 'dungeonGameScene'
+const SCENE_AFTER_BOOT = 'testLevelScene'
+
+const TILE_SIZE = 16
+const ATLAS_KEY = 'mochilaAtlas'
 
 export default {
   WIDTH: 320,
@@ -47,5 +50,7 @@ export default {
   DAT_GUI_ENABLE,
   LOCALSTORAGE_KEY,
   SCENE_AFTER_BOOT,
-  KEY: 'value'
+  KEY: 'value',
+  TILE_SIZE,
+  ATLAS_KEY
 }

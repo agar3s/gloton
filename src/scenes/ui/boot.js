@@ -103,5 +103,16 @@ export default class BootScene extends Scene {
         this.load.spritesheet(`logo-${i}`, urlBase + 'assets/phaserLogo.png', { frameWidth: 382, frameHeight: 331 })
       }
     }
+
+    // load the atlas with all the sprites for the game
+    this.load.multiatlas(
+      this.constants.ATLAS_KEY,
+      `assets/atlas/${this.constants.ATLAS_KEY}.json`,
+      'assets/atlas'
+    );
+
+    // load the JSONs and sprites for the levels
+    this.load.image('tilesMaze01', 'assets/levels/tiles_maze01.png');
+    this.load.tilemapTiledJSON('mapMaze01', 'assets/levels/tilemap_maze01.json');
   }
 }

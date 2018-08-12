@@ -62,7 +62,8 @@ function initGui() {
     'failGameScene',
     'missionGameScene',
     'successGameScene',
-    'worldGameScene'
+    'worldGameScene',
+    'testLevelScene'
   ]).onChange((val) => {
     gs.notifyListener('scene.current', val)
   })

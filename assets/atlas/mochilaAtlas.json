@@ -1,0 +1,145 @@
+{
+	"textures": [
+		{
+			"image": "mochilaAtlas-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 55,
+				"h": 100
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "mazes/maze01/door-closed-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 48
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 32,
+						"h": 48
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "characters/pc/idle-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 24
+					},
+					"frame": {
+						"x": 35,
+						"y": 1,
+						"w": 19,
+						"h": 24
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/pc/idle-002",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 24
+					},
+					"frame": {
+						"x": 35,
+						"y": 27,
+						"w": 19,
+						"h": 24
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 48
+					},
+					"frame": {
+						"x": 1,
+						"y": 51,
+						"w": 32,
+						"h": 48
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "characters/pc/openning-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 18,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 18,
+						"h": 30
+					},
+					"frame": {
+						"x": 35,
+						"y": 53,
+						"w": 18,
+						"h": 30
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:89fc0f06d9452764e867b85550db9d97:4d21bf1add25fe88a5cf628e5fde024f:8daebe7d1eeec477f8d56c0b9baa75b5$"
+	}
+}

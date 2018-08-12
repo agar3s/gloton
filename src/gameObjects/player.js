@@ -7,8 +7,12 @@ export default class Player {
 
     this.keys = this.scene.input.keyboard.addKeys('A,W,S,D')
 
-    this.sprite = this.scene.physics.add
-      .sprite(params.x, params.y, 'player', 0)
+    this.sprite = this.scene.physics.add.sprite(
+      params.x,
+      params.y,
+      params.textureKey || 'player',
+      params.textureFrame || 0
+    )
 
     this.sprite.setBounce(0, 0)
 
