@@ -109,7 +109,16 @@ export default class Player {
   }
 
   expulse () {
-    console.log('expulse')
+    // o si?
+    if(this.hand.locked) return
+
+    this.scene.throwItem({
+      x: this.sprite.x,
+      y: this.sprite.y,
+      key: 'box',
+      vx: Math.cos(this.handSprite.rotation)*500,
+      vy: Math.sin(this.handSprite.rotation)*500,
+    })
   }
 
   resetKeys() {

@@ -88,14 +88,15 @@ if(constants.DAT_GUI_ENABLE) {
     },
     "primer1": {
       "0": {
-        "backgroundColor": "#4a4b52",
+        "backgroundColor": "#060628",
         "debug": false
       },
       "1": {
-        "chainLength": 120,
-        "chainSpeed": 4.065138721351025,
+        "chainLength": 181.48371531966225,
+        "chainSpeed": 6.623815267964845,
         "chaintoTarget": false,
-        "speed": 90.76512148888506
+        "speed": 159.25383422367742,
+        "raycast": true
       }
     }
   },

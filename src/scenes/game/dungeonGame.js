@@ -25,9 +25,9 @@ export default class DungeonGameScene extends Scene {
     
     this.graphics = this.add.graphics()
     this.graphics.lineStyle(2, 0x999999, 0.2)
-    for (var j = 0; j < 40; j++) {
-      for (var i = 0; i < 40; i++) {
-        this.graphics.strokeRect(-200 + i*16, -200 + j*16, 16, 16)
+    for (var j = 0; j < 240/16; j++) {
+      for (var i = 0; i < 320/16; i++) {
+        this.graphics.strokeRect(i*16,j*16, 16, 16)
       }
     }
     
@@ -38,7 +38,7 @@ export default class DungeonGameScene extends Scene {
     }
 
     this.player = new Player({scene: this, x: 160, y: 120})
-
+    this.player.sprite.setCollideWorldBounds(true)
     this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
       if(this.player.hand.going){
         collider.grab()
@@ -64,6 +64,7 @@ export default class DungeonGameScene extends Scene {
 
 
     this.cameras.main.startFollow(this.player.sprite)
+    this.cameras.main.setBounds(0, 0, 320, 240)
 
     this.sceneManager.addGameScene(this.scene.key)
     this.sceneManager.overlay('dungeonGameHUDScene')
@@ -120,6 +121,14 @@ export default class DungeonGameScene extends Scene {
     this.add.updateList.add(item)
     this.physics.add.world.enableBody(item, Phaser.Physics.Arcade.DYNAMIC_BODY)
     item.setProperties()
+    item.setCollideWorldBounds(true)
     this.items.add(item)
+    return item
+  }
+
+  throwItem (props) {
+    props.scene = this
+    let item = this.addItem(props)
+    item.body.setVelocity(props.vx, props.vy)
   }
 }
