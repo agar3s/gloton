@@ -235,16 +235,13 @@ export default class Player {
     this.hookedItem = item
     this.hookedItem.grab()
     this.hand.going = false
-    console.log('hook item!!')
     let material = ['metal_01', 'wood_01', 'metal_02', 'wood_02'][~~(Math.random()*4)]
-    console.log('key', `impact_${material}`)
     this.sounds[`impact_${material}`].play()
     // put a delay before to start pullingout
   }
 
   collectItem(item) {
     if(item !== this.hookedItem) return
-    console.log('save item!!')
     this.hand.locked = false
     this.graphics.clear()
     this.handSprite.body.setVelocityX(0)

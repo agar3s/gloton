@@ -13,8 +13,8 @@ export default class Item extends Phaser.Physics.Arcade.Sprite {
   }
   setProperties() {
     this.setDrag(100, 100)
-    this.setBounce(1, 1)
-    this.setFriction(1, 1)
+    this.setBounce(0.6, 0.6)
+    this.setFriction(2, 2)
     this.setSize(12, 12, true)
   }
 
