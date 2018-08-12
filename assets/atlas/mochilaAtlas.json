@@ -4,11 +4,61 @@
 			"image": "mochilaAtlas-0.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 238,
-				"h": 117
+				"w": 531,
+				"h": 119
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "mazes/maze01/door_back-closed-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
 				{
 					"filename": "mazes/maze01/door-closed-001",
 					"rotated": false,
@@ -25,7 +75,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -50,13 +100,38 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-002",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 35,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -74,8 +149,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 1,
-						"y": 50,
+						"x": 35,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -85,28 +160,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door-open-016",
+					"filename": "mazes/maze01/door_back-open-003",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 32,
-						"h": 47
+						"h": 68
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 30,
+						"y": 0,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"frame": {
-						"x": 1,
-						"y": 99,
+						"x": 69,
+						"y": 1,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -124,14 +199,39 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 35,
-						"y": 1,
+						"x": 69,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-004",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 103,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -149,8 +249,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 35,
-						"y": 50,
+						"x": 103,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -160,28 +260,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door-open-017",
+					"filename": "mazes/maze01/door_back-open-005",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 32,
-						"h": 47
+						"h": 68
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 30,
+						"y": 0,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"frame": {
-						"x": 35,
-						"y": 99,
+						"x": 137,
+						"y": 1,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -199,14 +299,39 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 69,
-						"y": 1,
+						"x": 137,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-006",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 171,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -224,8 +349,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 69,
-						"y": 50,
+						"x": 171,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -235,28 +360,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door-open-018",
+					"filename": "mazes/maze01/door_back-open-007",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 32,
-						"h": 47
+						"h": 68
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 30,
+						"y": 0,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"frame": {
-						"x": 69,
-						"y": 99,
+						"x": 205,
+						"y": 1,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -274,14 +399,39 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 103,
-						"y": 1,
+						"x": 205,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-008",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 239,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -299,8 +449,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 103,
-						"y": 50,
+						"x": 239,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -310,28 +460,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door-open-019",
+					"filename": "mazes/maze01/door_back-open-009",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 32,
-						"h": 47
+						"h": 68
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 30,
+						"y": 0,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"frame": {
-						"x": 103,
-						"y": 99,
+						"x": 273,
+						"y": 1,
 						"w": 32,
-						"h": 17
+						"h": 68
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -349,14 +499,39 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 137,
-						"y": 1,
+						"x": 273,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-010",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 307,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -374,8 +549,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 137,
-						"y": 50,
+						"x": 307,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -385,28 +560,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door-open-020",
+					"filename": "mazes/maze01/door_back-open-011",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 32,
-						"h": 47
+						"h": 68
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 3,
-						"h": 3
+						"w": 32,
+						"h": 68
 					},
 					"frame": {
-						"x": 137,
-						"y": 99,
-						"w": 3,
-						"h": 3
+						"x": 341,
+						"y": 1,
+						"w": 32,
+						"h": 68
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -424,14 +599,39 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 171,
-						"y": 1,
+						"x": 341,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-012",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 375,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -449,8 +649,8 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 205,
-						"y": 1,
+						"x": 375,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
@@ -474,14 +674,64 @@
 						"h": 47
 					},
 					"frame": {
-						"x": 205,
-						"y": 1,
+						"x": 375,
+						"y": 71,
 						"w": 32,
 						"h": 47
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-013",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 32,
+						"h": 68
+					},
+					"frame": {
+						"x": 409,
+						"y": 1,
+						"w": 32,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-014",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 11,
+						"w": 32,
+						"h": 46
+					},
+					"frame": {
+						"x": 409,
+						"y": 71,
+						"w": 32,
+						"h": 46
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -499,8 +749,8 @@
 						"h": 39
 					},
 					"frame": {
-						"x": 171,
-						"y": 50,
+						"x": 443,
+						"y": 1,
 						"w": 32,
 						"h": 39
 					},
@@ -524,8 +774,8 @@
 						"h": 31
 					},
 					"frame": {
-						"x": 205,
-						"y": 50,
+						"x": 477,
+						"y": 1,
 						"w": 32,
 						"h": 31
 					},
@@ -549,8 +799,8 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 171,
-						"y": 91,
+						"x": 511,
+						"y": 1,
 						"w": 19,
 						"h": 24
 					},
@@ -574,14 +824,89 @@
 						"h": 24
 					},
 					"frame": {
-						"x": 192,
-						"y": 91,
+						"x": 511,
+						"y": 27,
 						"w": 19,
 						"h": 24
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-015",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 19,
+						"w": 32,
+						"h": 31
+					},
+					"frame": {
+						"x": 477,
+						"y": 34,
+						"w": 32,
+						"h": 31
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-016",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 30,
+						"w": 32,
+						"h": 17
+					},
+					"frame": {
+						"x": 443,
+						"y": 42,
+						"w": 32,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-017",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 30,
+						"w": 32,
+						"h": 17
+					},
+					"frame": {
+						"x": 443,
+						"y": 61,
+						"w": 32,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
 					}
 				},
 				{
@@ -599,14 +924,189 @@
 						"h": 30
 					},
 					"frame": {
-						"x": 213,
-						"y": 83,
+						"x": 511,
+						"y": 53,
 						"w": 18,
 						"h": 30
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-018",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 30,
+						"w": 32,
+						"h": 17
+					},
+					"frame": {
+						"x": 477,
+						"y": 67,
+						"w": 32,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-019",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 30,
+						"w": 32,
+						"h": 17
+					},
+					"frame": {
+						"x": 443,
+						"y": 80,
+						"w": 32,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-018",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 31,
+						"w": 32,
+						"h": 16
+					},
+					"frame": {
+						"x": 443,
+						"y": 99,
+						"w": 32,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door-open-020",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 47
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 511,
+						"y": 85,
+						"w": 3,
+						"h": 3
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-019",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 3,
+						"h": 3
+					},
+					"frame": {
+						"x": 511,
+						"y": 85,
+						"w": 3,
+						"h": 3
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-016",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 31,
+						"w": 32,
+						"h": 14
+					},
+					"frame": {
+						"x": 477,
+						"y": 86,
+						"w": 32,
+						"h": 14
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_back-open-017",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 68
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 31,
+						"w": 32,
+						"h": 12
+					},
+					"frame": {
+						"x": 477,
+						"y": 102,
+						"w": 32,
+						"h": 12
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				}
 			]
@@ -615,6 +1115,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:c5ff88590206a21c75cce51d4b014502:7669e5f385a9971772fe296ac4f711b8:8daebe7d1eeec477f8d56c0b9baa75b5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:7d47a4bef9107b2a928b72ee7cdbe6d2:e904d7375d5912e73f215cf351b29e98:8daebe7d1eeec477f8d56c0b9baa75b5$"
 	}
 }
