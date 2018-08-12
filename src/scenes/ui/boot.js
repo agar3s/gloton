@@ -94,6 +94,13 @@ export default class BootScene extends Scene {
     this.load.spritesheet('hand', urlBase + 'assets/hand.png', { frameWidth: 5, frameHeight: 5 })
     this.load.spritesheet('box', urlBase + 'assets/box.png', { frameWidth: 16, frameHeight: 16 })
 
+    // load audio
+    this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
+    this.load.audio('fx_impact_metal_01', urlBase+'assets/audio/fx/Impact_Metal_01.ogg')
+    this.load.audio('fx_impact_metal_02', urlBase+'assets/audio/fx/Impact_Metal_02.ogg')
+    this.load.audio('fx_impact_wood_01', urlBase+'assets/audio/fx/Impact_Wood_01.ogg')
+    this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
+    
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
 

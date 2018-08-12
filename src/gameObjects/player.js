@@ -5,7 +5,13 @@ export default class Player {
   constructor(params) {
     this.scene = params.scene
 
-    this.keys = this.scene.input.keyboard.addKeys('A,W,S,D')
+    const { S, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
+    this.keys = this.scene.input.keyboard.addKeys({
+      s: S,
+      w: W,
+      a: A,
+      d: D
+    })
 
     this.sprite = this.scene.physics.add.sprite(
       params.x,
@@ -50,13 +56,24 @@ export default class Player {
       lenght: 0,
       going: false
     }
+
+    this.sounds = {
+      hook: this.scene.sound.add('fx_hook_shot_01'),
+      impact_metal_01: this.scene.sound.add('fx_impact_metal_01'),
+      impact_metal_02: this.scene.sound.add('fx_impact_metal_02'),
+      impact_wood_01: this.scene.sound.add('fx_impact_wood_01'),
+      impact_wood_02: this.scene.sound.add('fx_impact_wood_02')
+    }
+    Object.keys(this.sounds).forEach(key=>{
+      this.sounds[key].volume = 0.4
+    })
   }
 
   update () {
 
     // get input from player
-    let y = this.keys.W.isDown?-1:this.keys.S.isDown?1:0
-    let x = this.keys.A.isDown?-1:this.keys.D.isDown?1:0
+    let y = this.keys.w.isDown?-1:this.keys.s.isDown?1:0
+    let x = this.keys.a.isDown?-1:this.keys.d.isDown?1:0
     let speed = gs.stats.player.speed * (this.hookedItem?0.7:1)
     
     this.sprite.body.setVelocity(0)
@@ -94,10 +111,12 @@ export default class Player {
         this.scene.physics.world.drawDebug = val
       })
     }
+
   }
 
   launch () {
     if(this.hand.locked) return
+    this.sounds.hook.play()
     // lock the hand/cursor
     this.hand.locked = true
     this.hand.lenght = 0
@@ -216,6 +235,9 @@ export default class Player {
     this.hookedItem = item
     this.hand.going = false
     console.log('hook item!!')
+    let material = ['metal_01', 'wood_01', 'metal_02', 'wood_02'][~~(Math.random()*4)]
+    console.log('key', `impact_${material}`)
+    this.sounds[`impact_${material}`].play()
     // put a delay before to start pullingout
   }
 
