@@ -240,6 +240,10 @@ export default class Player {
     // put a delay before to start pullingout
   }
 
+  hookCollidesWall (wall) {
+    this.hand.going = false
+  }
+
   collectItem(item) {
     if(item !== this.hookedItem) return
     this.hand.locked = false

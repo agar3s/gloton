@@ -190,6 +190,9 @@ export default class DungeonGameScene extends Scene {
 
     this.physics.add.collider(this.items, this.wallsLayer)
     this.physics.add.collider(this.player.sprite, this.wallsLayer)
+    this.physics.add.overlap(this.player.handSprite, this.wallsLayer, (hand, wall) => {
+      if(wall.collides) this.player.hookCollidesWall(wall)
+    })
     // handle the event of the PC colliding with the door
     this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
       door.anims.play('door-open')
