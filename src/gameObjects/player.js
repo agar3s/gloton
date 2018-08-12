@@ -46,6 +46,10 @@ export default class Player {
     })
     
     this.sprite.anims.play('pc-idle')
+    this.sprite.setSize(this.sprite.width, 12).setOffset(0, this.sprite.height-12)
+    // player's foot
+    //this.foot = this.scene.add.zone(params.x-this.sprite.width/2, params.y-10).setSize(this.sprite.width, 10)
+    //this.scene.physics.world.enable(this.foot)
 
     // defines the raycast
     this.raycast = this.scene.add.zone(params.x, params.y).setSize(5, 5)
@@ -102,14 +106,14 @@ export default class Player {
     let speed = gs.stats.player.speed * (this.hookedItem?0.7:1)
     
     this.sprite.body.setVelocity(0)
-    this.sprite.body.setVelocityX(x*speed)
-    this.sprite.body.setVelocityY(y*speed)
+    this.sprite.body.setVelocity(x*speed, y*speed)
     this.sprite.body.velocity.normalize().scale(speed)
+    //this.foot.body.setVelocity(this.sprite.body.velocity.x, this.sprite.body.velocity.y)
     
 
     this.anchorHand = {
       x: this.sprite.x + 0,
-      y: this.sprite.y - this.sprite.height/2
+      y: this.sprite.y - 8
     }
     // update cursor's position
     let angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y - this.sprite.height/2, this.cursor.x, this.cursor.y)

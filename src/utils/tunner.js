@@ -78,7 +78,7 @@ if(constants.DAT_GUI_ENABLE) {
     "Default": {
       "0": {
         "backgroundColor": "#000",
-        "debug": false
+        "debug": true
       },
       "1": {
         "chainLength": 120,

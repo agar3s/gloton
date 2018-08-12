@@ -19,7 +19,10 @@ export default class DungeonGameScene extends Scene {
 
     this.setupLevel()
     this.setupPlayer()
-        
+    this.player.sprite.setDepth(5)
+    this.player.handSprite.setDepth(6)
+    this.player.cursor.setDepth(20)
+    this.door.setDepth(4)   
     // basic box item
     this.items = this.add.group()
     for (var i = 0; i < 20; i++) {
@@ -161,7 +164,7 @@ export default class DungeonGameScene extends Scene {
     this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
       this.player.hook(collider)
     })
-    this.physics.add.overlap(this.player.sprite, this.items, (hand, collider) => {
+    this.physics.add.overlap(this.player.sprite, this.items, (playerSprite, collider) => {
       if (collider.grabbed) {
         this.player.collectItem(collider)
         Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
@@ -178,7 +181,9 @@ export default class DungeonGameScene extends Scene {
     this.physics.add.collider(this.items, this.wallsLayer)
     this.physics.add.collider(this.player.sprite, this.wallsLayer)
     this.physics.add.overlap(this.player.handSprite, this.wallsLayer, (hand, wall) => {
-      if(wall.collides) this.player.hookCollidesWall(wall)
+      if(wall.collides) {
+        this.player.hookCollidesWall(wall)
+      }
     })
     // handle the event of the PC colliding with the door
     this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
@@ -190,8 +195,13 @@ export default class DungeonGameScene extends Scene {
         playerSprite.anims.play('pc-idle')
         this.door.destroy()
       }, this)
-
     }, null, this)
+    this.physics.add.collider(this.items, this.door)
+    this.physics.add.overlap(this.player.handSprite, this.door, (hand, door)=>{
+      
+        this.player.hookCollidesWall(door)
+    
+    })
   }
 
   generateFrameNames(path, animationId, end) {
