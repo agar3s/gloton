@@ -20,7 +20,8 @@ let stats = {
     chainLength: 120,
     chainSpeed: 3,
     speed: 150,
-    chaintoTarget: false
+    chaintoTarget: false,
+    raycast: true
   }
 }
 function getNames(property) {
