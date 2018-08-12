@@ -8,7 +8,7 @@
 */
 
 const SCALE = 2
-const BACKGROUND_COLOR = 0x000
+const BACKGROUND_COLOR = 0x060608
 
 // time in milliseconds to keep visible the "splash" scene
 const TIME_SPLASH = 200

@@ -47,8 +47,8 @@ export default class TestLevelScene extends Scene {
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
     this.backgroundLayer = this.map.createStaticLayer('background', tileset)
-    this.groundLayer = this.map.createDynamicLayer('ground', tileset)
-    this.wallsLayer = this.map.createDynamicLayer('walls', tileset)
+    this.groundLayer = this.map.createStaticLayer('ground', tileset)
+    this.wallsLayer = this.map.createStaticLayer('walls', tileset)
 
     this.wallsLayer.setCollisionByProperty({
       collides: true
@@ -93,7 +93,7 @@ export default class TestLevelScene extends Scene {
 
     // set the bounds for the camera and make it follow the player
     this.cameras.main.startFollow(this.player.sprite)
-    this.cameras.main.setBounds(0, 0, 320, 240)
+    // this.cameras.main.setBounds(0, 0, 320, 240)
 
     // add this scene to the list of "pausable" scenes
     this.sceneManager.addGameScene(this.scene.key)
