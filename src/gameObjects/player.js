@@ -12,6 +12,12 @@ export default class Player {
 
     this.sprite.setBounce(0, 0)
 
+    // defines the raycast
+    this.raycast = this.scene.add.zone(params.x, params.y).setSize(5, 5)
+    this.scene.physics.world.enable(this.raycast)
+    this.raycast.body.setAllowGravity(false)
+    this.raycast.body.moves = true
+
     this.cursor = this.scene.add
       .sprite(params.x, params.y, 'cursor')
 
@@ -62,6 +68,10 @@ export default class Player {
 
       this.handSprite.x = this.sprite.x
       this.handSprite.y = this.sprite.y
+
+      if(gs.stats.player.raycast){
+        this.updateRaycast(angle)
+      }
     } else {
       angle = this.updateHand(angle)
       this.drawHand()
@@ -88,6 +98,10 @@ export default class Player {
     this.hand.locked = true
     this.hand.lenght = 0
     this.hand.going = true
+
+    if(gs.stats.player.raycast){
+      this.resetRayCast()
+    }
 
     // draw a ray in direction to the cursor
     // check for collision in the trayectory
@@ -204,4 +218,40 @@ export default class Player {
     this.hookedItem.release()
     this.hookedItem = undefined
   }
+
+  updateRaycast(angle){
+    let dynamicSpeed = Math.random()*600 + 200
+    this.raycast.body.setVelocity(Math.cos(angle)*dynamicSpeed, Math.sin(angle)*dynamicSpeed)
+    let rayDistance = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.raycast.x, this.raycast.y)
+
+    let maxDistance = gs.stats.player.chainLength*gs.stats.player.chainLength
+    if(gs.stats.player.chaintoTarget) {
+      maxDistance = Phaser.Math.Distance.Squared(this.sprite.x, this.sprite.y, this.cursor.x, this.cursor.y)
+    }
+    if(rayDistance > maxDistance) {
+      this.raycast.x = this.sprite.x-2.5
+      this.raycast.y = this.sprite.y-2.5
+      if(this.raycastCollider){
+        this.raycastCollider.setHighlight(false)
+        this.raycastCollider = undefined
+      }
+    }
+  }
+
+  setRaycastCollider (collider) {
+    if(this.raycastCollider && this.raycastCollider !=collider){
+      this.raycastCollider.setHighlight(false)
+    }
+    this.raycast.x = this.sprite.x-2.5
+    this.raycast.y = this.sprite.y-2.5
+    this.raycastCollider = collider
+    this.raycastCollider.setHighlight(true)
+  }
+
+  resetRayCast() {
+    this.raycast.body.setVelocity(0,0)
+    this.raycast.x = this.sprite.x-2.5
+    this.raycast.y = this.sprite.y-2.5
+  }
+
 }

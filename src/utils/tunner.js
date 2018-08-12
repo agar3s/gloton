@@ -38,6 +38,11 @@ function initGui() {
     gs.notifyListener('player.speed', val)
   })
 
+  folderPlayer.add(gs.stats.player, 'raycast')
+  .onChange((val) => {
+    gs.notifyListener('player.raycast', val)
+  })
+
   folderPlayer.open()
 
   let folderScene = gui.addFolder('Current Scene')

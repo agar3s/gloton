@@ -56,6 +56,10 @@ export default class DungeonGameScene extends Scene {
       }
     })
 
+    this.physics.add.overlap(this.player.raycast, this.items, (ray, collider) => {
+      this.player.setRaycastCollider(collider)
+    })
+
     this.physics.add.collider(this.items, this.items)
 
 
