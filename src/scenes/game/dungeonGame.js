@@ -47,6 +47,8 @@ export default class DungeonGameScene extends Scene {
     this.backgroundLayer = this.map.createStaticLayer('background', tileset)
     this.groundLayer = this.map.createStaticLayer('ground', tileset)
     this.wallsLayer = this.map.createStaticLayer('walls', tileset)
+    this.foregroundLayer = this.map.createStaticLayer('foreground', tileset)
+    this.foregroundLayer.setDepth(10)
 
     this.wallsLayer.setCollisionByProperty({
       collides: true
