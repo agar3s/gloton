@@ -13,82 +13,35 @@ export default class DungeonGameScene extends Scene {
   create (params) {
     super.create(params)
 
-    this.events.on('shutdown', () => {
-      this.shutdown()
-    }, this)
-    this.events.on('pause', () => {
-      this.pause()
-    }, this)
-    this.events.on('resume', () => {
-      this.resume()
-    }, this)
+    this.events.on('shutdown', _ => this.shutdown(), this)
+    this.events.on('pause', _ => this.pause(), this)
+    this.events.on('resume', _ => this.resume(), this)
     
-    this.graphics = this.add.graphics()
-    this.graphics.lineStyle(2, 0x999999, 0.2)
-    for (var j = 0; j < 240/16; j++) {
-      for (var i = 0; i < 320/16; i++) {
-        this.graphics.strokeRect(i*16,j*16, 16, 16)
-      }
-    }
     
     // basic box item
     this.items = this.add.group()
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < 20; i++) {
       this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
     }
 
     this.player = new Player({scene: this, x: 160, y: 120})
     this.player.sprite.setCollideWorldBounds(true)
-    this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
-      if(this.player.hand.going){
-        collider.grab()
-        this.player.hook(collider)
-      }
-    })
-    this.physics.add.overlap(this.player.sprite, this.items, (hand, collider) => {
-      if(collider.grabbed){
-        this.player.grabItem(collider)
-        collider.destroy()
-        Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
 
-        this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
-        this.addItem({scene: this, x: 30+Math.random()*300, y: 30+Math.random()*200, key: 'box'})
-      }
-    })
-
-    this.physics.add.overlap(this.player.raycast, this.items, (ray, collider) => {
-      this.player.setRaycastCollider(collider)
-    })
-
-    this.physics.add.collider(this.items, this.items)
-
+    this.configPhysics()
 
     this.cameras.main.startFollow(this.player.sprite)
     this.cameras.main.setBounds(0, 0, 320, 240)
 
     this.sceneManager.addGameScene(this.scene.key)
     this.sceneManager.overlay('dungeonGameHUDScene')
+  }
 
-    this.fail = this.createButton({
-      x: 30,
-      y: 100,
-      keyText: 'fail',
-      onClick: (self) => {
-        this.changeToScene('failGameScene')
-      }
-    })
-    this.fail.setVisible(false)
+  success() {
+    this.changeToScene('failGameScene')
+  }
 
-    this.success = this.createButton({
-      x: 200,
-      y: 100,
-      keyText: 'success',
-      onClick: (self) => {
-        this.changeToScene('successGameScene')
-      }
-    })
-    this.success.setVisible(false)
-
+  fail () {
+    this.changeToScene('successGameScene')
   }
 
   shutdown() {
@@ -130,5 +83,24 @@ export default class DungeonGameScene extends Scene {
     props.scene = this
     let item = this.addItem(props)
     item.body.setVelocity(props.vx, props.vy)
+  }
+
+  configPhysics () {
+    this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
+      this.player.hook(collider)
+    })
+    this.physics.add.overlap(this.player.sprite, this.items, (hand, collider) => {
+      if (collider.grabbed) {
+        this.player.collectItem(collider)
+        Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
+        collider.destroy()
+      }
+    })
+
+    this.physics.add.overlap(this.player.raycast, this.items, (ray, collider) => {
+      this.player.setRaycastCollider(collider)
+    })
+
+    this.physics.add.collider(this.items, this.items)
   }
 }

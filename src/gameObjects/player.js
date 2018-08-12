@@ -233,6 +233,7 @@ export default class Player {
   hook (item) {
     if(this.hookedItem === item || !this.hand.going) return
     this.hookedItem = item
+    this.hookedItem.grab()
     this.hand.going = false
     console.log('hook item!!')
     let material = ['metal_01', 'wood_01', 'metal_02', 'wood_02'][~~(Math.random()*4)]
@@ -241,14 +242,12 @@ export default class Player {
     // put a delay before to start pullingout
   }
 
-  grabItem(item) {
+  collectItem(item) {
     if(item !== this.hookedItem) return
     console.log('save item!!')
     this.hand.locked = false
     this.graphics.clear()
-    this.hookedItem.body.setVelocityX(0)
     this.handSprite.body.setVelocityX(0)
-    this.hookedItem.body.setVelocityY(0)
     this.handSprite.body.setVelocityY(0)
     this.hookedItem.release()
     this.hookedItem = undefined
