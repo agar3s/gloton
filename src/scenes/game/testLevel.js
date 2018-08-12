@@ -53,14 +53,30 @@ export default class TestLevelScene extends Scene {
     this.wallsLayer.setCollisionByProperty({
       collides: true
     })
+    // └───────────────────────────────────────────────────────────────────────┘
 
+    // ┌ create the door ──────────────────────────────────────────────────────┐
+    const doorPoint = this.map.findObject(
+      'Objects',
+      obj => obj.name === 'Door'
+    )
+
+    this.door = this.physics.add.sprite(
+      doorPoint.x,
+      doorPoint.y,
+      this.constants.ATLAS_KEY,
+      'mazes/maze01/door-closed-001'
+    );
+
+    this.door.body.immovable = true;
+    // └───────────────────────────────────────────────────────────────────────┘
+
+    // ┌ create the PC ────────────────────────────────────────────────────────┐
     const spawnPoint = this.map.findObject(
       'Objects',
       obj => obj.name === 'Spawn Point'
     )
-    // └───────────────────────────────────────────────────────────────────────┘
-
-    // ┌ create the PC ────────────────────────────────────────────────────────┐
+    
     this.player = new Player({
       scene: this,
       x: spawnPoint.x,
@@ -68,10 +84,16 @@ export default class TestLevelScene extends Scene {
       textureKey: this.constants.ATLAS_KEY,
       textureFrame: 'characters/pc/idle-001'
     })
-
+    
     // enable collisions between the player and the walls
     this.physics.add.collider(this.player.sprite, this.wallsLayer)
 
+    // handle the event of the PC colliding with the door
+    this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
+      door.setTexture(this.constants.ATLAS_KEY, 'mazes/maze01/door-open-001')
+      playerSprite.anims.play('pc-openning')
+    }, null, this)
+    
     // ├── setup the animations for the PC ─┐
     // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
     // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
@@ -87,19 +109,19 @@ export default class TestLevelScene extends Scene {
       frameRate: 1,
       repeat: 1
     })
-
+    
     this.player.sprite.anims.play('pc-idle')
     // └───────────────────────────────────┘
-
+    
     // set the bounds for the camera and make it follow the player
     this.cameras.main.startFollow(this.player.sprite)
     // this.cameras.main.setBounds(0, 0, 320, 240)
-
+    
     // add this scene to the list of "pausable" scenes
     this.sceneManager.addGameScene(this.scene.key)
     // └───────────────────────────────────────────────────────────────────────┘
   }
-
+  
   update() {
     super.update()
     this.player.update()
