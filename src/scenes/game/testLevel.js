@@ -68,7 +68,19 @@ export default class TestLevelScene extends Scene {
       'mazes/maze01/door-closed-001'
     );
 
+    // the door can't be moved by the player
     this.door.body.immovable = true;
+
+    // ├── setup the animations for the PC ─┐
+    // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
+    // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
+    this.anims.create({
+      key: 'door-open',
+      frames: this.generateFrameNames('mazes/maze01', 'door-open', 20),
+      frameRate: 12,
+      repeat: 0
+    })
+
     // └───────────────────────────────────────────────────────────────────────┘
 
     // ┌ create the PC ────────────────────────────────────────────────────────┐
@@ -90,7 +102,7 @@ export default class TestLevelScene extends Scene {
 
     // handle the event of the PC colliding with the door
     this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
-      door.setTexture(this.constants.ATLAS_KEY, 'mazes/maze01/door-open-001')
+      door.anims.play('door-open')
       playerSprite.anims.play('pc-openning')
     }, null, this)
     
@@ -99,13 +111,13 @@ export default class TestLevelScene extends Scene {
     // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
     this.anims.create({
       key: 'pc-idle',
-      frames: this.generateFrameNames('idle'),
+      frames: this.generateFrameNames('characters/pc', 'idle'),
       frameRate: 1,
       repeat: -1
     })
     this.anims.create({
       key: 'pc-openning',
-      frames: this.generateFrameNames('openning', 1),
+      frames: this.generateFrameNames('characters/pc', 'openning', 1),
       frameRate: 1,
       repeat: 1
     })
@@ -140,12 +152,12 @@ export default class TestLevelScene extends Scene {
     this.physics.resume()
   }
 
-  generateFrameNames(animationId, end) {
+  generateFrameNames(path, animationId, end) {
     return this.anims.generateFrameNames(this.constants.ATLAS_KEY, {
       start: 1,
       end: end || 2,
       zeroPad: 3,
-      prefix: `characters/pc/${animationId}-`
+      prefix: `${path}/${animationId}-`
     })
   }
 }

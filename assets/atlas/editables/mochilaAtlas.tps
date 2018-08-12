@@ -210,6 +210,37 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../sprites/mazes/maze01/door-open-002.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-003.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-004.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-005.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-006.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-007.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-008.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-009.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-010.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-011.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-012.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-013.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-014.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-015.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-016.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-017.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-018.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-019.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door-open-020.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,12,16,23</rect>
+                <key>scale9Paddings</key>
+                <rect>8,12,16,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
