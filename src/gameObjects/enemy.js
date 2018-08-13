@@ -74,10 +74,12 @@ export default class Enemy extends Item {
 
     this.sounds = {
       skeleton_awake: this.scene.sound.add('fx_skeleton_awake'),
+      skeleton_fs: this.scene.sound.add('fx_skeleton_fs'),
+      skeleton_attack: this.scene.sound.add('fx_skeleton_attack'),
       skeleton_stunned: this.scene.sound.add('fx_skeleton_stunned')
     }
     Object.keys(this.sounds).forEach(key=>{
-      this.sounds[key].volume = 0.5
+      this.sounds[key].volume = 0.4
     })
 
     this.direction = {
@@ -124,6 +126,7 @@ export default class Enemy extends Item {
       if(this.status!==STATUS.IDLE){
         this.status = STATUS.IDLE
         this.anims.play('skeleton-idle')
+        this.sounds.skeleton_fs.stop()
       }
     }else if(distance<(16)) {
       this.attack()
@@ -133,6 +136,7 @@ export default class Enemy extends Item {
       this.direction.y = Math.sin(angle)
       this.flipX = this.direction.x>0
       if(this.status!== STATUS.WALK){
+        this.sounds.skeleton_fs.play({loop:-1})
         this.anims.play('skeleton-walk')
         this.status = STATUS.WALK
       }
@@ -146,12 +150,15 @@ export default class Enemy extends Item {
     this.status = STATUS.ATTACK
     this.setVelocity(0,0)
     this.anims.play('skeleton-attack')
+    this.sounds.skeleton_fs.stop()
+    this.sounds.skeleton_attack.play()
     setTimeout(() => {
       this.scene.hitPlayer(this)
     }, 150)
     this.on('animationcomplete', (animation, frame) => {
       setTimeout(() => {
         this.status = STATUS.IDLE
+        this.sounds.skeleton_fs.stop()
         this.anims.play('skeleton-idle')
       }, 100)
       this.off('animationcomplete')

@@ -141,6 +141,7 @@ export default class Player {
       impact_wood_02: this.scene.sound.add('fx_impact_wood_02'),
 
       ninja_fs: this.scene.sound.add('fx_ninja_FS'),
+      ninja_hurt: this.scene.sound.add('fx_ninja_hurt'),
       door_open: this.scene.sound.add('fx_door_open')
     }
     Object.keys(this.sounds).forEach(key=>{
@@ -450,6 +451,7 @@ export default class Player {
     this.setStatus(STATUS.HIT)
     
     this.sprite.anims.play('pc-hit')
+    this.sounds.ninja_hurt.play()
     this.sprite.on('animationcomplete', (animation, frame) => {
       this.setStatus(STATUS.IDLE)
       this.sprite.off('animationcomplete')

@@ -62,7 +62,7 @@ export default class MainMenuScene extends Scene {
     })
 
     this.music = this.sound.add('mx_title')
-    this.music.volume = 0.4
+    this.music.volume = 0.5
     this.music.play({
       loop:-1
     })
