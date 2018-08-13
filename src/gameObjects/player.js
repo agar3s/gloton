@@ -344,7 +344,11 @@ export default class Player {
     this.sounds.hook_shot.stop()
     
     this.hookedItem = item
-    this.hookedItem.grab()
+    if(!this.hookedItem.grab()){
+      this.hookedItem = undefined
+      this.hookCollidesWall()
+      return
+    }
     this.hand.going = false
     let variation = ~~(Math.random()*2) + 1
     this.sounds[`impact_${this.hookedItem.material}_0${variation}`].play()

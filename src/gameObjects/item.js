@@ -9,7 +9,7 @@ export default class Item extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    this.sprite.update()
+    super.update()
   }
   setProperties() {
     this.setDrag(100, 100)
@@ -20,6 +20,7 @@ export default class Item extends Phaser.Physics.Arcade.Sprite {
 
   grab() {
     this.grabbed = true
+    return this.grabbed
   }
   release() {
     this.grabbed = false

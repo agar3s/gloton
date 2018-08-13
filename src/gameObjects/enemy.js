@@ -3,7 +3,11 @@ import Item from './item'
 const STATUS = {
   REST: 0,
   WAKE: 1,
-  IDLE: 2
+  IDLE: 2,
+  ALERT: 3,
+  WALK: 4,
+  ATTACK: 5,
+  FIGHTING: 6
 }
 export default class Enemy extends Item {
   constructor(params) {
@@ -31,13 +35,39 @@ export default class Enemy extends Item {
         frameRate: 10,
         repeat: -1
       })
+
+      this.scene.anims.create({
+        key: 'skeleton-attack',
+        frames: this.scene.generateFrameNames('characters/npc', 'skeleton-attack', 2),
+        frameRate: 10,
+        repeat: 0
+      })
+      this.scene.anims.anims.get('skeleton-attack').frames.forEach((frame, index)=>{
+        frame.duration = 150
+      })
+
+      this.scene.anims.create({
+        key: 'skeleton-walk',
+        frames: this.scene.generateFrameNames('characters/npc', 'skeleton-walk', 2),
+        frameRate: 10,
+        repeat: -1
+      })
+      this.scene.anims.anims.get('skeleton-walk').frames.forEach((frame, index)=>{
+        frame.duration = 300
+      })
+
+      this.scene.anims.create({
+        key: 'skeleton-alert',
+        frames: this.scene.generateFrameNames('characters/npc', 'skeleton-alert', 1),
+        frameRate: 10,
+        repeat: 0
+      })
     }
     this.tint = 0xffffff
     this.anims.play('skeleton-resting')
     this.status= STATUS.REST
 
     setTimeout(()=>{
-      console.log('ey wakeup')
       this.wake()
     }, (~~(Math.random()*10000)) + 3000)
 
@@ -53,12 +83,33 @@ export default class Enemy extends Item {
       this.anims.play('skeleton-idle')
       this.off('animationcomplete')
     }, this)
+/*
+    setTimeout(()=>{
+      this.anims.play('skeleton-alert')
+    }, 1000)
 
+    setTimeout(()=>{
+      this.anims.play('skeleton-walk')
+      this.status = STATUS.WALK
+    }, 2000)
+
+    setTimeout(()=>{
+      this.setVelocity(0,0)
+      this.anims.play('skeleton-attack')
+      this.on('animationcomplete', (animation, frame) => {
+        this.status = STATUS.IDLE
+        this.anims.play('skeleton-idle')
+        this.off('animationcomplete')
+      }, this)
+    }, 5000)
+*/
   }
 
   update() {
     super.update()
-    this.sprite.update()
+    if(this.status===STATUS.WALK){
+      this.setVelocity(-20, 0)
+    }
   }
   setProperties() {
     super.setProperties()
@@ -68,7 +119,7 @@ export default class Enemy extends Item {
   }
 
   grab() {
-    super.grab()
+    return false
   }
   release() {
     super.release()

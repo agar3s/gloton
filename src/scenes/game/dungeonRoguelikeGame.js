@@ -33,6 +33,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.player.cursor.setDepth(20)
 
     // add an enemy
+    this.enemies = []
     this.addEnemy({x:this.player.sprite.x + 50, y:this.player.sprite.y})
     this.addEnemy({x:this.player.sprite.x - 50, y:this.player.sprite.y})
     this.addEnemy({x:this.player.sprite.x, y:this.player.sprite.y + 50})
@@ -424,6 +425,9 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
     let t = ~~(this.timer.getElapsedSeconds())
     this.registry.set('timer', t)
+
+    // update enemies
+    this.enemies.forEach(enemy => enemy.update())
   }
 
   updateLanguageTexts () {
@@ -452,7 +456,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.physics.add.world.enableBody(enemy, Phaser.Physics.Arcade.DYNAMIC_BODY)
     enemy.setProperties()
     this.items.add(enemy)
-    return enemy
+    
+    this.enemies.push(enemy)
   }
 
   throwItem (props) {
@@ -467,8 +472,11 @@ export default class DungeonRoguelikeGameScene extends Scene {
     })
     this.physics.add.overlap(this.player.sprite, this.items, (playerSprite, collider) => {
       if (collider.grabbed) {
+
         this.player.collectItem(collider)
         Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
+        let index = this.enemies.indexOf(collider)
+        this.enemies.splice(index, 1)
         collider.destroy()
       }
     })
