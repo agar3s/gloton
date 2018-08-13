@@ -241,6 +241,71 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../sprites/mazes/maze01/door_back-closed-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-002.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-003.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-004.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-005.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-006.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-007.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-008.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-009.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-010.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-011.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-012.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-013.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-014.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-015.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-016.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-017.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-018.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_back-open-019.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,17,16,34</rect>
+                <key>scale9Paddings</key>
+                <rect>8,17,16,34</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/mazes/maze01/door_side-closed-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-002.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-003.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-004.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-005.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-006.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-007.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-008.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-009.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-010.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-011.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-012.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-013.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-014.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-015.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-016.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-017.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-018.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-019.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side-open-020.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,11,9,23</rect>
+                <key>scale9Paddings</key>
+                <rect>5,11,9,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
