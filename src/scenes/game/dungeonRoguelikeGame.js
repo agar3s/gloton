@@ -166,7 +166,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.foregroundLayer.putTilesAt([[25]], x + doors[i].x+1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
 
-          this.addDoor((x+doors[i].x+1)*16, (y+doors[i].y-3)*16+3, 'left')
+          this.addDoor((x+doors[i].x)*16, (y+doors[i].y-3)*16+3, 'left')
         } else if (doors[i].x === room.width - 1) { // DOOR AT THE RIGHT
           // remove wall
           this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x-1, y + doors[i].y - 1)
@@ -183,7 +183,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.foregroundLayer.putTilesAt([[24]], x + doors[i].x-1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
 
-          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16, 'right')
+          this.addDoor((x+doors[i].x)*16, (y+doors[i].y)*16, 'right')
 
         }
       }
@@ -264,11 +264,30 @@ export default class DungeonRoguelikeGameScene extends Scene {
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
     //camera.startFollow(this.player.sprite)
 
-    console.log(this.wallsLayer)
     this.wallsLayer.setCollisionByExclusion([-1, 21])
     /*this.wallsLayer.setCollisionByProperty({
       collides: true
     })*/
+
+    let allDoors = this.doors.getChildren()
+    for(var i=0;i<allDoors.length-1;i++){
+      let doorA = allDoors[i]
+      if(doorA.twinDoor) continue
+      let min = 5000
+      let pairedIndex = -1
+      for(var j = i+1;j<allDoors.length;j++){
+        let doorB = allDoors[j]
+        if(doorB.twinDoor) continue
+        let distance = Phaser.Math.Distance.Between(doorA.x, doorA.y, doorB.x, doorB.y)
+        if(distance<min){
+          min = distance
+          pairedIndex = j
+        }
+      }
+      doorA.twinDoor = allDoors[pairedIndex]
+      allDoors[pairedIndex].twinDoor = doorA
+      console.log(i, pairedIndex, 'pareja')
+    }
   }
 
 
@@ -459,6 +478,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
       door.anims.play(animations[door.position])
 
       this.player.openDoor(door)
+      door.twinDoor.destroy()
       
       door.on('animationcomplete', (animation, frame) => {
         this.player.finishOpenDoor()
