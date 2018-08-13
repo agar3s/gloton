@@ -55,12 +55,12 @@ export default class DungeonRoguelikeGameScene extends Scene {
     // setup a new dungeon
     console.log('starting')
     this.dungeon = new Dungeon({
-      width: 64 || 126,
-      height: 30 || 76,
-      doorPadding: 6,
+      width: 80,
+      height: 80,
+      doorPadding: 4,
       rooms: {
-        width: { min: 16, max: 32},
-        height: { min: 14, max: 28}
+        width: { min: 14, max: 32},
+        height: { min: 12, max: 32}
       }
     })
     console.log('ends', (+(new Date()))-start)
@@ -77,7 +77,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.wallsLayer = map.createBlankDynamicLayer('walls', tileset)
     this.foregroundLayer = map.createBlankDynamicLayer('foreground', tileset)
     const shadowLayer = map.createBlankDynamicLayer('shadow', tileset).fill(299)
-    shadowLayer.setDepth(21)
+    this.foregroundLayer.setDepth(25)
+    shadowLayer.setDepth(30)
     this.tilemapVisibility = new TilemapVisibility(shadowLayer)
     // shadow - READY 
 
@@ -90,32 +91,87 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
       // Fill the floor with mostly clean tiles, but occasionally place a dirty tile
       // See "Weighted Randomize" example for more information on how to use weightedRandomize.
-      this.groundLayer.weightedRandomize(x + 1, y + 1, width - 2, height - 2, TILES.FLOOR)
+      this.groundLayer.weightedRandomize(x + 2, y + 3, width - 4, height - 4, TILES.FLOOR)
 
-      // Place the room corners tiles
-      this.wallsLayer.putTileAt(TILES.WALL.TOP_LEFT, left, top)
-      this.wallsLayer.putTileAt(TILES.WALL.TOP_RIGHT, right, top)
-      this.wallsLayer.putTileAt(TILES.WALL.BOTTOM_RIGHT, right, bottom)
-      this.wallsLayer.putTileAt(TILES.WALL.BOTTOM_LEFT, left, bottom)
+      // top walls
+      this.wallsLayer.weightedRandomize(left + 2, top, width - 4, 1, TILES.WALL.TOP)
+      this.wallsLayer.weightedRandomize(left + 2, top + 2, width - 4, 1, [{index: 62, weight: 1}])
+      this.wallsLayer.weightedRandomize(left + 2, top + 1, width - 4, 1, [{index: 42, weight: 1}])
 
-      // Fill the walls with mostly clean tiles, but occasionally place a dirty tile
-      this.wallsLayer.weightedRandomize(left + 1, top, width - 2, 1, TILES.WALL.TOP)
-      this.wallsLayer.weightedRandomize(left + 1, bottom, width - 2, 1, TILES.WALL.BOTTOM)
-      this.wallsLayer.weightedRandomize(left, top + 1, 1, height - 2, TILES.WALL.LEFT)
-      this.wallsLayer.weightedRandomize(right, top + 1, 1, height - 2, TILES.WALL.RIGHT)
+      // right walls
+      this.wallsLayer.weightedRandomize(right-1, top + 1, 1, height - 2, TILES.WALL.RIGHT)
+      this.wallsLayer.putTilesAt([[103],[123]], right - 1, bottom - 1)
+      this.wallsLayer.putTilesAt([[3]], right - 1, top)
+
+      // left walls
+      this.wallsLayer.weightedRandomize(left + 1, top + 1, 1, height - 2, TILES.WALL.LEFT)
+      this.wallsLayer.putTilesAt([[100],[120]], left + 1, bottom - 1)
+      this.wallsLayer.putTilesAt([[0]], left + 1, top)
+
+      // bottom walls
+      this.wallsLayer.weightedRandomize(left + 2, bottom, width - 4, 1, TILES.WALL.BOTTOM)
+      this.foregroundLayer.weightedRandomize(left + 2, bottom-1, width - 4, 1, [{index: 102, weight: 1}, {index: 101, weight: 1}])
+
 
       // Dungeons have rooms that are connected with doors. Each door has an x & y relative to the
       // room's location
       var doors = room.getDoorLocations()
       for (var i = 0; i < doors.length; i++) {
-        if (doors[i].y === 0) {
-          this.wallsLayer.putTilesAt([21,21], x + doors[i].x - 1, y + doors[i].y)
+        if (doors[i].y === 0) { // DOOR AT THE TOP
+          // remove wall
+          this.wallsLayer.putTilesAt([[21,21],[21,21],[21,21]], x + doors[i].x - 1, y + doors[i].y)
+          // put floor
+          this.groundLayer.putTilesAt([[39,39],[39,39],[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          //put superior left border
+          this.wallsLayer.putTilesAt([[102]], x + doors[i].x - 2, y + doors[i].y)
+          //put superior right border
+          this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x + 1, y + doors[i].y)
+
         } else if (doors[i].y === room.height - 1) {
-          this.wallsLayer.putTilesAt([21,21], x + doors[i].x - 1, y + doors[i].y)
-        } else if (doors[i].x === 0) {
-          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x, y + doors[i].y - 1)
-        } else if (doors[i].x === room.width - 1) {
-          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x, y + doors[i].y - 1)
+          // remove wall
+          this.wallsLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y-1)
+          // put floor
+          this.groundLayer.putTilesAt([[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          // put inferior right border
+          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x + 1, y + doors[i].y-1)
+          this.wallsLayer.putTilesAt([[44]], x + doors[i].x + 1, y + doors[i].y)
+          // put inferior left border
+          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x - 2, y + doors[i].y-1)
+          this.wallsLayer.putTilesAt([[45]], x + doors[i].x - 2, y + doors[i].y)
+
+        } else if (doors[i].x === 0) { // DOOR AT THE LEFT
+          // remove wall
+          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x+1, y + doors[i].y - 1)
+          // put tiles
+          //this.groundLayer.putTilesAt([[39,39],[39,39]], x + doors[i].x+1, y + doors[i].y - 1)
+          // ???? funciona?
+          this.groundLayer.putTilesAt([[39,39],[39,39]], x + doors[i].x, y + doors[i].y - 1)
+
+          // put superior border in the wall
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x+1, y + doors[i].y - 4)
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x, y + doors[i].y - 4)
+          // put inferior border in the wall
+          this.wallsLayer.putTilesAt([[45],[125]], x + doors[i].x+1, y + doors[i].y + 1)
+          this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
+          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x+1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+        } else if (doors[i].x === room.width - 1) { // DOOR AT THE RIGHT
+          // remove wall
+          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x-1, y + doors[i].y - 1)
+          // put tiles
+          this.groundLayer.putTilesAt([[39],[39]], x + doors[i].x-1, y + doors[i].y - 1)
+          this.groundLayer.putTilesAt([[39],[39]], x + doors[i].x, y + doors[i].y - 1)
+          
+          // put superior border in the wall
+          this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x-1, y + doors[i].y - 4)
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x, y + doors[i].y - 4)
+          // put inferior border in the wall
+          this.wallsLayer.putTilesAt([[44],[124]], x + doors[i].x-1, y + doors[i].y + 1)
+          this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
+          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x-1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+
         }
       }
     })
