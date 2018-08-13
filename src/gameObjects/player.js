@@ -1,11 +1,17 @@
 import gs from '../config/gameStats'
 import constants from '../config/constants'
 
+const STATUS = {
+  IDLE: 0,
+  RUNNING: 1,
+  OPENING: 2,
+  HAND: 3
+}
+
 export default class Player {
   constructor(params) {
     this.scene = params.scene
 
-    console.log('create a new player')
 
     const { S, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
     this.keys = this.scene.input.keyboard.addKeys({
@@ -23,6 +29,7 @@ export default class Player {
     )
 
     this.sprite.setBounce(0, 0)
+    this.status = STATUS.IDLE
 
     // ├── setup the animations for the PC ─┐
     // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
@@ -45,6 +52,20 @@ export default class Player {
       frames: this.scene.generateFrameNames('characters/pc', 'openning', 1),
       frameRate: 1,
       repeat: 1
+    })
+
+    this.scene.anims.create({
+      key: 'pc-run',
+      frames: this.scene.generateFrameNames('characters/pc', 'run', 2),
+      frameRate: 10,
+      repeat: -1
+    })
+
+    this.scene.anims.create({
+      key: 'pc-show_phone',
+      frames: this.scene.generateFrameNames('characters/pc', 'show_phone', 2),
+      frameRate: 10,
+      repeat: 0
     })
     
     this.sprite.anims.play('pc-idle')
@@ -93,7 +114,8 @@ export default class Player {
       impact_metal_01: this.scene.sound.add('fx_impact_metal_01'),
       impact_metal_02: this.scene.sound.add('fx_impact_metal_02'),
       impact_wood_01: this.scene.sound.add('fx_impact_wood_01'),
-      impact_wood_02: this.scene.sound.add('fx_impact_wood_02')
+      impact_wood_02: this.scene.sound.add('fx_impact_wood_02'),
+      door_open: this.scene.sound.add('fx_door_open')
     }
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.4
@@ -101,11 +123,30 @@ export default class Player {
   }
 
   update () {
-
+    let prevVelocity = this.sprite.body.velocity.clone()
     // get input from player
     let y = this.keys.w.isDown?-1:this.keys.s.isDown?1:0
     let x = this.keys.a.isDown?-1:this.keys.d.isDown?1:0
     let speed = gs.stats.player.speed * (this.hookedItem?0.7:1)
+    if(this.status == STATUS.OPENING) speed = 0
+
+    if(x==-1){
+      this.sprite.flipX = true
+    }else if(x==1){
+      this.sprite.flipX = false
+    }
+    if(x==0&&y==0){
+      if (this.status !== STATUS.IDLE && (prevVelocity.y != 0 || prevVelocity.x != 0)) {
+        this.sprite.anims.play('pc-idle')
+        this.status = STATUS.IDLE
+      }
+    }else{
+      if (this.status === STATUS.IDLE && prevVelocity.y == 0 && prevVelocity.x == 0) {
+        this.status = STATUS.RUNNING
+        this.sprite.anims.play('pc-run')
+      }
+    }
+
     
     this.sprite.body.setVelocity(0)
     this.sprite.body.setVelocity(x*speed, y*speed)
@@ -325,6 +366,20 @@ export default class Player {
     this.raycast.body.setVelocity(0,0)
     this.raycast.x = this.anchorHand.x - 2.5
     this.raycast.y = this.anchorHand.y - 2.5
+  }
+
+  openDoor(door){
+    this.status = STATUS.OPENING
+    this.sounds['door_open'].play()
+    if(door.position==='top'){
+      this.sprite.anims.play('pc-openning')
+    }else {
+      this.sprite.anims.play('pc-show_phone')
+    }
+  }
+  finishOpenDoor() {
+    this.status = STATUS.IDLE
+    this.sprite.anims.play('pc-idle')
   }
 
 }

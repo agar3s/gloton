@@ -87,6 +87,16 @@ export default class BootScene extends Scene {
     this.load.spritesheet('logo', urlBase + 'assets/phaser3-logo.png', { frameWidth: 412, frameHeight: 93 })    
     // load fonts
     this.load.bitmapFont(this.fonts.BM_keney.font, urlBase + 'assets/fonts/keneyFont_0.png', urlBase + 'assets/fonts/keneyFont.fnt')
+    this.load.bitmapFont(this.fonts.BM_kenneyMini.font, urlBase + 'assets/fonts/KenneyMini-8px_0.png', urlBase + 'assets/fonts/KenneyMini-8px.fnt')
+    this.load.bitmapFont(this.fonts.BM_kenneyMiniSquare.font, urlBase + 'assets/fonts/KenneyMiniSquare-8px_0.png', urlBase + 'assets/fonts/KenneyMiniSquare-8px.fnt')
+
+    // load ui assets
+    this.load.spritesheet('timer', urlBase + 'assets/timer.png', { frameWidth: 41, frameHeight: 32 })
+    this.load.spritesheet('ninja', urlBase + 'assets/ninja.png', { frameWidth: 28, frameHeight: 29 })
+    this.load.spritesheet('mapa', urlBase + 'assets/mapa.png', { frameWidth: 27, frameHeight: 28 })
+    this.load.spritesheet('life', urlBase + 'assets/life.png', { frameWidth: 21, frameHeight: 19 })
+    this.load.spritesheet('backpack', urlBase + 'assets/backpack.png', { frameWidth: 27, frameHeight: 28 })
+    
 
     // prototype assets
     this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })
@@ -95,6 +105,7 @@ export default class BootScene extends Scene {
     this.load.spritesheet('box', urlBase + 'assets/box.png', { frameWidth: 16, frameHeight: 16 })
 
     // load audio
+    this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')
     this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
     this.load.audio('fx_impact_metal_01', urlBase+'assets/audio/fx/Impact_Metal_01.ogg')
     this.load.audio('fx_impact_metal_02', urlBase+'assets/audio/fx/Impact_Metal_02.ogg')

@@ -73,54 +73,7 @@ function initGui() {
 
 if(constants.DAT_GUI_ENABLE) {
   gui = new dat.GUI({
-    load: {
-  "preset": "primer1",
-  "remembered": {
-    "Default": {
-      "0": {
-        "backgroundColor": "#000",
-        "debug": false
-      },
-      "1": {
-        "chainLength": 120,
-        "chainSpeed": 3,
-        "chaintoTarget": false,
-        "speed": 150
-      }
-    },
-    "primer1": {
-      "0": {
-        "backgroundColor": "#060628",
-        "debug": false
-      },
-      "1": {
-        "chainLength": 181.48371531966225,
-        "chainSpeed": 6.623815267964845,
-        "chaintoTarget": false,
-        "speed": 159.25383422367742,
-        "raycast": true
-      }
-    }
-  },
-  "closed": false,
-  "folders": {
-    "game": {
-      "preset": "Default",
-      "closed": false,
-      "folders": {}
-    },
-    "player": {
-      "preset": "Default",
-      "closed": false,
-      "folders": {}
-    },
-    "Current Scene": {
-      "preset": "Default",
-      "closed": false,
-      "folders": {}
-    }
-  }
-},
+    load: JSON,
     preset: 'blue'
   })
   initGui()
