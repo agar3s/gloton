@@ -50,12 +50,16 @@ export default class DungeonRoguelikeGameScene extends Scene {
     //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
     //   faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
     // });
+
+    //start timer
+
+    this.timer = this.time.addEvent({ delay: 3*60000, loop: false})
+    console.log(this.timer)
   }
 
   setupDungeon () {
     let start = +(new Date())
     // setup a new dungeon
-    console.log('starting')
     this.dungeon = new Dungeon({
       width: 80,
       height: 80,
@@ -65,7 +69,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
         height: { min: 16, max: 32}
       }
     })
-    console.log('ends', (+(new Date()))-start)
 
     const map = this.make.tilemap({
       tileWidth: 16,
@@ -75,7 +78,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     })
 
     const tileset = map.addTilesetImage('maze01', 'tilesMaze01')
-    this.groundLayer = map.createBlankDynamicLayer('ground', tileset)
+    this.groundLayer = map.createBlankDynamicLayer('ground', tileset).fill(299)
     this.wallsLayer = map.createBlankDynamicLayer('walls', tileset)
     this.foregroundLayer = map.createBlankDynamicLayer('foreground', tileset)
     const shadowLayer = map.createBlankDynamicLayer('shadow', tileset).fill(299)
@@ -132,7 +135,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
           //put superior right border
           this.wallsLayer.putTilesAt([[23],[81],[41] ,[61]], x + doors[i].x + 1, y + doors[i].y)
 
-          console.log(doors[i].x, doors[i].y)
           this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16, 'top')
         } else if (doors[i].y === room.height - 1) { // DOOR at the bottom
           // remove wall
@@ -286,13 +288,11 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }
       doorA.twinDoor = allDoors[pairedIndex]
       allDoors[pairedIndex].twinDoor = doorA
-      console.log(i, pairedIndex, 'pareja')
     }
   }
 
 
   addDoor(x, y, position) {
-    console.log('new door')
     let spriteKey = {
       'top': 'mazes/maze01/door-closed-001',
       'bottom': 'mazes/maze01/door_back-closed-001',
@@ -395,7 +395,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
   }
 
   shutdown() {
-    console.log('destroy the player....')
     this.events.off('shutdown')
     this.player.destroy()
   }
@@ -417,6 +416,9 @@ export default class DungeonRoguelikeGameScene extends Scene {
     const playerRoom = this.dungeon.getRoomAt(playerTileX, playerTileY)
 
     this.tilemapVisibility.setActiveRoom(playerRoom)
+
+    let t = ~~(this.timer.getElapsedSeconds())
+    this.registry.set('timer', t)
   }
 
   updateLanguageTexts () {

@@ -23,6 +23,15 @@ export default class DungeonGameHUDScene extends Scene {
     })*/
 
     this.timerSprite = this.add.sprite(25,21,'timer')
+    this.timerText = this.add.bitmapText(
+      14,
+      21,
+      this.fonts.BM_kenneyMiniSquare.font,
+      '03:00'
+    )
+    this.timerText.setTint(0x00cbff)
+    this.elapsedSeconds = 0
+    this.maxTime = 3 * 60
     
     this.ninjaSprite = this.add.sprite(19, 240 - 19,'ninja')
 
@@ -41,9 +50,19 @@ export default class DungeonGameHUDScene extends Scene {
     this.input.keyboard.on('keydown_E', (event) => {
       this.sceneManager.overlay('dungeonMapHUDScene')
     })
+
+    this.registry.events.on('changedata', this.updateData, this)
   }
 
   updateData (parent, key, data) {
+    if ( key === 'timer' && this.elapsedSeconds != data) {
+      let time = this.maxTime - this.elapsedSeconds
+      let mins = ~~(time/60)
+      let seconds = time%60
+      if(seconds<10) seconds = '0'+seconds
+      this.timerText.setText(`0${mins}:${seconds}`)
+      this.elapsedSeconds = data
+    }
   }
   
   // dont  call the super update function....

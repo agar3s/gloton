@@ -12,7 +12,6 @@ export default class Player {
   constructor(params) {
     this.scene = params.scene
 
-    console.log('create a new player')
 
     const { S, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
     this.keys = this.scene.input.keyboard.addKeys({
@@ -140,13 +139,11 @@ export default class Player {
       if (this.status !== STATUS.IDLE && (prevVelocity.y != 0 || prevVelocity.x != 0)) {
         this.sprite.anims.play('pc-idle')
         this.status = STATUS.IDLE
-        console.log('to idle')
       }
     }else{
       if (this.status === STATUS.IDLE && prevVelocity.y == 0 && prevVelocity.x == 0) {
         this.status = STATUS.RUNNING
         this.sprite.anims.play('pc-run')
-        console.log('to run')
       }
     }
 

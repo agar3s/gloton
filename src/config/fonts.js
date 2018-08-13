@@ -10,5 +10,17 @@ export default {
     hoverColor: 0x669966,
     color: 0xffffff,
     scale: 1.0
+  },
+  'BM_kenneyMini': {
+    font: 'kenneyMini',
+    hoverColor: 0x669966,
+    color: 0xffffff,
+    scale: 1.0
+  },
+  'BM_kenneyMiniSquare': {
+    font: 'kenneyMiniSquare',
+    hoverColor: 0x669966,
+    color: 0xffffff,
+    scale: 1.0
   }
 }
