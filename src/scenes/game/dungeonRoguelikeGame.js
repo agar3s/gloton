@@ -1,0 +1,419 @@
+import Scene from '../scene'
+import gs from '../../config/gameStats'
+
+import Player from '../../gameObjects/player'
+import Item from '../../gameObjects/item'
+
+import Dungeon from '@mikewesthad/dungeon'
+import TilemapVisibility from '../../utils/tilemap-visibility.js'
+import TILES from '../../config/tileMapping'
+
+export default class DungeonRoguelikeGameScene extends Scene {
+  constructor () {
+    super({key: 'dungeonRoguelikeGameScene'})
+  }
+  
+
+  create (params) {
+    super.create(params)
+
+    // lo del dungeon
+    this.items = this.add.group()
+    this.doors = this.add.group()
+
+    this.setupDungeon()
+
+    this.events.on('shutdown', _ => this.shutdown(), this)
+    this.events.on('pause', _ => this.pause(), this)
+    this.events.on('resume', _ => this.resume(), this)
+    //this.setupPlayer()
+    this.player.sprite.setDepth(5)
+    this.player.handSprite.setDepth(6)
+    this.player.cursor.setDepth(20)
+    
+
+    this.setupPhysics()
+/*
+    this.setupLevel()
+    this.door.setDepth(4)
+*/
+    this.sceneManager.addGameScene(this.scene.key)
+    this.sceneManager.overlay('dungeonGameHUDScene')
+
+
+
+    //DEBUG
+
+    // const debugGraphics = this.add.graphics().setAlpha(0.75);
+    // this.wallsLayer.renderDebug(debugGraphics, {
+    //   tileColor: null, // Color of non-colliding tiles
+    //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+    //   faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+    // });
+  }
+
+  setupDungeon () {
+    let start = +(new Date())
+    // setup a new dungeon
+    console.log('starting')
+    this.dungeon = new Dungeon({
+      width: 80,
+      height: 80,
+      doorPadding: 4,
+      rooms: {
+        width: { min: 14, max: 32},
+        height: { min: 12, max: 32}
+      }
+    })
+    console.log('ends', (+(new Date()))-start)
+
+    const map = this.make.tilemap({
+      tileWidth: 16,
+      tileHeight: 16,
+      width: this.dungeon.width,
+      height: this.dungeon.height
+    })
+
+    const tileset = map.addTilesetImage('maze01', 'tilesMaze01')
+    this.groundLayer = map.createBlankDynamicLayer('ground', tileset)
+    this.wallsLayer = map.createBlankDynamicLayer('walls', tileset)
+    this.foregroundLayer = map.createBlankDynamicLayer('foreground', tileset)
+    const shadowLayer = map.createBlankDynamicLayer('shadow', tileset).fill(299)
+    this.foregroundLayer.setDepth(25)
+    shadowLayer.setDepth(30)
+    this.tilemapVisibility = new TilemapVisibility(shadowLayer)
+    // shadow - READY 
+
+    
+    // dungeon reader
+    // Use the array of rooms generated to place tiles in the map
+    // Note: using an arrow function here so that "this" still refers to our scene
+    this.dungeon.rooms.forEach(room => {
+      const { x, y, width, height, left, right, top, bottom } = room;
+
+      // Fill the floor with mostly clean tiles, but occasionally place a dirty tile
+      // See "Weighted Randomize" example for more information on how to use weightedRandomize.
+      this.groundLayer.weightedRandomize(x + 2, y + 3, width - 4, height - 4, TILES.FLOOR)
+
+      // top walls
+      this.wallsLayer.weightedRandomize(left + 2, top, width - 4, 1, TILES.WALL.TOP)
+      this.wallsLayer.weightedRandomize(left + 2, top + 2, width - 4, 1, [{index: 62, weight: 1}])
+      this.wallsLayer.weightedRandomize(left + 2, top + 1, width - 4, 1, [{index: 42, weight: 1}])
+
+      // right walls
+      this.wallsLayer.weightedRandomize(right-1, top + 1, 1, height - 2, TILES.WALL.RIGHT)
+      this.wallsLayer.putTilesAt([[103],[123]], right - 1, bottom - 1)
+      this.wallsLayer.putTilesAt([[3]], right - 1, top)
+
+      // left walls
+      this.wallsLayer.weightedRandomize(left + 1, top + 1, 1, height - 2, TILES.WALL.LEFT)
+      this.wallsLayer.putTilesAt([[100],[120]], left + 1, bottom - 1)
+      this.wallsLayer.putTilesAt([[0]], left + 1, top)
+
+      // bottom walls
+      this.wallsLayer.weightedRandomize(left + 2, bottom, width - 4, 1, TILES.WALL.BOTTOM)
+      this.foregroundLayer.weightedRandomize(left + 2, bottom-1, width - 4, 1, [{index: 102, weight: 1}, {index: 101, weight: 1}])
+
+
+      // Dungeons have rooms that are connected with doors. Each door has an x & y relative to the
+      // room's location
+      var doors = room.getDoorLocations()
+      for (var i = 0; i < doors.length; i++) {
+        if (doors[i].y === 0) { // DOOR AT THE TOP
+          // remove wall
+          this.wallsLayer.putTilesAt([[21,21],[21,21],[21,21]], x + doors[i].x - 1, y + doors[i].y)
+          // put floor
+          this.groundLayer.putTilesAt([[39,39],[39,39],[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          //put superior left border
+          this.wallsLayer.putTilesAt([[102]], x + doors[i].x - 2, y + doors[i].y)
+          //put superior right border
+          this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x + 1, y + doors[i].y)
+
+          console.log(doors[i].x, doors[i].y)
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16)
+        } else if (doors[i].y === room.height - 1) {
+          // remove wall
+          this.wallsLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y-1)
+          // put floor
+          this.groundLayer.putTilesAt([[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          // put inferior right border
+          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x + 1, y + doors[i].y-1)
+          this.wallsLayer.putTilesAt([[44]], x + doors[i].x + 1, y + doors[i].y)
+          // put inferior left border
+          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x - 2, y + doors[i].y-1)
+          this.wallsLayer.putTilesAt([[45]], x + doors[i].x - 2, y + doors[i].y)
+
+        } else if (doors[i].x === 0) { // DOOR AT THE LEFT
+          // remove wall
+          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x+1, y + doors[i].y - 1)
+          // put tiles
+          //this.groundLayer.putTilesAt([[39,39],[39,39]], x + doors[i].x+1, y + doors[i].y - 1)
+          // ???? funciona?
+          this.groundLayer.putTilesAt([[39,39],[39,39]], x + doors[i].x, y + doors[i].y - 1)
+
+          // put superior border in the wall
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x+1, y + doors[i].y - 4)
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x, y + doors[i].y - 4)
+          // put inferior border in the wall
+          this.wallsLayer.putTilesAt([[45],[125]], x + doors[i].x+1, y + doors[i].y + 1)
+          this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
+          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x+1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+        } else if (doors[i].x === room.width - 1) { // DOOR AT THE RIGHT
+          // remove wall
+          this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x-1, y + doors[i].y - 1)
+          // put tiles
+          this.groundLayer.putTilesAt([[39],[39]], x + doors[i].x-1, y + doors[i].y - 1)
+          this.groundLayer.putTilesAt([[39],[39]], x + doors[i].x, y + doors[i].y - 1)
+          
+          // put superior border in the wall
+          this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x-1, y + doors[i].y - 4)
+          this.wallsLayer.putTilesAt([[102],[42],[62]], x + doors[i].x, y + doors[i].y - 4)
+          // put inferior border in the wall
+          this.wallsLayer.putTilesAt([[44],[124]], x + doors[i].x-1, y + doors[i].y + 1)
+          this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
+          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x-1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+
+        }
+      }
+    })
+
+
+    // arribapendiente lo del espacio
+
+    // Separate out the rooms into:
+    //  - The starting room (index = 0)
+    //  - A random room to be designated as the end room (with stairs and nothing else)
+    //  - An array of 90% of the remaining rooms, for placing random stuff (leaving 10% empty)
+    const rooms = this.dungeon.rooms.slice()
+    const startRoom = rooms.shift()
+    const endRoom = Phaser.Utils.Array.RemoveRandomElement(rooms)
+    const otherRooms = Phaser.Utils.Array.Shuffle(rooms).slice(0, rooms.length * 0.9)
+
+    // Place the stairs
+    this.foregroundLayer.putTileAt(TILES.STAIRS, endRoom.centerX, endRoom.centerY)
+
+    // Place stuff in the 90% "otherRooms"
+    otherRooms.forEach(room => {
+      var rand = Math.random()
+      if (rand <= 0.25) {
+        // 25% chance of chest
+        this.foregroundLayer.putTileAt(TILES.CHEST, room.centerX, room.centerY)
+      } else if (rand <= 0.5) {
+        // 50% chance of a pot anywhere in the room... except don't block a door!
+        const x = Phaser.Math.Between(room.left + 2, room.right - 2)
+        const y = Phaser.Math.Between(room.top + 2, room.bottom - 2)
+        this.foregroundLayer.weightedRandomize(x, y, 1, 1, TILES.POT)
+      } else {
+        // 25% of either 2 or 4 towers, depending on the room size
+        if (room.height >= 9) {
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY + 1)
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY + 1)
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY - 2)
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY - 2)
+        } else {
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY - 1)
+          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY - 1)
+        }
+      }
+      })  
+      
+      // colision para el fin del nivel
+      // Not exactly correct for the tileset since there are more possible floor tiles, but this will
+      // do for the example.
+
+      this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, () => {
+        this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, null)
+        this.hasPlayerReachedStairs = true
+        this.player.sprite.freeze()
+        const cam = this.cameras.main
+        cam.fade(250, 0, 0, 0)
+        cam.once("camerafadeoutcomplete", () => {
+          this.player.destroy()
+          this.scene.restart()
+        })
+      })
+
+    // starts the player?
+    // Place the player in the first room
+    const playerRoom = startRoom
+    const x = map.tileToWorldX(playerRoom.centerX)
+    const y = map.tileToWorldY(playerRoom.centerY)
+    this.setupPlayer(x, y)
+    //this.player = new Player(this, x, y)
+
+    // Watch the player and tilemap layers for collisions, for the duration of the scene:
+//      this.physics.add.collider(this.player.sprite, this.groundLayer)
+//      this.physics.add.collider(this.player.sprite, this.stuffLayer)
+
+    // Phaser supports multiple cameras, but you can access the default camera like this:
+    const camera = this.cameras.main
+
+    // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+    camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+    //camera.startFollow(this.player.sprite)
+
+    console.log(this.wallsLayer)
+    this.wallsLayer.setCollisionByExclusion([-1, 21])
+    /*this.wallsLayer.setCollisionByProperty({
+      collides: true
+    })*/
+  }
+
+
+  addDoor(x, y) {
+    console.log('new door')
+    let door = this.physics.add.sprite(
+      x, y,
+      this.constants.ATLAS_KEY,
+      'mazes/maze01/door-closed-001'
+    );
+
+    // the door can't be moved by the player
+    door.body.immovable = true;
+
+    // ├── setup the animations for the PC ─┐
+    // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
+    // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
+    this.anims.create({
+      key: 'door-open',
+      frames: this.generateFrameNames('mazes/maze01', 'door-open', 20),
+      repeat: 0
+    })
+
+    const doorAnimationMs = [60,60,60,60,60,60,60,60,60,60,150,60,250,60,60,60,120,120,120,120]
+    this.anims.anims.get('door-open').frames.forEach((frame, index)=>{
+      frame.duration = doorAnimationMs[index]
+    })
+
+    this.doors.add(door)
+  }
+
+  setupPlayer (x, y) {
+    /*const spawnPoint = this.map.findObject(
+      'Objects',
+      obj => obj.name === 'Spawn Point'
+    )*/
+    this.player = new Player({
+      scene: this,
+      x: x,
+      y: y,
+      textureKey: this.constants.ATLAS_KEY,
+      textureFrame: 'characters/pc/idle-001'
+    })
+
+
+    //this.player.sprite.setCollideWorldBounds(true)
+    this.cameras.main.startFollow(this.player.sprite)
+    //this.cameras.main.setBounds(0, 0, 320, 240)
+  }
+
+  success() {
+    this.changeToScene('failGameScene')
+  }
+
+  fail () {
+    this.changeToScene('successGameScene')
+  }
+
+  shutdown() {
+    console.log('destroy the player....')
+    this.events.off('shutdown')
+    this.player.destroy()
+  }
+
+  pause () {
+    this.physics.pause()
+    this.player.pause()
+  }
+  resume () {
+    this.physics.resume()
+  }
+
+  update () {
+    super.update()
+    this.player.update()
+
+    const playerTileX = this.groundLayer.worldToTileX(this.player.sprite.x)
+    const playerTileY = this.groundLayer.worldToTileY(this.player.sprite.y-this.player.sprite.height/2)
+    const playerRoom = this.dungeon.getRoomAt(playerTileX, playerTileY)
+
+    this.tilemapVisibility.setActiveRoom(playerRoom)
+  }
+
+  updateLanguageTexts () {
+    this.fail.reloadText()
+    this.success.reloadText()
+  }
+
+  addItem (props) {
+    let item = new Item(props)
+    this.add.displayList.add(item)
+    this.add.updateList.add(item)
+    this.physics.add.world.enableBody(item, Phaser.Physics.Arcade.DYNAMIC_BODY)
+    item.setProperties()
+    this.items.add(item)
+    return item
+  }
+
+  throwItem (props) {
+    props.scene = this
+    let item = this.addItem(props)
+    item.body.setVelocity(props.vx, props.vy)
+  }
+
+  setupPhysics () {
+    this.physics.add.overlap(this.player.handSprite, this.items, (hand, collider) => {
+      this.player.hook(collider)
+    })
+    this.physics.add.overlap(this.player.sprite, this.items, (playerSprite, collider) => {
+      if (collider.grabbed) {
+        this.player.collectItem(collider)
+        Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
+        collider.destroy()
+      }
+    })
+
+    this.physics.add.overlap(this.player.raycast, this.items, (ray, collider) => {
+      this.player.setRaycastCollider(collider)
+    })
+
+    this.physics.add.collider(this.items, this.items)
+
+    this.physics.add.collider(this.items, this.wallsLayer)
+    this.physics.add.collider(this.player.sprite, this.wallsLayer)
+    this.physics.add.overlap(this.player.handSprite, this.wallsLayer, (hand, wall) => {
+      if(wall.collides) {
+        this.player.hookCollidesWall(wall)
+      }
+    })
+    // handle the event of the PC colliding with the door
+    this.physics.add.collider(this.player.sprite, this.doors, (playerSprite, door) => {
+      if(door.opening) return
+      door.opening = true
+      door.anims.play('door-open')
+      playerSprite.anims.play('pc-openning')
+      door.on('animationcomplete', (animation, frame) => {
+        playerSprite.anims.play('pc-idle')
+        door.destroy()
+      }, this)
+    }, null, this)
+    this.physics.add.collider(this.items, this.doors)
+    this.physics.add.overlap(this.player.handSprite, this.doors, (hand, door)=>{
+      
+        this.player.hookCollidesWall(door)
+    
+    })
+  }
+
+  generateFrameNames(path, animationId, end) {
+    return this.anims.generateFrameNames(this.constants.ATLAS_KEY, {
+      start: 1,
+      end: end || 2,
+      zeroPad: 3,
+      prefix: `${path}/${animationId}-`
+    })
+  }
+}

@@ -19,7 +19,7 @@ const TIME_MADE_WITH = 200
 // displays the scene's title on the scene
 // useful to test navigation, you can delete
 // this code in the scene.js
-const DISPLAY_SCENE_TITLE = true
+const DISPLAY_SCENE_TITLE = false
 
 // loads fake files, turn on to display how the "boot"
 // scene looks like
@@ -32,7 +32,7 @@ const RUNNING_STATS = true
 const DAT_GUI_ENABLE = true
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
-const SCENE_AFTER_BOOT = 'dungeonGameScene'
+const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
 
 const TILE_SIZE = 16
 const ATLAS_KEY = 'mochilaAtlas'

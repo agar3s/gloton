@@ -19,6 +19,7 @@ import FailGameScene from './scenes/game/failGame'
 import MissionGameScene from './scenes/game/missionGame'
 import SuccessGameScene from './scenes/game/successGame'
 import WorldGameScene from './scenes/game/worldGame'
+import DungeonRoguelikeGameScene from './scenes/game/dungeonRoguelikeGame'
 import TestLevelScene from './scenes/game/testLevel'
 
 import PauseScene from './scenes/ui/pause'
@@ -61,6 +62,7 @@ window.game = new Phaser.Game({
     SuccessGameScene,
     WorldGameScene,
     TestLevelScene,
+    DungeonRoguelikeGameScene,
     PauseScene
   ]
 })

@@ -3,7 +3,7 @@
 let stats = {
   game: {
     backgroundColor: '#000',
-    debug: true
+    debug: false
   },
   mainScene: {
     rotationRatio: 0.01,
