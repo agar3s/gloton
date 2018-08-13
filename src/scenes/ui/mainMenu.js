@@ -12,6 +12,7 @@ export default class MainMenuScene extends Scene {
     super.create(params)
 
     this.add.image(0, 0, 'titleBackground').setOrigin(0)
+    this.events.on('shutdown', _ => this.shutdown(), this)
 
     // you can set your button with a custom behaviour
     // by default, onHover and onOut events just tint
@@ -58,6 +59,12 @@ export default class MainMenuScene extends Scene {
       style: this.fonts.BM_kenneyMiniSquare,
       size: 12,
       onClick: _ => this.open('creditsScene')
+    })
+
+    this.music = this.sound.add('mx_title')
+    this.music.volume = 0.4
+    this.music.play({
+      loop:-1
     })
 
     this.load = this.createButton({
@@ -108,6 +115,8 @@ export default class MainMenuScene extends Scene {
         this.updateLanguageTexts()
       }
     })
+
+
   }
 
   updateLanguageTexts () {
@@ -117,6 +126,12 @@ export default class MainMenuScene extends Scene {
     this.load.reloadText()
     this.delete.reloadText()
     this.setLanguageButton.reloadText()
+  }
+
+  shutdown() {
+    this.events.off('shutdown')
+    this.music.stop()
+    this.music.destroy()
   }
 
 }

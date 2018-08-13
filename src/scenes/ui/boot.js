@@ -127,6 +127,7 @@ export default class BootScene extends Scene {
 
     // load music 
     this.load.audio('mx_main', urlBase+'assets/audio/mx/LD42_MainTheme.ogg')
+    this.load.audio('mx_title', urlBase+'assets/audio/mx/LD42_TitleTheme.ogg')
     
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
