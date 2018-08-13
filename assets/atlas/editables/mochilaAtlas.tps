@@ -184,6 +184,8 @@
             <key type="filename">../../sprites/characters/pc/idle-001.png</key>
             <key type="filename">../../sprites/characters/pc/idle-002.png</key>
             <key type="filename">../../sprites/characters/pc/openning-001.png</key>
+            <key type="filename">../../sprites/characters/pc/run-001.png</key>
+            <key type="filename">../../sprites/characters/pc/run-002.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,1</point_f>
