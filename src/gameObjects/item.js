@@ -5,7 +5,8 @@ export default class Item extends Phaser.Physics.Arcade.Sprite {
     this.scene = params.scene
     this.grabbed = false
     this.highlighted = false
-    this.material = params.material
+    this.material = params.props.material
+    this.props = params.props
   }
 
   update() {

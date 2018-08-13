@@ -22,6 +22,9 @@ let stats = {
     speed: 150,
     chaintoTarget: false,
     raycast: true
+  },
+  inventory: {
+    items: []
   }
 }
 function getNames(property) {

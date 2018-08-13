@@ -449,6 +449,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     props.scene = this
     props.key =  this.constants.ATLAS_KEY
     props.frame = 'characters/pc/skeleton-idle-001'
+    props.props = {}
     
     let enemy = new Enemy(props)
     this.add.displayList.add(enemy)

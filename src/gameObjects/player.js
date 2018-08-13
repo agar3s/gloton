@@ -144,6 +144,13 @@ export default class Player {
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.4
     })
+
+    // random objects in inventory by default
+    gs.stats.inventory.items = []
+    for (var i = 0; i < 2; i++) {
+      let itemprops = generateItem()
+      gs.stats.inventory.items.push(itemprops)
+    }
   }
 
   update () {
@@ -235,8 +242,12 @@ export default class Player {
   expulse () {
     // o si?
     if(this.hand.locked) return
-    let index = ~~(Math.random()*9)
-    let itemprops = generateItem()
+    let inventory = gs.stats.inventory.items
+    if (inventory.length==0) {
+      return
+    }
+    let index = ~~(Math.random()*inventory.length)
+    let itemprops = (inventory.splice(index, 1))[0]
     this.scene.throwItem({
       x: this.anchorHand.x,
       y: this.anchorHand.y,
@@ -244,8 +255,12 @@ export default class Player {
       frame: `items/${itemprops.type}`,
       vx: Math.cos(this.handSprite.rotation)*500,
       vy: Math.sin(this.handSprite.rotation)*500,
-      ...itemprops
+      props: itemprops
     })
+    /*
+    let index = ~~(Math.random()*9)
+    let itemprops = generateItem()
+    */
   }
 
   resetKeys() {
@@ -371,6 +386,9 @@ export default class Player {
     this.graphics.clear()
     this.handSprite.body.setVelocityX(0)
     this.handSprite.body.setVelocityY(0)
+    
+    gs.stats.inventory.items.push(JSON.parse(JSON.stringify(this.hookedItem.props)))
+
     this.hookedItem.release()
     this.hookedItem = undefined
   }
