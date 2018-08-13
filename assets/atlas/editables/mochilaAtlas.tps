@@ -198,6 +198,32 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../sprites/characters/pc/show_phone-001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.931034</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,7,9,15</rect>
+                <key>scale9Paddings</key>
+                <rect>5,7,9,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/pc/show_phone-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,7,9,15</rect>
+                <key>scale9Paddings</key>
+                <rect>5,7,9,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../../sprites/mazes/maze01/door-closed-001.png</key>
             <key type="filename">../../sprites/mazes/maze01/door-open-001.png</key>
             <struct type="IndividualSpriteSettings">
@@ -299,6 +325,39 @@
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,11,9,23</rect>
+                <key>scale9Paddings</key>
+                <rect>5,11,9,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-closed-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-001.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-002.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-003.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-004.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-005.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-006.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-007.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-008.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-009.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-010.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-011.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-012.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-013.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-014.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-015.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-016.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-017.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-018.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-019.png</key>
+            <key type="filename">../../sprites/mazes/maze01/door_side_left-open-020.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
