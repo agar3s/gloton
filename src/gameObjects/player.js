@@ -100,10 +100,12 @@ export default class Player {
     this.scene.input.on('pointerdown', pointer => {
     })
 
-    this.scene.input.on('pointerup', pointer => {
-      if(pointer.buttons==1)this.launch()
-      if(pointer.buttons==2)this.expulse()
-    })
+    setTimeout(()=>{
+      this.scene.input.on('pointerup', pointer => {
+        if(pointer.buttons==1)this.launch()
+        if(pointer.buttons==2)this.expulse()
+      })
+    },500)
 
     this.debugGraphic = this.scene.add.graphics()
 
@@ -451,13 +453,18 @@ export default class Player {
   getHit () {
     if(this.status === STATUS.HIT) return
     this.setStatus(STATUS.HIT)
-    
+    gs.set('player.life', gs.stats.player.life-0.5)
     this.sprite.anims.play('pc-hit')
     this.sounds.ninja_hurt.play()
+    this.scene.cameras.main.shake(150, 0.005, 0.004)
     this.sprite.on('animationcomplete', (animation, frame) => {
       this.setStatus(STATUS.IDLE)
       this.sprite.off('animationcomplete')
     }, this)
+
+    if(gs.stats.player.life<=0){
+      console.log('game over')
+    }
   }
 
   setStatus(status) {

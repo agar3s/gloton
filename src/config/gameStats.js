@@ -21,7 +21,9 @@ let stats = {
     chainSpeed: 4.5,
     speed: 150,
     chaintoTarget: false,
-    raycast: true
+    raycast: true,
+    maxlife: 3,
+    life: 3
   },
   inventory: {
     items: []

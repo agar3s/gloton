@@ -1,4 +1,5 @@
 import Scene from '../scene'
+import gs from '../../config/gameStats'
 
 export default class DungeonGameHUDScene extends Scene {
   constructor () {
@@ -35,9 +36,11 @@ export default class DungeonGameHUDScene extends Scene {
     
     this.ninjaSprite = this.add.sprite(19, 240 - 19,'ninja')
 
-    this.hearthSprite01 = this.add.sprite(28+8+10, 240 - 17, 'life', 0)
-    this.hearthSprite02 = this.add.sprite(28+8+10+21, 240 - 17, 'life', 1)
-    this.hearthSprite03 = this.add.sprite(28+8+10+21*2, 240 - 17, 'life', 2)
+    this.heartSprites = []
+    for (var i = 0; i < gs.stats.player.maxlife; i++) {
+      let heart = this.add.sprite(28+8+10+21*i, 240 - 17, 'life', 0)
+      this.heartSprites.push(heart)
+    }
 
     this.backpack = this.add.sprite(19, 32 + 8 + 14, 'backpack')
     this.map = this.add.sprite(19, 32 + 28 + 12 + 14, 'mapa')
@@ -52,6 +55,15 @@ export default class DungeonGameHUDScene extends Scene {
     })
 
     this.registry.events.on('changedata', this.updateData, this)
+    gs.setListener('player.life', (life) => {
+      let integerLife = ~~life
+      let dotFive = life - integerLife
+      for (var i = 0; i < this.heartSprites.length; i++) {
+        if(integerLife>i) this.heartSprites[i].setFrame(0)
+        else if(integerLife==i && dotFive==0.5) this.heartSprites[i].setFrame(1)
+        else this.heartSprites[i].setFrame(2)
+      }
+    })
   }
 
   updateData (parent, key, data) {
