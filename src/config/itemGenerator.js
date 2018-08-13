@@ -18,6 +18,12 @@ const TYPE = {
   WOOD: 'wood'
 }
 
+const SPECIAL = {
+  ORDINARY: 'ordinary',
+  MAGIC: 'magic',
+  CURSED: 'cursed'
+}
+
 const BASE = {
   CHEST: {
     material: MATERIAL.WOOD,
@@ -68,8 +74,10 @@ let generateItem = () => {
   let base = JSON.parse(JSON.stringify(BASE[keys[index]]))
 
   let variationType = ~~(Math.random()*base.variations)
+  base.typeKey = base.type
   base.type = `${base.type}-${variationType}`
-  
+  base.special = SPECIAL[Object.keys(SPECIAL)[~~(Math.random()*Object.keys(SPECIAL).length)]]
+
   return base
 }
 

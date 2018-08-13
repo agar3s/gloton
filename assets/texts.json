@@ -20,7 +20,23 @@
 		"map": "map",
 		"resume": "resume",
 		"audio": "audio",
-		"key": "value"
+		"key": "value",
+		"mission_title": "Hi, brave looter. I'm Samantha,\nthe grand-shopkeeper-of-all-the-mazes.",
+		"mission_invitation": "Here's today's order:",
+		"mission_item_desc": "- $[0] $[1].",
+
+		"item_chest": "A CHEST",
+		"item_diamond": "A DIAMOND",
+		"item_metal": "A piece of METAL",
+		"item_potion": "A POTION",
+		"item_rock": "A ROCK",
+		"item_shield": "A SHIELD",
+		"item_sword": "A SWORD",
+		"item_wood": "A piece of WOOD",
+
+		"item_ordinary": "that is NORMAL",
+		"item_magic": "that is MAGIC",
+		"item_cursed": "that is CURSED"
 	},
 	"es": {
 		"newgame": "Nuevo Juego",
@@ -43,6 +59,22 @@
 		"map": "Mapa",
 		"resume": "continuar",
 		"audio": "audio",
-		"key": "valor"
+		"key": "valor",
+		"mission_title": "Hola, valiente saqueador. Soy Lucia,\nla-gran-comerciante-de-todos-los-calabozos.",
+		"mission_invitation": "La orden del día es:",
+		"mission_item_desc": "- $[0] $[1].",
+
+		"item_chest": "Un COFRE",
+		"item_diamond": "Un DIAMANTE",
+		"item_metal": "Un trozo de METAL",
+		"item_potion": "Una POCIÓN",
+		"item_rock": "Un trozo de ROCA",
+		"item_shield": "Un ESCUDO",
+		"item_sword": "Una ESPADA",
+		"item_wood": "Un trozo de MADERA",
+
+		"item_ordinary": "que sea NORMAL",
+		"item_magic": "que sea MÁGICO(A)",
+		"item_cursed": "que esté MALDITO(A)"
 	}
 }

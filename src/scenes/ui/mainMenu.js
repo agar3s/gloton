@@ -11,18 +11,22 @@ export default class MainMenuScene extends Scene {
   create(params) {
     super.create(params)
 
+    this.add.image(0, 0, 'titleBackground').setOrigin(0)
+
     // you can set your button with a custom behaviour
     // by default, onHover and onOut events just tint
     // the sprite
     // font key is the default font family set up in the
     // base "Scene" file.
     this.start = this.createButton({
-      x: 30,
-      y: 100,
-      style: this.fonts.BM_keney,
+      x: this.cameras.main.width / 2,
+      y: 190,
+      style: this.fonts.BM_kenneyMiniSquare,
+      size: 14,
       text: this.getText('start'),
+      color: 0xffff00,
       onClick: (self) => {
-        this.changeToScene('worldGameScene')
+        this.changeToScene('missionGameScene')
       },
       onHover: (self) => {
         self.setTint(0xff99ff)
@@ -34,7 +38,7 @@ export default class MainMenuScene extends Scene {
     })
 
     // 2nd option to setup a custom style in a button
-    this.options = this.createButton({
+    /* this.options = this.createButton({
       x: 30,
       y: 150,
       style: {
@@ -45,12 +49,14 @@ export default class MainMenuScene extends Scene {
       },
       keyText: 'options',
       onClick: _ => this.open('optionsScene')
-    })
+    }) */
 
     this.credits = this.createButton({
-      x: 30,
-      y: 200,
+      x: this.cameras.main.width / 2,
+      y: 210,
       keyText: 'credits',
+      style: this.fonts.BM_kenneyMiniSquare,
+      size: 12,
       onClick: _ => this.open('creditsScene')
     })
 

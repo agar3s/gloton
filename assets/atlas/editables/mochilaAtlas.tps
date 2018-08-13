@@ -181,23 +181,110 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-0.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-1.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-2.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-3.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-4.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-5.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-6.png</key>
-            <key type="filename">../../sprites/characters/npc/skeleton-idle-7.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-alert-001.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,8,9,16</rect>
+                <key>scale9Paddings</key>
+                <rect>5,8,9,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-attack-001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.545455,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,11,11</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,11,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-attack-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,11,11</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,11,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-001.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-002.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-003.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-004.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-005.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-006.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-007.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-008.png</key>
+            <key type="filename">../../sprites/characters/pc/idle-001.png</key>
+            <key type="filename">../../sprites/characters/pc/idle-002.png</key>
+            <key type="filename">../../sprites/characters/pc/openning-001.png</key>
+            <key type="filename">../../sprites/characters/pc/run-001.png</key>
+            <key type="filename">../../sprites/characters/pc/run-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
                 <rect>10,12,19,24</rect>
                 <key>scale9Paddings</key>
                 <rect>10,12,19,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-resting-001.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,4,11,7</rect>
+                <key>scale9Paddings</key>
+                <rect>6,4,11,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-wake-001.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-wake-002.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-wake-003.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-wake-004.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,13,13</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,13,13</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-walk-001.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-walk-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,6,9,11</rect>
+                <key>scale9Paddings</key>
+                <rect>4,6,9,11</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -213,23 +300,6 @@
                 <rect>5,6,9,13</rect>
                 <key>scale9Paddings</key>
                 <rect>5,6,9,13</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../../sprites/characters/pc/idle-001.png</key>
-            <key type="filename">../../sprites/characters/pc/idle-002.png</key>
-            <key type="filename">../../sprites/characters/pc/openning-001.png</key>
-            <key type="filename">../../sprites/characters/pc/run-001.png</key>
-            <key type="filename">../../sprites/characters/pc/run-002.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,1</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>10,12,19,24</rect>
-                <key>scale9Paddings</key>
-                <rect>10,12,19,24</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
