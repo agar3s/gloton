@@ -458,9 +458,10 @@ export default class DungeonRoguelikeGameScene extends Scene {
       door.opening = true
       door.anims.play(animations[door.position])
 
-      playerSprite.anims.play('pc-openning')
+      this.player.openDoor(door)
+      
       door.on('animationcomplete', (animation, frame) => {
-        playerSprite.anims.play('pc-idle')
+        this.player.finishOpenDoor()
         door.destroy()
       }, this)
     }, null, this)
