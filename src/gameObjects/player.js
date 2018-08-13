@@ -1,4 +1,5 @@
 import gs from '../config/gameStats'
+import generateItem from '../config/itemGenerator'
 import constants from '../config/constants'
 
 const STATUS = {
@@ -235,24 +236,15 @@ export default class Player {
     // o si?
     if(this.hand.locked) return
     let index = ~~(Math.random()*9)
-    let key = [
-      'chest-0',
-      'diamond-0',
-      'metal-0',
-      'potion-0',
-      'potion-1',
-      'rock-0',
-      'shield-0',
-      'sword-0',
-      'wood-0'
-    ]
+    let itemprops = generateItem()
     this.scene.throwItem({
       x: this.anchorHand.x,
       y: this.anchorHand.y,
       key: constants.ATLAS_KEY,
-      frame: `items/${key[index]}`,
+      frame: `items/${itemprops.type}`,
       vx: Math.cos(this.handSprite.rotation)*500,
       vy: Math.sin(this.handSprite.rotation)*500,
+      ...itemprops
     })
   }
 
@@ -354,20 +346,9 @@ export default class Player {
     this.hookedItem = item
     this.hookedItem.grab()
     this.hand.going = false
-    let material = [
-      'skeleton_01',
-      'skeleton_02',
-      'stone_01',
-      'stone_02',
-      'crystal_01',
-      'crystal_02',
-      'metal_01',
-      'metal_02',
-      'wood_01',
-      'wood_02'
-    ][~~(Math.random()*10)]
-    console.log(material)
-    this.sounds[`impact_${material}`].play()
+    let variation = ~~(Math.random()*2) + 1
+    console.log(`impact_${this.hookedItem.material}_${variation}`)
+    this.sounds[`impact_${this.hookedItem.material}_0${variation}`].play()
     
     
     // put a delay before to start pullingout

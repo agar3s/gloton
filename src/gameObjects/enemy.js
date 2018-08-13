@@ -39,6 +39,8 @@ export default class Enemy extends Item {
     setTimeout(()=>{
       this.wake()
     }, (~~(Math.random()*10000)) + 3000)
+
+    this.material = 'skeleton'
   }
 
   wake() {
@@ -72,6 +74,6 @@ export default class Enemy extends Item {
   }
   
   setHighlight(highlighted) {
-    //super.setHighlight(highlighted)
+    super.setHighlight(highlighted)
   }
 }
