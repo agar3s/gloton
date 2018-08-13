@@ -59,10 +59,10 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.dungeon = new Dungeon({
       width: 80,
       height: 80,
-      doorPadding: 4,
+      doorPadding: 6,
       rooms: {
-        width: { min: 14, max: 32},
-        height: { min: 12, max: 32}
+        width: { min: 16, max: 32},
+        height: { min: 16, max: 32}
       }
     })
     console.log('ends', (+(new Date()))-start)
@@ -93,26 +93,29 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
       // Fill the floor with mostly clean tiles, but occasionally place a dirty tile
       // See "Weighted Randomize" example for more information on how to use weightedRandomize.
-      this.groundLayer.weightedRandomize(x + 2, y + 3, width - 4, height - 4, TILES.FLOOR)
+      this.groundLayer.weightedRandomize(x + 2, y + 3, width - 4, height - 6, TILES.FLOOR)
 
       // top walls
-      this.wallsLayer.weightedRandomize(left + 2, top, width - 4, 1, TILES.WALL.TOP)
-      this.wallsLayer.weightedRandomize(left + 2, top + 2, width - 4, 1, [{index: 62, weight: 1}])
-      this.wallsLayer.weightedRandomize(left + 2, top + 1, width - 4, 1, [{index: 42, weight: 1}])
+      let paddingTop = 1
+      let paddingBottom = 3
+      this.wallsLayer.weightedRandomize(left + 2, top + paddingTop, width - 4, 1, TILES.WALL.TOP)
+      this.wallsLayer.weightedRandomize(left + 2, top + paddingTop + 1, width - 4, 1, [{index: 42, weight: 1}])
+      this.wallsLayer.weightedRandomize(left + 2, top + paddingTop + 2, width - 4, 1, [{index: 62, weight: 1}])
 
       // right walls
-      this.wallsLayer.weightedRandomize(right-1, top + 1, 1, height - 2, TILES.WALL.RIGHT)
-      this.wallsLayer.putTilesAt([[103],[123]], right - 1, bottom - 1)
-      this.wallsLayer.putTilesAt([[3]], right - 1, top)
+      this.wallsLayer.weightedRandomize(right-1, top + 1+paddingTop, 1, height - 2-paddingTop-paddingBottom, TILES.WALL.RIGHT)
+      this.wallsLayer.putTilesAt([[103],[123],[143]], right - 1, bottom - paddingBottom-1)
+      this.wallsLayer.putTilesAt([[3]], right - 1, top+paddingTop)
 
       // left walls
-      this.wallsLayer.weightedRandomize(left + 1, top + 1, 1, height - 2, TILES.WALL.LEFT)
-      this.wallsLayer.putTilesAt([[100],[120]], left + 1, bottom - 1)
-      this.wallsLayer.putTilesAt([[0]], left + 1, top)
+      this.wallsLayer.weightedRandomize(left + 1, top + 1+paddingTop, 1, height - 2-paddingTop-paddingBottom, TILES.WALL.LEFT)
+      this.wallsLayer.putTilesAt([[100],[120],[140]], left + 1, bottom - 1-paddingBottom)
+      this.wallsLayer.putTilesAt([[0]], left + 1, top+paddingTop)
 
       // bottom walls
-      this.wallsLayer.weightedRandomize(left + 2, bottom, width - 4, 1, TILES.WALL.BOTTOM)
-      this.foregroundLayer.weightedRandomize(left + 2, bottom-1, width - 4, 1, [{index: 102, weight: 1}, {index: 101, weight: 1}])
+      this.wallsLayer.weightedRandomize(left + 2, bottom-paddingBottom, width - 4, 1, TILES.WALL.BOTTOM)
+      this.wallsLayer.weightedRandomize(left + 2, bottom-paddingBottom+1, width - 4, 1, [{index: 141, weight: 1}])
+      this.foregroundLayer.weightedRandomize(left + 2, bottom-1-paddingBottom, width - 4, 1, [{index: 102, weight: 1}, {index: 101, weight: 1}])
 
 
       // Dungeons have rooms that are connected with doors. Each door has an x & y relative to the
@@ -121,30 +124,30 @@ export default class DungeonRoguelikeGameScene extends Scene {
       for (var i = 0; i < doors.length; i++) {
         if (doors[i].y === 0) { // DOOR AT THE TOP
           // remove wall
-          this.wallsLayer.putTilesAt([[21,21],[21,21],[21,21]], x + doors[i].x - 1, y + doors[i].y)
+          this.wallsLayer.putTilesAt([[21,21],[21,21],[21,21]], x + doors[i].x - 1, y + doors[i].y + paddingTop)
           // put floor
-          this.groundLayer.putTilesAt([[39,39],[39,39],[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          this.groundLayer.putTilesAt([[39,39],[39,39],[39,39],[39,39]], x + doors[i].x - 1, y + doors[i].y)
           //put superior left border
-          this.wallsLayer.putTilesAt([[102]], x + doors[i].x - 2, y + doors[i].y)
+          this.wallsLayer.putTilesAt([[20],[102]], x + doors[i].x - 2, y + doors[i].y)
           //put superior right border
-          this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x + 1, y + doors[i].y)
+          this.wallsLayer.putTilesAt([[23],[81],[41] ,[61]], x + doors[i].x + 1, y + doors[i].y)
 
           console.log(doors[i].x, doors[i].y)
           this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16, 'top')
         } else if (doors[i].y === room.height - 1) { // DOOR at the bottom
           // remove wall
-          this.wallsLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y)
-          this.foregroundLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y-1)
+          this.wallsLayer.putTilesAt([[21,21],[21,21],[21,21]], x + doors[i].x - 1, y + doors[i].y-paddingBottom)
+          this.foregroundLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y-1-paddingBottom)
           // put floor
-          this.groundLayer.putTilesAt([[39,39]], x + doors[i].x - 1, y + doors[i].y)
+          this.groundLayer.putTilesAt([[39,39],[39,39],[39,39]], x + doors[i].x - 1, y + doors[i].y-paddingBottom+1)
           // put inferior right border
-          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x + 1, y + doors[i].y-1)
-          this.wallsLayer.putTilesAt([[44]], x + doors[i].x + 1, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[24]], x + doors[i].x + 1, y + doors[i].y-1-paddingBottom)
+          this.wallsLayer.putTilesAt([[44],[124],[43],[43]], x + doors[i].x + 1, y + doors[i].y-paddingBottom)
           // put inferior left border
-          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x - 2, y + doors[i].y-1)
-          this.wallsLayer.putTilesAt([[45]], x + doors[i].x - 2, y + doors[i].y)
+          this.foregroundLayer.putTilesAt([[25]], x + doors[i].x - 2, y + doors[i].y-1-paddingBottom)
+          this.wallsLayer.putTilesAt([[45],[125],[40],[40]], x + doors[i].x - 2, y + doors[i].y-paddingBottom)
 
-          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y-2)*16, 'bottom')
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y-3)*16, 'bottom')
 
         } else if (doors[i].x === 0) { // DOOR AT THE LEFT
           // remove wall
@@ -163,7 +166,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.foregroundLayer.putTilesAt([[25]], x + doors[i].x+1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
 
-          this.addDoor((x+doors[i].x+1)*16, (y+doors[i].y)*16, 'left')
+          this.addDoor((x+doors[i].x+1)*16, (y+doors[i].y-3)*16+3, 'left')
         } else if (doors[i].x === room.width - 1) { // DOOR AT THE RIGHT
           // remove wall
           this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x-1, y + doors[i].y - 1)
@@ -274,7 +277,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     let spriteKey = {
       'top': 'mazes/maze01/door-closed-001',
       'bottom': 'mazes/maze01/door_back-closed-001',
-      'left': 'mazes/maze01/door_side-closed-001',
+      'left': 'mazes/maze01/door_side_left-closed-001',
       'right': 'mazes/maze01/door_side-closed-001'
     }
 
@@ -282,11 +285,16 @@ export default class DungeonRoguelikeGameScene extends Scene {
       x, y,
       this.constants.ATLAS_KEY,
       spriteKey[position]
-    );
+    )
     if(position === 'bottom'){
-      door.setSize(door.width, door.height-12).setOffset(0, 12)
+      door.setSize(door.width, 48).setOffset(0, 12)
       door.setDepth(25)
+    }else if(position === 'left' || position==='right'){
+      door.setOffset(0, 16)
+    }else {
+      door.setSize(door.width, 46)
     }
+
 
     // the door can't be moved by the player
     door.body.immovable = true
@@ -312,6 +320,15 @@ export default class DungeonRoguelikeGameScene extends Scene {
         repeat: 0
       })
       this.anims.anims.get('door_side-open').frames.forEach((frame, index)=>{
+        frame.duration = doorAnimationMs[index]
+      })
+
+      this.anims.create({
+        key: 'door_side_left-open',
+        frames: this.generateFrameNames('mazes/maze01', 'door_side_left-open', 20),
+        repeat: 0
+      })
+      this.anims.anims.get('door_side_left-open').frames.forEach((frame, index)=>{
         frame.duration = doorAnimationMs[index]
       })
 
@@ -435,7 +452,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
       let animations = {
         'top': 'door-open',
         'bottom': 'door_back-open',
-        'left': 'door_side-open',
+        'left': 'door_side_left-open',
         'right': 'door_side-open'
       }
       door.opening = true
