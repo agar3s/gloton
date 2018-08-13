@@ -106,12 +106,20 @@ export default class BootScene extends Scene {
 
     // load audio
     this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')
+    this.load.audio('fx_hook_return_01', urlBase+'assets/audio/fx/Hook_Return_01.ogg')
     this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
+    this.load.audio('fx_impact_fail_01', urlBase+'assets/audio/fx/Impact_HookFail_01.ogg')
+    this.load.audio('fx_impact_fail_02', urlBase+'assets/audio/fx/Impact_HookFail_02.ogg')
+    this.load.audio('fx_impact_skeleton_01', urlBase+'assets/audio/fx/Impact_Skeleton_01.ogg')
+    this.load.audio('fx_impact_skeleton_02', urlBase+'assets/audio/fx/Impact_Skeleton_02.ogg')
+    this.load.audio('fx_impact_stone_01', urlBase+'assets/audio/fx/Impact_Stone_01.ogg')
+    this.load.audio('fx_impact_stone_02', urlBase+'assets/audio/fx/Impact_Stone_02.ogg')
     this.load.audio('fx_impact_metal_01', urlBase+'assets/audio/fx/Impact_Metal_01.ogg')
     this.load.audio('fx_impact_metal_02', urlBase+'assets/audio/fx/Impact_Metal_02.ogg')
+    this.load.audio('fx_impact_crystal_01', urlBase+'assets/audio/fx/Impact_Crystal_01.ogg')
+    this.load.audio('fx_impact_crystal_02', urlBase+'assets/audio/fx/Impact_Crystal_02.ogg')
     this.load.audio('fx_impact_wood_01', urlBase+'assets/audio/fx/Impact_Wood_01.ogg')
     this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
-    
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
 
