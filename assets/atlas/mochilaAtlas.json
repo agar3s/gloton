@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 125,
-				"h": 738
+				"h": 763
 			},
 			"scale": 1,
 			"frames": [
@@ -110,6 +110,31 @@
 					}
 				},
 				{
+					"filename": "characters/npc/skeleton-attack-002",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 22,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 21,
+						"h": 21
+					},
+					"frame": {
+						"x": 103,
+						"y": 1,
+						"w": 21,
+						"h": 21
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
 					"filename": "characters/pc/run-001",
 					"rotated": false,
 					"trimmed": false,
@@ -125,7 +150,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 1,
+						"y": 24,
 						"w": 20,
 						"h": 23
 					},
@@ -150,37 +175,12 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 26,
+						"y": 49,
 						"w": 20,
 						"h": 23
 					},
 					"anchor": {
 						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side-open-013",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 19,
-						"h": 45
-					},
-					"frame": {
-						"x": 103,
-						"y": 51,
-						"w": 19,
-						"h": 45
-					},
-					"anchor": {
-						"x": 0,
 						"y": 1
 					}
 				},
@@ -260,6 +260,31 @@
 					}
 				},
 				{
+					"filename": "mazes/maze01/door_side-open-013",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 45
+					},
+					"frame": {
+						"x": 103,
+						"y": 74,
+						"w": 19,
+						"h": 45
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
 					"filename": "mazes/maze01/door_side_left-open-013",
 					"rotated": false,
 					"trimmed": false,
@@ -275,7 +300,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 98,
+						"y": 121,
 						"w": 19,
 						"h": 45
 					},
@@ -375,7 +400,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 145,
+						"y": 168,
 						"w": 19,
 						"h": 37
 					},
@@ -400,7 +425,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 184,
+						"y": 207,
 						"w": 19,
 						"h": 37
 					},
@@ -500,7 +525,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 223,
+						"y": 246,
 						"w": 19,
 						"h": 29
 					},
@@ -525,7 +550,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 254,
+						"y": 277,
 						"w": 19,
 						"h": 29
 					},
@@ -650,32 +675,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 285,
-						"w": 19,
-						"h": 25
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "characters/pc/hit-001",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 19,
-						"h": 25
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 19,
-						"h": 25
-					},
-					"frame": {
-						"x": 103,
-						"y": 312,
+						"y": 308,
 						"w": 19,
 						"h": 25
 					},
@@ -760,6 +760,31 @@
 					}
 				},
 				{
+					"filename": "characters/pc/hit-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 25
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 25
+					},
+					"frame": {
+						"x": 103,
+						"y": 335,
+						"w": 19,
+						"h": 25
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
 					"filename": "characters/pc/hit-002",
 					"rotated": false,
 					"trimmed": false,
@@ -775,32 +800,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 339,
-						"w": 19,
-						"h": 25
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "characters/pc/hit-003",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 19,
-						"h": 25
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 19,
-						"h": 25
-					},
-					"frame": {
-						"x": 103,
-						"y": 366,
+						"y": 362,
 						"w": 19,
 						"h": 25
 					},
@@ -885,6 +885,31 @@
 					}
 				},
 				{
+					"filename": "characters/pc/hit-003",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 25
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 25
+					},
+					"frame": {
+						"x": 103,
+						"y": 389,
+						"w": 19,
+						"h": 25
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
 					"filename": "characters/pc/idle-001",
 					"rotated": false,
 					"trimmed": false,
@@ -900,32 +925,7 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 393,
-						"w": 19,
-						"h": 24
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "characters/pc/idle-002",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 19,
-						"h": 24
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 19,
-						"h": 24
-					},
-					"frame": {
-						"x": 103,
-						"y": 419,
+						"y": 416,
 						"w": 19,
 						"h": 24
 					},
@@ -1010,6 +1010,31 @@
 					}
 				},
 				{
+					"filename": "characters/pc/idle-002",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 19,
+						"h": 24
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 19,
+						"h": 24
+					},
+					"frame": {
+						"x": 103,
+						"y": 442,
+						"w": 19,
+						"h": 24
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
 					"filename": "mazes/maze01/door_side-open-016",
 					"rotated": false,
 					"trimmed": true,
@@ -1025,38 +1050,13 @@
 					},
 					"frame": {
 						"x": 103,
-						"y": 445,
+						"y": 468,
 						"w": 19,
 						"h": 16
 					},
 					"anchor": {
 						"x": 0,
 						"y": 1
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side_left-open-016",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 29,
-						"w": 19,
-						"h": 16
-					},
-					"frame": {
-						"x": 103,
-						"y": 463,
-						"w": 19,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0,
-						"y": 0
 					}
 				},
 				{
@@ -1160,49 +1160,49 @@
 					}
 				},
 				{
-					"filename": "characters/pc/openning-001",
+					"filename": "mazes/maze01/door_side_left-open-016",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 18,
-						"h": 30
+						"w": 19,
+						"h": 45
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 0,
-						"w": 18,
-						"h": 30
+						"y": 29,
+						"w": 19,
+						"h": 16
 					},
 					"frame": {
 						"x": 103,
-						"y": 481,
-						"w": 18,
-						"h": 30
+						"y": 486,
+						"w": 19,
+						"h": 16
 					},
 					"anchor": {
-						"x": 0.5,
-						"y": 1
+						"x": 0,
+						"y": 0
 					}
 				},
 				{
-					"filename": "characters/pc/show_phone-002",
+					"filename": "characters/npc/skeleton-alert-001",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
 						"w": 18,
-						"h": 29
+						"h": 32
 					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
 						"w": 18,
-						"h": 29
+						"h": 32
 					},
 					"frame": {
 						"x": 103,
-						"y": 513,
+						"y": 504,
 						"w": 18,
-						"h": 29
+						"h": 32
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1285,28 +1285,28 @@
 					}
 				},
 				{
-					"filename": "characters/pc/show_phone-001",
+					"filename": "characters/pc/openning-001",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 18,
-						"h": 29
+						"h": 30
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 2,
+						"y": 0,
 						"w": 18,
-						"h": 26
+						"h": 30
 					},
 					"frame": {
 						"x": 103,
-						"y": 544,
+						"y": 538,
 						"w": 18,
-						"h": 26
+						"h": 30
 					},
 					"anchor": {
 						"x": 0.5,
-						"y": 0.931034
+						"y": 1
 					}
 				},
 				{
@@ -1374,8 +1374,8 @@
 						"h": 17
 					},
 					"frame": {
-						"x": 69,
-						"y": 570,
+						"x": 1,
+						"y": 565,
 						"w": 32,
 						"h": 17
 					},
@@ -1399,8 +1399,8 @@
 						"h": 16
 					},
 					"frame": {
-						"x": 1,
-						"y": 565,
+						"x": 69,
+						"y": 570,
 						"w": 32,
 						"h": 16
 					},
@@ -1450,7 +1450,7 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 583,
+						"y": 584,
 						"w": 32,
 						"h": 12
 					},
@@ -1460,27 +1460,27 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door_side-open-020",
+					"filename": "characters/pc/show_phone-002",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 19,
-						"h": 45
+						"w": 18,
+						"h": 29
 					},
 					"spriteSourceSize": {
-						"x": 1,
-						"y": 28,
+						"x": 0,
+						"y": 0,
 						"w": 18,
-						"h": 17
+						"h": 29
 					},
 					"frame": {
 						"x": 103,
-						"y": 572,
+						"y": 570,
 						"w": 18,
-						"h": 17
+						"h": 29
 					},
 					"anchor": {
-						"x": 0,
+						"x": 0.5,
 						"y": 1
 					}
 				},
@@ -1500,7 +1500,7 @@
 					},
 					"frame": {
 						"x": 69,
-						"y": 589,
+						"y": 588,
 						"w": 23,
 						"h": 14
 					},
@@ -1525,38 +1525,13 @@
 					},
 					"frame": {
 						"x": 94,
-						"y": 589,
+						"y": 588,
 						"w": 5,
 						"h": 5
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 0.5
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-wake-002",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 25,
-						"h": 25
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 2,
-						"w": 22,
-						"h": 23
-					},
-					"frame": {
-						"x": 101,
-						"y": 591,
-						"w": 22,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
 					}
 				},
 				{
@@ -1575,7 +1550,7 @@
 					},
 					"frame": {
 						"x": 94,
-						"y": 596,
+						"y": 595,
 						"w": 3,
 						"h": 3
 					},
@@ -1600,13 +1575,38 @@
 					},
 					"frame": {
 						"x": 94,
-						"y": 596,
+						"y": 595,
 						"w": 3,
 						"h": 3
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-wake-002",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 25,
+						"h": 25
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 2,
+						"w": 22,
+						"h": 23
+					},
+					"frame": {
+						"x": 94,
+						"y": 601,
+						"w": 22,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
 					}
 				},
 				{
@@ -1635,28 +1635,28 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door_side_left-open-020",
+					"filename": "characters/pc/show_phone-001",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 19,
-						"h": 45
+						"w": 18,
+						"h": 29
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 28,
+						"y": 2,
 						"w": 18,
-						"h": 17
+						"h": 26
 					},
 					"frame": {
 						"x": 1,
-						"y": 597,
+						"y": 598,
 						"w": 18,
-						"h": 17
+						"h": 26
 					},
 					"anchor": {
-						"x": 0,
-						"y": 0
+						"x": 0.5,
+						"y": 0.931034
 					}
 				},
 				{
@@ -1675,7 +1675,7 @@
 					},
 					"frame": {
 						"x": 21,
-						"y": 597,
+						"y": 598,
 						"w": 12,
 						"h": 17
 					},
@@ -1685,7 +1685,7 @@
 					}
 				},
 				{
-					"filename": "mazes/maze01/door_side-open-018",
+					"filename": "mazes/maze01/door_side-open-020",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1693,369 +1693,19 @@
 						"h": 45
 					},
 					"spriteSourceSize": {
-						"x": 2,
+						"x": 1,
 						"y": 28,
-						"w": 17,
+						"w": 18,
 						"h": 17
 					},
 					"frame": {
 						"x": 59,
-						"y": 605,
-						"w": 17,
+						"y": 604,
+						"w": 18,
 						"h": 17
 					},
 					"anchor": {
 						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side_left-open-018",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 28,
-						"w": 17,
-						"h": 17
-					},
-					"frame": {
-						"x": 78,
-						"y": 605,
-						"w": 17,
-						"h": 17
-					},
-					"anchor": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side-open-017",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 29,
-						"w": 17,
-						"h": 16
-					},
-					"frame": {
-						"x": 35,
-						"y": 610,
-						"w": 17,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side_left-open-017",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 29,
-						"w": 17,
-						"h": 16
-					},
-					"frame": {
-						"x": 35,
-						"y": 610,
-						"w": 17,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-wake-004",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 25,
-						"h": 25
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 16,
-						"h": 23
-					},
-					"frame": {
-						"x": 97,
-						"y": 616,
-						"w": 16,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "ui/cursor",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 9,
-						"h": 9
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 9,
-						"h": 9
-					},
-					"frame": {
-						"x": 115,
-						"y": 616,
-						"w": 9,
-						"h": 9
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "items/chest-0",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 1,
-						"y": 616,
-						"w": 16,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-idle-001",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 14,
-						"h": 23
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 14,
-						"h": 23
-					},
-					"frame": {
-						"x": 19,
-						"y": 616,
-						"w": 14,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-idle-008",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 14,
-						"h": 23
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 14,
-						"h": 23
-					},
-					"frame": {
-						"x": 19,
-						"y": 616,
-						"w": 14,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "items/potion-1",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 1,
-						"y": 634,
-						"w": 16,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "items/wood-0",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 16,
-						"h": 16
-					},
-					"frame": {
-						"x": 54,
-						"y": 624,
-						"w": 16,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side-open-012",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 15,
-						"h": 45
-					},
-					"frame": {
-						"x": 35,
-						"y": 628,
-						"w": 15,
-						"h": 45
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-idle-002",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 14,
-						"h": 23
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 14,
-						"h": 23
-					},
-					"frame": {
-						"x": 19,
-						"y": 641,
-						"w": 14,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 1
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side_left-open-012",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 15,
-						"h": 45
-					},
-					"frame": {
-						"x": 1,
-						"y": 652,
-						"w": 15,
-						"h": 45
-					},
-					"anchor": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				{
-					"filename": "characters/npc/skeleton-idle-003",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 14,
-						"h": 23
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 14,
-						"h": 23
-					},
-					"frame": {
-						"x": 18,
-						"y": 666,
-						"w": 14,
-						"h": 23
-					},
-					"anchor": {
-						"x": 0.5,
 						"y": 1
 					}
 				},
@@ -2074,8 +1724,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 18,
-						"y": 691,
+						"x": 79,
+						"y": 604,
 						"w": 13,
 						"h": 45
 					},
@@ -2099,8 +1749,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 18,
-						"y": 691,
+						"x": 79,
+						"y": 604,
 						"w": 13,
 						"h": 45
 					},
@@ -2124,8 +1774,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 18,
-						"y": 691,
+						"x": 79,
+						"y": 604,
 						"w": 13,
 						"h": 45
 					},
@@ -2149,8 +1799,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 18,
-						"y": 691,
+						"x": 79,
+						"y": 604,
 						"w": 13,
 						"h": 45
 					},
@@ -2160,28 +1810,328 @@
 					}
 				},
 				{
-					"filename": "characters/npc/skeleton-idle-004",
+					"filename": "mazes/maze01/door_side_left-open-020",
 					"rotated": false,
-					"trimmed": false,
+					"trimmed": true,
 					"sourceSize": {
-						"w": 14,
-						"h": 23
+						"w": 19,
+						"h": 45
 					},
 					"spriteSourceSize": {
 						"x": 0,
+						"y": 28,
+						"w": 18,
+						"h": 17
+					},
+					"frame": {
+						"x": 35,
+						"y": 610,
+						"w": 18,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side_left-open-019",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 28,
+						"w": 12,
+						"h": 17
+					},
+					"frame": {
+						"x": 21,
+						"y": 617,
+						"w": 12,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-attack-001",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 22,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 5,
 						"y": 0,
-						"w": 14,
+						"w": 17,
 						"h": 23
 					},
 					"frame": {
 						"x": 1,
-						"y": 699,
-						"w": 14,
+						"y": 626,
+						"w": 17,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.54545455,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-walk-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 17,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 17,
+						"h": 22
+					},
+					"frame": {
+						"x": 55,
+						"y": 623,
+						"w": 17,
+						"h": 22
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-walk-002",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 17,
+						"h": 22
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 2,
+						"w": 17,
+						"h": 20
+					},
+					"frame": {
+						"x": 35,
+						"y": 629,
+						"w": 17,
+						"h": 20
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "items/diamond-0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 12,
+						"h": 16
+					},
+					"frame": {
+						"x": 20,
+						"y": 636,
+						"w": 12,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side-open-018",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 28,
+						"w": 17,
+						"h": 17
+					},
+					"frame": {
+						"x": 1,
+						"y": 651,
+						"w": 17,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side_left-open-018",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 28,
+						"w": 17,
+						"h": 17
+					},
+					"frame": {
+						"x": 54,
+						"y": 647,
+						"w": 17,
+						"h": 17
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side-open-017",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 29,
+						"w": 17,
+						"h": 16
+					},
+					"frame": {
+						"x": 34,
+						"y": 651,
+						"w": 17,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side_left-open-017",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 29,
+						"w": 17,
+						"h": 16
+					},
+					"frame": {
+						"x": 34,
+						"y": 651,
+						"w": 17,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"filename": "items/metal-0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 12,
+						"h": 15
+					},
+					"frame": {
+						"x": 20,
+						"y": 654,
+						"w": 12,
+						"h": 15
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-wake-004",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 25,
+						"h": 25
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 16,
+						"h": 23
+					},
+					"frame": {
+						"x": 1,
+						"y": 670,
+						"w": 16,
 						"h": 23
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 1
+					}
+				},
+				{
+					"filename": "items/chest-0",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 94,
+						"y": 626,
+						"w": 16,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -2196,13 +2146,13 @@
 						"x": 2,
 						"y": 2,
 						"w": 12,
-						"h": 13
+						"h": 14
 					},
 					"frame": {
-						"x": 1,
-						"y": 724,
+						"x": 112,
+						"y": 626,
 						"w": 12,
-						"h": 13
+						"h": 14
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2224,8 +2174,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2249,8 +2199,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2274,8 +2224,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2299,8 +2249,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2324,8 +2274,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2349,8 +2299,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 33,
-						"y": 691,
+						"x": 112,
+						"y": 642,
 						"w": 11,
 						"h": 45
 					},
@@ -2360,28 +2310,103 @@
 					}
 				},
 				{
-					"filename": "items/rock-0",
+					"filename": "items/potion-1",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 16,
 						"h": 16
 					},
 					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 14,
-						"h": 14
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
 					},
 					"frame": {
-						"x": 34,
-						"y": 675,
-						"w": 14,
-						"h": 14
+						"x": 94,
+						"y": 644,
+						"w": 16,
+						"h": 16
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 0.5
+					}
+				},
+				{
+					"filename": "items/wood-0",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 73,
+						"y": 651,
+						"w": 16,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side-open-012",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 15,
+						"h": 45
+					},
+					"frame": {
+						"x": 53,
+						"y": 666,
+						"w": 15,
+						"h": 45
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "mazes/maze01/door_side_left-open-012",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 19,
+						"h": 45
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 15,
+						"h": 45
+					},
+					"frame": {
+						"x": 34,
+						"y": 669,
+						"w": 15,
+						"h": 45
+					},
+					"anchor": {
+						"x": 0,
+						"y": 0
 					}
 				},
 				{
@@ -2399,8 +2424,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 46,
-						"y": 691,
+						"x": 1,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
@@ -2424,39 +2449,14 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 46,
-						"y": 691,
+						"x": 1,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
-					}
-				},
-				{
-					"filename": "items/sword-0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 14,
-						"h": 14
-					},
-					"frame": {
-						"x": 50,
-						"y": 675,
-						"w": 14,
-						"h": 14
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				},
 				{
@@ -2474,8 +2474,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 59,
-						"y": 691,
+						"x": 14,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
@@ -2499,8 +2499,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 59,
-						"y": 691,
+						"x": 14,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
@@ -2524,8 +2524,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 66,
-						"y": 642,
+						"x": 27,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
@@ -2549,60 +2549,10 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 66,
-						"y": 642,
+						"x": 27,
+						"y": 716,
 						"w": 11,
 						"h": 45
-					},
-					"anchor": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				{
-					"filename": "items/potion-0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 14,
-						"h": 16
-					},
-					"frame": {
-						"x": 72,
-						"y": 624,
-						"w": 14,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mazes/maze01/door_side_left-open-019",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 19,
-						"h": 45
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 28,
-						"w": 12,
-						"h": 17
-					},
-					"frame": {
-						"x": 52,
-						"y": 642,
-						"w": 12,
-						"h": 17
 					},
 					"anchor": {
 						"x": 0,
@@ -2624,8 +2574,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 72,
-						"y": 689,
+						"x": 40,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
@@ -2649,14 +2599,89 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 72,
-						"y": 689,
+						"x": 40,
+						"y": 716,
 						"w": 11,
 						"h": 45
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "items/potion-0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 14,
+						"h": 16
+					},
+					"frame": {
+						"x": 1,
+						"y": 695,
+						"w": 14,
+						"h": 16
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "items/rock-0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 14,
+						"h": 15
+					},
+					"frame": {
+						"x": 17,
+						"y": 695,
+						"w": 14,
+						"h": 15
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ui/cursor",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 9,
+						"h": 9
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 9,
+						"h": 9
+					},
+					"frame": {
+						"x": 19,
+						"y": 671,
+						"w": 9,
+						"h": 9
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -2674,8 +2699,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 79,
-						"y": 642,
+						"x": 53,
+						"y": 713,
 						"w": 11,
 						"h": 45
 					},
@@ -2699,8 +2724,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 79,
-						"y": 642,
+						"x": 53,
+						"y": 713,
 						"w": 11,
 						"h": 45
 					},
@@ -2724,8 +2749,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 85,
-						"y": 689,
+						"x": 66,
+						"y": 713,
 						"w": 11,
 						"h": 45
 					},
@@ -2749,14 +2774,114 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 85,
-						"y": 689,
+						"x": 66,
+						"y": 713,
 						"w": 11,
 						"h": 45
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-idle-001",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 23
+					},
+					"frame": {
+						"x": 91,
+						"y": 662,
+						"w": 14,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-idle-008",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 23
+					},
+					"frame": {
+						"x": 91,
+						"y": 662,
+						"w": 14,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-idle-002",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 23
+					},
+					"frame": {
+						"x": 70,
+						"y": 687,
+						"w": 14,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "items/sword-0",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 14,
+						"h": 15
+					},
+					"frame": {
+						"x": 70,
+						"y": 669,
+						"w": 14,
+						"h": 15
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
 					}
 				},
 				{
@@ -2774,8 +2899,8 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 92,
-						"y": 641,
+						"x": 79,
+						"y": 712,
 						"w": 11,
 						"h": 45
 					},
@@ -2799,14 +2924,64 @@
 						"h": 45
 					},
 					"frame": {
-						"x": 92,
-						"y": 641,
+						"x": 79,
+						"y": 712,
 						"w": 11,
 						"h": 45
 					},
 					"anchor": {
 						"x": 0,
 						"y": 0
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-idle-003",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 23
+					},
+					"frame": {
+						"x": 86,
+						"y": 687,
+						"w": 14,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
+					}
+				},
+				{
+					"filename": "characters/npc/skeleton-idle-004",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 14,
+						"h": 23
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 14,
+						"h": 23
+					},
+					"frame": {
+						"x": 102,
+						"y": 689,
+						"w": 14,
+						"h": 23
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 1
 					}
 				},
 				{
@@ -2824,8 +2999,8 @@
 						"h": 23
 					},
 					"frame": {
-						"x": 105,
-						"y": 641,
+						"x": 92,
+						"y": 714,
 						"w": 14,
 						"h": 23
 					},
@@ -2849,8 +3024,8 @@
 						"h": 23
 					},
 					"frame": {
-						"x": 105,
-						"y": 666,
+						"x": 92,
+						"y": 739,
 						"w": 14,
 						"h": 23
 					},
@@ -2874,64 +3049,14 @@
 						"h": 23
 					},
 					"frame": {
-						"x": 98,
-						"y": 691,
+						"x": 108,
+						"y": 714,
 						"w": 14,
 						"h": 23
 					},
 					"anchor": {
 						"x": 0.5,
 						"y": 1
-					}
-				},
-				{
-					"filename": "items/diamond-0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 12,
-						"h": 16
-					},
-					"frame": {
-						"x": 98,
-						"y": 716,
-						"w": 12,
-						"h": 16
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "items/metal-0",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 16,
-						"h": 16
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 1,
-						"w": 12,
-						"h": 14
-					},
-					"frame": {
-						"x": 112,
-						"y": 716,
-						"w": 12,
-						"h": 14
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
 					}
 				}
 			]
@@ -2940,6 +3065,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:96c0743a586a48918183bad3a1aeb85b:adeeedba62f47503e2335fb6cf5d723e:8daebe7d1eeec477f8d56c0b9baa75b5$"
+		"smartupdate": "$TexturePacker:SmartUpdate:6bd6324580c1d10c87a26476b15c156f:c5048fc8e497b37147ce203e4ac06862:8daebe7d1eeec477f8d56c0b9baa75b5$"
 	}
 }
