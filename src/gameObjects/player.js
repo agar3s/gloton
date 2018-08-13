@@ -5,6 +5,8 @@ export default class Player {
   constructor(params) {
     this.scene = params.scene
 
+    console.log('create a new player')
+
     const { S, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
     this.keys = this.scene.input.keyboard.addKeys({
       s: S,
