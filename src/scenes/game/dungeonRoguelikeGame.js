@@ -18,6 +18,9 @@ export default class DungeonRoguelikeGameScene extends Scene {
     super.create(params)
 
     // lo del dungeon
+    this.items = this.add.group()
+    this.doors = this.add.group()
+
     this.setupDungeon()
 
     this.events.on('shutdown', _ => this.shutdown(), this)
@@ -28,7 +31,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.player.handSprite.setDepth(6)
     this.player.cursor.setDepth(20)
     
-    this.items = this.add.group()
 
     this.setupPhysics()
 /*
@@ -127,6 +129,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
           //put superior right border
           this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x + 1, y + doors[i].y)
 
+          console.log(doors[i].x, doors[i].y)
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16)
         } else if (doors[i].y === room.height - 1) {
           // remove wall
           this.wallsLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y)
@@ -259,21 +263,16 @@ export default class DungeonRoguelikeGameScene extends Scene {
   }
 
 
-  addDoor() {
-    const doorPoint = this.map.findObject(
-      'Objects',
-      obj => obj.name === 'Door'
-    )
-
-    this.door = this.physics.add.sprite(
-      doorPoint.x,
-      doorPoint.y,
+  addDoor(x, y) {
+    console.log('new door')
+    let door = this.physics.add.sprite(
+      x, y,
       this.constants.ATLAS_KEY,
       'mazes/maze01/door-closed-001'
     );
 
     // the door can't be moved by the player
-    this.door.body.immovable = true;
+    door.body.immovable = true;
 
     // ├── setup the animations for the PC ─┐
     // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
@@ -288,6 +287,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.anims.anims.get('door-open').frames.forEach((frame, index)=>{
       frame.duration = doorAnimationMs[index]
     })
+
+    this.doors.add(door)
   }
 
   setupPlayer (x, y) {
@@ -389,18 +390,18 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }
     })
     // handle the event of the PC colliding with the door
-    this.physics.add.collider(this.player.sprite, this.door, (playerSprite, door) => {
+    this.physics.add.collider(this.player.sprite, this.doors, (playerSprite, door) => {
       if(door.opening) return
       door.opening = true
       door.anims.play('door-open')
       playerSprite.anims.play('pc-openning')
       door.on('animationcomplete', (animation, frame) => {
         playerSprite.anims.play('pc-idle')
-        this.door.destroy()
+        door.destroy()
       }, this)
     }, null, this)
-    this.physics.add.collider(this.items, this.door)
-    this.physics.add.overlap(this.player.handSprite, this.door, (hand, door)=>{
+    this.physics.add.collider(this.items, this.doors)
+    this.physics.add.overlap(this.player.handSprite, this.doors, (hand, door)=>{
       
         this.player.hookCollidesWall(door)
     
