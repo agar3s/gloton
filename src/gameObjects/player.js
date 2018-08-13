@@ -147,10 +147,10 @@ export default class Player {
 
     // random objects in inventory by default
     gs.stats.inventory.items = []
-    for (var i = 0; i < 2; i++) {
+    /*for (var i = 0; i < 2; i++) {
       let itemprops = generateItem()
       gs.stats.inventory.items.push(itemprops)
-    }
+    }*/
   }
 
   update () {

@@ -1,5 +1,6 @@
 import Scene from '../scene'
 import gs from '../../config/gameStats'
+import constants from '../../config/constants'
 
 import Player from '../../gameObjects/player'
 import Item from '../../gameObjects/item'
@@ -8,6 +9,8 @@ import Enemy from '../../gameObjects/enemy'
 import Dungeon from '@mikewesthad/dungeon'
 import TilemapVisibility from '../../utils/tilemap-visibility.js'
 import TILES from '../../config/tileMapping'
+
+import generateItem from '../../config/itemGenerator'
 
 export default class DungeonRoguelikeGameScene extends Scene {
   constructor () {
@@ -214,44 +217,38 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
     // Place stuff in the 90% "otherRooms"
     otherRooms.forEach(room => {
+      /*this.foregroundLayer.weightedRandomize(x, y, 1, 1, TILES.POT)*/
+      const x1 = room.left + 2
+      const x2 = room.right - 2
+      const y1 = room.top + 5
+      const y2 = room.bottom - 4
       var rand = Math.random()
-      if (rand <= 0.25) {
-        // 25% chance of chest
-        this.foregroundLayer.putTileAt(TILES.CHEST, room.centerX, room.centerY)
-      } else if (rand <= 0.5) {
-        // 50% chance of a pot anywhere in the room... except don't block a door!
-        const x = Phaser.Math.Between(room.left + 2, room.right - 2)
-        const y = Phaser.Math.Between(room.top + 2, room.bottom - 2)
-        this.foregroundLayer.weightedRandomize(x, y, 1, 1, TILES.POT)
-      } else {
-        // 25% of either 2 or 4 towers, depending on the room size
-        if (room.height >= 9) {
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY + 1)
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY + 1)
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY - 2)
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY - 2)
-        } else {
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX - 1, room.centerY - 1)
-          this.foregroundLayer.putTilesAt(TILES.TOWER, room.centerX + 1, room.centerY - 1)
-        }
+      if(rand<0.2){
+        this.createItemsIn(1, x1, x2, y1, y2)
+      }else if(rand<0.5){
+        this.createItemsIn(3, x1, x2, y1, y2)
+      }else if(rand<0.75){
+        this.createItemsIn(5, x1, x2, y1, y2)
+      }else {
+        this.createItemsIn(7, x1, x2, y1, y2)
       }
-      })  
+    })  
       
       // colision para el fin del nivel
       // Not exactly correct for the tileset since there are more possible floor tiles, but this will
       // do for the example.
 
-      this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, () => {
-        this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, null)
-        this.hasPlayerReachedStairs = true
-        this.player.sprite.freeze()
-        const cam = this.cameras.main
-        cam.fade(250, 0, 0, 0)
-        cam.once("camerafadeoutcomplete", () => {
-          this.player.destroy()
-          this.scene.restart()
-        })
+    this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, () => {
+      this.foregroundLayer.setTileIndexCallback(TILES.STAIRS, null)
+      this.hasPlayerReachedStairs = true
+      this.player.sprite.freeze()
+      const cam = this.cameras.main
+      cam.fade(250, 0, 0, 0)
+      cam.once("camerafadeoutcomplete", () => {
+        this.player.destroy()
+        this.scene.restart()
       })
+    })
 
     // starts the player?
     // Place the player in the first room
@@ -294,6 +291,24 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }
       doorA.twinDoor = allDoors[pairedIndex]
       allDoors[pairedIndex].twinDoor = doorA
+    }
+  }
+
+  createItemsIn(howMany, x1, x2, y1, y2) {
+    for (var i = 0; i < howMany; i++) {
+      var rand = Math.random()
+      const x = Phaser.Math.Between(x1, x2)
+      const y = Phaser.Math.Between(y1, y2)
+
+      let item = generateItem()
+      this.addItem({
+        scene:this,
+        key: constants.ATLAS_KEY,
+        frame: `items/${item.type}`,
+        x:x*16,
+        y:y*16,
+        props:item
+      })
     }
   }
 

@@ -18,7 +18,7 @@ let stats = {
   },
   player: {
     chainLength: 120,
-    chainSpeed: 3,
+    chainSpeed: 4.5,
     speed: 150,
     chaintoTarget: false,
     raycast: true
