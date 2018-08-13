@@ -118,9 +118,24 @@ export default class Player {
     }
 
     this.sounds = {
-      hook: this.scene.sound.add('fx_hook_shot_01'),
+      hook_shot: this.scene.sound.add('fx_hook_shot_01'),
+      hook_return: this.scene.sound.add('fx_hook_return_01'),
+      
+      impact_fail_01: this.scene.sound.add('fx_impact_fail_01'),
+      impact_fail_02: this.scene.sound.add('fx_impact_fail_02'),
+
+      impact_skeleton_01: this.scene.sound.add('fx_impact_skeleton_01'),
+      impact_skeleton_02: this.scene.sound.add('fx_impact_skeleton_02'),
+
+      impact_stone_01: this.scene.sound.add('fx_impact_stone_01'),
+      impact_stone_02: this.scene.sound.add('fx_impact_stone_02'),
+
       impact_metal_01: this.scene.sound.add('fx_impact_metal_01'),
       impact_metal_02: this.scene.sound.add('fx_impact_metal_02'),
+
+      impact_crystal_01: this.scene.sound.add('fx_impact_crystal_01'),
+      impact_crystal_02: this.scene.sound.add('fx_impact_crystal_02'),
+
       impact_wood_01: this.scene.sound.add('fx_impact_wood_01'),
       impact_wood_02: this.scene.sound.add('fx_impact_wood_02'),
       door_open: this.scene.sound.add('fx_door_open')
@@ -201,7 +216,7 @@ export default class Player {
 
   launch () {
     if(this.hand.locked) return
-    this.sounds.hook.play()
+    this.sounds.hook_shot.play()
     // lock the hand/cursor
     this.hand.locked = true
     this.hand.lenght = 0
@@ -278,6 +293,9 @@ export default class Player {
     }else if(this.hand.lenght > gs.stats.player.chainLength) {
       this.hand.lenght = gs.stats.player.chainLength
       this.hand.going = false
+      // llego al limit
+      this.sounds.hook_shot.stop()
+      
     }
     return angle
   }
@@ -297,6 +315,7 @@ export default class Player {
     }
     if(this.hand.lenght <= 0) {
       this.hand.locked = false
+      this.sounds.hook_return.play()
       this.graphics.clear()
     }
     return angle
@@ -330,21 +349,42 @@ export default class Player {
 
   hook (item) {
     if(this.hookedItem === item || !this.hand.going) return
+    this.sounds.hook_shot.stop()
+    
     this.hookedItem = item
     this.hookedItem.grab()
     this.hand.going = false
-    let material = ['metal_01', 'wood_01', 'metal_02', 'wood_02'][~~(Math.random()*4)]
+    let material = [
+      'skeleton_01',
+      'skeleton_02',
+      'stone_01',
+      'stone_02',
+      'crystal_01',
+      'crystal_02',
+      'metal_01',
+      'metal_02',
+      'wood_01',
+      'wood_02'
+    ][~~(Math.random()*10)]
+    console.log(material)
     this.sounds[`impact_${material}`].play()
+    
+    
     // put a delay before to start pullingout
   }
 
   hookCollidesWall (wall) {
+    this.sounds.hook_shot.stop()
+    let code = Math.random()>0.5?'01':'02'
+    this.sounds[`impact_fail_${code}`].play()
     this.hand.going = false
   }
 
   collectItem(item) {
     if(item !== this.hookedItem) return
     this.hand.locked = false
+    this.sounds.hook_return.play()
+
     this.graphics.clear()
     this.handSprite.body.setVelocityX(0)
     this.handSprite.body.setVelocityY(0)
