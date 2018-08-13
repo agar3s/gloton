@@ -5,7 +5,8 @@ const STATUS = {
   IDLE: 0,
   RUNNING: 1,
   OPENING: 2,
-  HAND: 3
+  HAND: 3,
+  HIT: 4
 }
 
 export default class Player {
@@ -64,6 +65,13 @@ export default class Player {
     this.scene.anims.create({
       key: 'pc-show_phone',
       frames: this.scene.generateFrameNames('characters/pc', 'show_phone', 2),
+      frameRate: 10,
+      repeat: 0
+    })
+
+    this.scene.anims.create({
+      key: 'pc-hit',
+      frames: this.scene.generateFrameNames('characters/pc', 'hit', 3),
       frameRate: 10,
       repeat: 0
     })
@@ -380,6 +388,17 @@ export default class Player {
   finishOpenDoor() {
     this.status = STATUS.IDLE
     this.sprite.anims.play('pc-idle')
+  }
+
+  getHit () {
+    if(this.status === STATUS.HIT) return
+    this.status = STATUS.HIT
+    this.sprite.anims.play('pc-hit')
+    this.sprite.on('animationcomplete', (animation, frame) => {
+      this.status = STATUS.IDLE
+      this.sprite.anims.play('pc-idle')
+      this.sprite.off('animationcomplete')
+    }, this)
   }
 
 }
