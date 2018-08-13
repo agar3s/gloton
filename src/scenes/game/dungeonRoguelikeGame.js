@@ -508,8 +508,10 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
         this.player.collectItem(collider)
         Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
-        let index = this.enemies.indexOf(collider)
-        this.enemies.splice(index, 1)
+        if(collider.material=='skeleton'){
+          let index = this.enemies.indexOf(collider)
+          this.enemies.splice(index, 1)
+        }
         collider.destroy()
       }
     })

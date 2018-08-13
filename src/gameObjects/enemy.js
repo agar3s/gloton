@@ -88,7 +88,6 @@ export default class Enemy extends Item {
 
   wake() {
     if(this.status === STATUS.REST)
-    this.status = STATUS.WAKE
     this.anims.play('skeleton-wake')
     this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
@@ -128,7 +127,6 @@ export default class Enemy extends Item {
       }
     }else if(distance<(16)) {
       this.attack()
-      console.log('attack')
     }else {
       let angle = Phaser.Math.Angle.Between(this.x, this.y-this.height/2, player.x, player.y-player.height/2)
       this.direction.x = Math.cos(angle)
@@ -152,8 +150,10 @@ export default class Enemy extends Item {
       this.scene.hitPlayer(this)
     }, 150)
     this.on('animationcomplete', (animation, frame) => {
-      this.status = STATUS.WALK
-      this.anims.play('skeleton-walk')
+      setTimeout(() => {
+        this.status = STATUS.IDLE
+        this.anims.play('skeleton-idle')
+      }, 100)
       this.off('animationcomplete')
     }, this)
   }
