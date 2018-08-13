@@ -7,7 +7,7 @@
   this valus loaded in the constructor.
 */
 
-const SCALE = 3
+const SCALE = 2
 const BACKGROUND_COLOR = 0x060608
 
 // time in milliseconds to keep visible the "splash" scene

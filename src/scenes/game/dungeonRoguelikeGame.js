@@ -3,6 +3,7 @@ import gs from '../../config/gameStats'
 
 import Player from '../../gameObjects/player'
 import Item from '../../gameObjects/item'
+import Enemy from '../../gameObjects/enemy'
 
 import Dungeon from '@mikewesthad/dungeon'
 import TilemapVisibility from '../../utils/tilemap-visibility.js'
@@ -30,7 +31,12 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.player.sprite.setDepth(5)
     this.player.handSprite.setDepth(6)
     this.player.cursor.setDepth(20)
-    
+
+    // add an enemy
+    this.addEnemy({x:this.player.sprite.x + 50, y:this.player.sprite.y})
+    this.addEnemy({x:this.player.sprite.x - 50, y:this.player.sprite.y})
+    this.addEnemy({x:this.player.sprite.x, y:this.player.sprite.y + 50})
+    this.addEnemy({x:this.player.sprite.x, y:this.player.sprite.y - 50})
 
     this.setupPhysics()
 /*
@@ -434,6 +440,20 @@ export default class DungeonRoguelikeGameScene extends Scene {
     item.setProperties()
     this.items.add(item)
     return item
+  }
+
+  addEnemy (props) {
+    props.scene = this
+    props.textureKey =  this.constants.ATLAS_KEY
+    props.textureFrame = 'characters/pc/skeleton-idle-001'
+    
+    let enemy = new Enemy(props)
+    this.add.displayList.add(enemy)
+    this.add.updateList.add(enemy)
+    this.physics.add.world.enableBody(enemy, Phaser.Physics.Arcade.DYNAMIC_BODY)
+    enemy.setProperties()
+    this.items.add(enemy)
+    return enemy
   }
 
   throwItem (props) {
