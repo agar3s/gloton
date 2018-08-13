@@ -181,6 +181,41 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-0.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-1.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-2.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-3.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-4.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-5.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-6.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-idle-7.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>10,12,19,24</rect>
+                <key>scale9Paddings</key>
+                <rect>10,12,19,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/pc/hit-001.png</key>
+            <key type="filename">../../sprites/characters/pc/hit-002.png</key>
+            <key type="filename">../../sprites/characters/pc/hit-003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,6,9,13</rect>
+                <key>scale9Paddings</key>
+                <rect>5,6,9,13</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../../sprites/characters/pc/idle-001.png</key>
             <key type="filename">../../sprites/characters/pc/idle-002.png</key>
             <key type="filename">../../sprites/characters/pc/openning-001.png</key>
@@ -221,6 +256,39 @@
                 <rect>5,7,9,15</rect>
                 <key>scale9Paddings</key>
                 <rect>5,7,9,15</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/items/chest-0.png</key>
+            <key type="filename">../../sprites/items/diamond-0.png</key>
+            <key type="filename">../../sprites/items/metal-0.png</key>
+            <key type="filename">../../sprites/items/potion-0.png</key>
+            <key type="filename">../../sprites/items/rock-0.png</key>
+            <key type="filename">../../sprites/items/shield-0.png</key>
+            <key type="filename">../../sprites/items/sword-0.png</key>
+            <key type="filename">../../sprites/items/wood-0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,7,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/items/potion-1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,8,8</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -364,6 +432,32 @@
                 <rect>5,11,9,23</rect>
                 <key>scale9Paddings</key>
                 <rect>5,11,9,23</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/ui/cursor.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,5,5</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/weapons/hook.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,1,3,3</rect>
+                <key>scale9Paddings</key>
+                <rect>1,1,3,3</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
