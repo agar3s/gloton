@@ -49,7 +49,6 @@ export default class Enemy extends Item {
       this.scene.anims.create({
         key: 'skeleton-walk',
         frames: this.scene.generateFrameNames('characters/npc', 'skeleton-walk', 2),
-        frameRate: 10,
         repeat: -1
       })
       this.scene.anims.anims.get('skeleton-walk').frames.forEach((frame, index)=>{
@@ -80,6 +79,11 @@ export default class Enemy extends Item {
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.5
     })
+
+    this.direction = {
+      x: 0,
+      y: 0
+    }
   }
 
   wake() {
@@ -103,23 +107,57 @@ export default class Enemy extends Item {
     }, 2000)
 
     setTimeout(()=>{
-      this.setVelocity(0,0)
-      this.anims.play('skeleton-attack')
-      this.on('animationcomplete', (animation, frame) => {
-        this.status = STATUS.IDLE
-        this.anims.play('skeleton-idle')
-        this.off('animationcomplete')
-      }, this)
+      
     }, 5000)
 */
   }
 
-  update() {
+  update(player) {
     super.update()
-    if(this.status===STATUS.WALK){
-      this.setVelocity(-20, 0)
+    if(this.status === STATUS.REST) return
+    if(this.status === STATUS.ATTACK) return
+    // should walk in direction to the player
+    //if(this.status == STATUS.IDLE) return
+
+    let distance = Phaser.Math.Distance.Between(this.x, this.y-this.height/2, player.x, player.y-player.height/2)
+
+    if(distance>16*8) {
+      if(this.status!==STATUS.IDLE){
+        this.status = STATUS.IDLE
+        this.anims.play('skeleton-idle')
+      }
+    }else if(distance<(16)) {
+      this.attack()
+      console.log('attack')
+    }else {
+      let angle = Phaser.Math.Angle.Between(this.x, this.y-this.height/2, player.x, player.y-player.height/2)
+      this.direction.x = Math.cos(angle)
+      this.direction.y = Math.sin(angle)
+      this.flipX = this.direction.x>0
+      if(this.status!== STATUS.WALK){
+        this.anims.play('skeleton-walk')
+        this.status = STATUS.WALK
+      }
+    }
+    if(this.status === STATUS.WALK) {
+      this.setVelocity(30*this.direction.x, 30*this.direction.y)
     }
   }
+
+  attack() {
+    this.status = STATUS.ATTACK
+    this.setVelocity(0,0)
+    this.anims.play('skeleton-attack')
+    setTimeout(() => {
+      this.scene.hitPlayer(this)
+    }, 150)
+    this.on('animationcomplete', (animation, frame) => {
+      this.status = STATUS.WALK
+      this.anims.play('skeleton-walk')
+      this.off('animationcomplete')
+    }, this)
+  }
+
   setProperties() {
     super.setProperties()
     this.setDrag(300, 300)

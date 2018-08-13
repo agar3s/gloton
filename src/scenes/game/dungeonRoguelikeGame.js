@@ -300,6 +300,15 @@ export default class DungeonRoguelikeGameScene extends Scene {
     }
   }
 
+  hitPlayer(enemy){
+    let distance = Phaser.Math.Distance.Between(enemy.x, enemy.y-enemy.height/2, this.player.sprite.x, this.player.sprite.y-this.player.sprite.height/2) 
+    if(distance<18) {
+      this.player.getHit()
+    }else {
+      
+    }
+  }
+
   createItemsIn(howMany, x1, x2, y1, y2) {
     for (var i = 0; i < howMany; i++) {
       var rand = Math.random()
@@ -450,7 +459,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.registry.set('timer', t)
 
     // update enemies
-    this.enemies.forEach(enemy => enemy.update())
+    this.enemies.forEach(enemy => enemy.update(this.player.sprite))
   }
 
   updateLanguageTexts () {
