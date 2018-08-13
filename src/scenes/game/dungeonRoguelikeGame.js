@@ -64,6 +64,12 @@ export default class DungeonRoguelikeGameScene extends Scene {
     //start timer
 
     this.timer = this.time.addEvent({ delay: 3*60000, loop: false})
+    this.music = this.sound.add('mx_main')
+    this.music.volume = 0.2
+    this.music.play({
+      loop:-1
+    })
+
   }
 
   setupDungeon () {
@@ -418,6 +424,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
   shutdown() {
     this.events.off('shutdown')
     this.player.destroy()
+    this.music.stop()
+    this.music.destroy()
   }
 
   pause () {

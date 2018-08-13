@@ -139,11 +139,14 @@ export default class Player {
 
       impact_wood_01: this.scene.sound.add('fx_impact_wood_01'),
       impact_wood_02: this.scene.sound.add('fx_impact_wood_02'),
+
+      ninja_fs: this.scene.sound.add('fx_ninja_FS'),
       door_open: this.scene.sound.add('fx_door_open')
     }
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.4
     })
+    this.sounds.ninja_fs.volume = 0.9
 
     // random objects in inventory by default
     gs.stats.inventory.items = []
@@ -168,13 +171,12 @@ export default class Player {
     }
     if(x==0&&y==0){
       if (this.status !== STATUS.IDLE && (prevVelocity.y != 0 || prevVelocity.x != 0)) {
-        this.sprite.anims.play('pc-idle')
-        this.status = STATUS.IDLE
+        this.setStatus(STATUS.IDLE)
+        
       }
     }else{
       if (this.status === STATUS.IDLE && prevVelocity.y == 0 && prevVelocity.x == 0) {
-        this.status = STATUS.RUNNING
-        this.sprite.anims.play('pc-run')
+        this.setStatus(STATUS.RUNNING)
       }
     }
 
@@ -430,7 +432,8 @@ export default class Player {
   }
 
   openDoor(door){
-    this.status = STATUS.OPENING
+    this.setStatus(STATUS.OPENING)
+
     this.sounds['door_open'].play()
     if(door.position==='top'){
       this.sprite.anims.play('pc-openning')
@@ -439,19 +442,33 @@ export default class Player {
     }
   }
   finishOpenDoor() {
-    this.status = STATUS.IDLE
-    this.sprite.anims.play('pc-idle')
+    this.setStatus(STATUS.IDLE)
   }
 
   getHit () {
     if(this.status === STATUS.HIT) return
-    this.status = STATUS.HIT
+    this.setStatus(STATUS.HIT)
+    
     this.sprite.anims.play('pc-hit')
     this.sprite.on('animationcomplete', (animation, frame) => {
-      this.status = STATUS.IDLE
-      this.sprite.anims.play('pc-idle')
+      this.setStatus(STATUS.IDLE)
       this.sprite.off('animationcomplete')
     }, this)
+  }
+
+  setStatus(status) {
+    if(status === this.status) return
+    if(this.status==STATUS.RUNNING){
+      this.sounds.ninja_fs.stop()
+    }
+    if(status === STATUS.RUNNING) {
+      this.sprite.anims.play('pc-run')
+      this.sounds.ninja_fs.play({loop:-1})
+    }
+    if(status==STATUS.IDLE) {
+      this.sprite.anims.play('pc-idle')
+    }
+    this.status = status
   }
 
 }

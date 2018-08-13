@@ -72,12 +72,21 @@ export default class Enemy extends Item {
     }, (~~(Math.random()*10000)) + 3000)
 
     this.material = 'skeleton'
+
+    this.sounds = {
+      skeleton_awake: this.scene.sound.add('fx_skeleton_awake'),
+      skeleton_stunned: this.scene.sound.add('fx_skeleton_stunned')
+    }
+    Object.keys(this.sounds).forEach(key=>{
+      this.sounds[key].volume = 0.5
+    })
   }
 
   wake() {
     if(this.status === STATUS.REST)
     this.status = STATUS.WAKE
     this.anims.play('skeleton-wake')
+    this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
       this.status = STATUS.IDLE
       this.anims.play('skeleton-idle')

@@ -120,6 +120,14 @@ export default class BootScene extends Scene {
     this.load.audio('fx_impact_crystal_02', urlBase+'assets/audio/fx/Impact_Crystal_02.ogg')
     this.load.audio('fx_impact_wood_01', urlBase+'assets/audio/fx/Impact_Wood_01.ogg')
     this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
+    
+    this.load.audio('fx_ninja_FS', urlBase+'assets/audio/fx/Ninja_FS.ogg')
+    this.load.audio('fx_skeleton_awake', urlBase+'assets/audio/fx/Skeleton_Awake.ogg')
+    this.load.audio('fx_skeleton_stunned', urlBase+'assets/audio/fx/Skeleton_Stunned.ogg')
+
+    // load music 
+    this.load.audio('mx_main', urlBase+'assets/audio/mx/LD42_MainTheme.ogg')
+    
     // load json
     this.load.json('translations', urlBase + 'assets/texts.json')
 
