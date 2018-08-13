@@ -347,9 +347,7 @@ export default class Player {
     this.hookedItem.grab()
     this.hand.going = false
     let variation = ~~(Math.random()*2) + 1
-    console.log(`impact_${this.hookedItem.material}_${variation}`)
     this.sounds[`impact_${this.hookedItem.material}_0${variation}`].play()
-    
     
     // put a delay before to start pullingout
   }

@@ -37,6 +37,7 @@ export default class Enemy extends Item {
     this.status= STATUS.REST
 
     setTimeout(()=>{
+      console.log('ey wakeup')
       this.wake()
     }, (~~(Math.random()*10000)) + 3000)
 
@@ -46,7 +47,7 @@ export default class Enemy extends Item {
   wake() {
     if(this.status === STATUS.REST)
     this.status = STATUS.WAKE
-    console.log(this.anims.play('skeleton-wake'))
+    this.anims.play('skeleton-wake')
     this.on('animationcomplete', (animation, frame) => {
       this.status = STATUS.IDLE
       this.anims.play('skeleton-idle')
