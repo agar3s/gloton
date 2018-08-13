@@ -125,6 +125,9 @@ export default class BootScene extends Scene {
     this.load.audio('fx_ninja_FS', urlBase+'assets/audio/fx/Ninja_FS.ogg')
     this.load.audio('fx_ninja_shot', urlBase+'assets/audio/fx/Ninja_ObjShot.ogg')
     this.load.audio('fx_ninja_hurt', urlBase+'assets/audio/fx/Ninja_Hurt.ogg')
+    this.load.audio('fx_ninja_empty', urlBase+'assets/audio/fx/Ninja_EmptyShot.ogg')
+    this.load.audio('fx_ninja_store', urlBase+'assets/audio/fx/UI_puObject.ogg')
+    
     this.load.audio('fx_skeleton_awake', urlBase+'assets/audio/fx/Skeleton_Awake.ogg')
     this.load.audio('fx_skeleton_stunned', urlBase+'assets/audio/fx/Skeleton_Stunned.ogg')
     this.load.audio('fx_skeleton_fs', urlBase+'assets/audio/fx/Skeleton_FS.ogg')

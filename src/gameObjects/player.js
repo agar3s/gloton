@@ -145,7 +145,9 @@ export default class Player {
       ninja_fs: this.scene.sound.add('fx_ninja_FS'),
       ninja_hurt: this.scene.sound.add('fx_ninja_hurt'),
       ninja_shot: this.scene.sound.add('fx_ninja_shot'),
-      door_open: this.scene.sound.add('fx_door_open')
+      ninja_empty: this.scene.sound.add('fx_ninja_empty'),
+      ninja_store: this.scene.sound.add('fx_ninja_store'),
+      door_open: this.scene.sound.add('fx_door_open'),
     }
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.4
@@ -250,6 +252,7 @@ export default class Player {
     if(this.hand.locked) return
     let inventory = gs.stats.inventory.items
     if (inventory.length==0) {
+      this.sounds.ninja_empty.play()
       return
     }
     this.sounds.ninja_shot.play()
@@ -389,6 +392,7 @@ export default class Player {
     if(item !== this.hookedItem) return
     this.hand.locked = false
     this.sounds.hook_return.play()
+    this.sounds.ninja_store.play()
 
     this.graphics.clear()
     this.handSprite.body.setVelocityX(0)
