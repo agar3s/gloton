@@ -130,8 +130,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.wallsLayer.putTilesAt([[81],[41],[61]], x + doors[i].x + 1, y + doors[i].y)
 
           console.log(doors[i].x, doors[i].y)
-          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16)
-        } else if (doors[i].y === room.height - 1) {
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16, 'top')
+        } else if (doors[i].y === room.height - 1) { // DOOR at the bottom
           // remove wall
           this.wallsLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[21,21]], x + doors[i].x - 1, y + doors[i].y-1)
@@ -143,6 +143,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
           // put inferior left border
           this.foregroundLayer.putTilesAt([[25]], x + doors[i].x - 2, y + doors[i].y-1)
           this.wallsLayer.putTilesAt([[45]], x + doors[i].x - 2, y + doors[i].y)
+
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y-2)*16, 'bottom')
 
         } else if (doors[i].x === 0) { // DOOR AT THE LEFT
           // remove wall
@@ -160,6 +162,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
           this.foregroundLayer.putTilesAt([[25]], x + doors[i].x+1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+
+          this.addDoor((x+doors[i].x+1)*16, (y+doors[i].y)*16, 'left')
         } else if (doors[i].x === room.width - 1) { // DOOR AT THE RIGHT
           // remove wall
           this.wallsLayer.putTilesAt([[21],[21]], x + doors[i].x-1, y + doors[i].y - 1)
@@ -175,6 +179,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
           this.wallsLayer.putTilesAt([[121],[141]], x + doors[i].x, y + doors[i].y + 1)
           this.foregroundLayer.putTilesAt([[24]], x + doors[i].x-1, y + doors[i].y)
           this.foregroundLayer.putTilesAt([[102]], x + doors[i].x, y + doors[i].y)
+
+          this.addDoor((x+doors[i].x-1)*16, (y+doors[i].y)*16, 'right')
 
         }
       }
@@ -263,30 +269,64 @@ export default class DungeonRoguelikeGameScene extends Scene {
   }
 
 
-  addDoor(x, y) {
+  addDoor(x, y, position) {
     console.log('new door')
+    let spriteKey = {
+      'top': 'mazes/maze01/door-closed-001',
+      'bottom': 'mazes/maze01/door_back-closed-001',
+      'left': 'mazes/maze01/door_side-closed-001',
+      'right': 'mazes/maze01/door_side-closed-001'
+    }
+
     let door = this.physics.add.sprite(
       x, y,
       this.constants.ATLAS_KEY,
-      'mazes/maze01/door-closed-001'
+      spriteKey[position]
     );
+    if(position === 'bottom'){
+      door.setSize(door.width, door.height-12).setOffset(0, 12)
+      door.setDepth(25)
+    }
 
     // the door can't be moved by the player
-    door.body.immovable = true;
+    door.body.immovable = true
+    door.position = position
 
     // ├── setup the animations for the PC ─┐
     // anims: https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Animation.html
     // AnimationConfig: https://photonstorm.github.io/phaser3-docs/global.html#AnimationConfig
-    this.anims.create({
-      key: 'door-open',
-      frames: this.generateFrameNames('mazes/maze01', 'door-open', 20),
-      repeat: 0
-    })
+    if(!this.anims.anims.get('door-open')){
+      this.anims.create({
+        key: 'door-open',
+        frames: this.generateFrameNames('mazes/maze01', 'door-open', 20),
+        repeat: 0
+      })
+      const doorAnimationMs = [60,60,60,60,60,60,60,60,60,60,150,60,250,60,60,60,120,120,120,120]
+      this.anims.anims.get('door-open').frames.forEach((frame, index)=>{
+        frame.duration = doorAnimationMs[index]
+      })
 
-    const doorAnimationMs = [60,60,60,60,60,60,60,60,60,60,150,60,250,60,60,60,120,120,120,120]
-    this.anims.anims.get('door-open').frames.forEach((frame, index)=>{
-      frame.duration = doorAnimationMs[index]
-    })
+      this.anims.create({
+        key: 'door_side-open',
+        frames: this.generateFrameNames('mazes/maze01', 'door_side-open', 20),
+        repeat: 0
+      })
+      this.anims.anims.get('door_side-open').frames.forEach((frame, index)=>{
+        frame.duration = doorAnimationMs[index]
+      })
+
+      this.anims.create({
+        key: 'door_back-open',
+        frames: this.generateFrameNames('mazes/maze01', 'door_back-open', 20),
+        repeat: 0
+      })
+      this.anims.anims.get('door_back-open').frames.forEach((frame, index)=>{
+        frame.duration = doorAnimationMs[index]
+      })
+    }
+
+
+
 
     this.doors.add(door)
   }
@@ -392,8 +432,15 @@ export default class DungeonRoguelikeGameScene extends Scene {
     // handle the event of the PC colliding with the door
     this.physics.add.collider(this.player.sprite, this.doors, (playerSprite, door) => {
       if(door.opening) return
+      let animations = {
+        'top': 'door-open',
+        'bottom': 'door_back-open',
+        'left': 'door_side-open',
+        'right': 'door_side-open'
+      }
       door.opening = true
-      door.anims.play('door-open')
+      door.anims.play(animations[door.position])
+
       playerSprite.anims.play('pc-openning')
       door.on('animationcomplete', (animation, frame) => {
         playerSprite.anims.play('pc-idle')
