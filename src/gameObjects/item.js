@@ -1,10 +1,9 @@
 
 export default class Item extends Phaser.Physics.Arcade.Sprite {
 	constructor(params) {
-    super(params.scene, params.x, params.y, params.key||'box', params.frame||0)
+    super(params.scene, params.x, params.y, params.key||'items/chest-0', params.frame||0)
     this.scene = params.scene
     this.grabbed = false
-    this.tint = ~~(0x333333+(0xCCCCCC*Math.random()))
     this.highlighted = false
   }
 
@@ -27,11 +26,11 @@ export default class Item extends Phaser.Physics.Arcade.Sprite {
   
   setHighlight(highlighted) {
     this.highlighted = highlighted
-    if(this.highlighted){
+    /*if(this.highlighted){
       this.setFrame(1)
     }else {
       this.setFrame(0)
-    }
+    }*/
     
   }
 }

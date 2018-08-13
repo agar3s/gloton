@@ -25,8 +25,8 @@ export default class Player {
     this.sprite = this.scene.physics.add.sprite(
       params.x,
       params.y,
-      params.textureKey,
-      params.textureFrame
+      params.key,
+      params.frame
     )
 
     this.sprite.setBounce(0, 0)
@@ -219,11 +219,23 @@ export default class Player {
   expulse () {
     // o si?
     if(this.hand.locked) return
-
+    let index = ~~(Math.random()*9)
+    let key = [
+      'chest-0',
+      'diamond-0',
+      'metal-0',
+      'potion-0',
+      'potion-1',
+      'rock-0',
+      'shield-0',
+      'sword-0',
+      'wood-0'
+    ]
     this.scene.throwItem({
       x: this.anchorHand.x,
       y: this.anchorHand.y,
-      key: 'box',
+      key: constants.ATLAS_KEY,
+      frame: `items/${key[index]}`,
       vx: Math.cos(this.handSprite.rotation)*500,
       vy: Math.sin(this.handSprite.rotation)*500,
     })

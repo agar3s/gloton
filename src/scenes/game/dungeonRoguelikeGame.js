@@ -382,8 +382,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
       scene: this,
       x: x,
       y: y,
-      textureKey: this.constants.ATLAS_KEY,
-      textureFrame: 'characters/pc/idle-001'
+      key: this.constants.ATLAS_KEY,
+      frame: 'characters/pc/idle-001'
     })
 
 
@@ -444,8 +444,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
   addEnemy (props) {
     props.scene = this
-    props.textureKey =  this.constants.ATLAS_KEY
-    props.textureFrame = 'characters/pc/skeleton-idle-001'
+    props.key =  this.constants.ATLAS_KEY
+    props.frame = 'characters/pc/skeleton-idle-001'
     
     let enemy = new Enemy(props)
     this.add.displayList.add(enemy)
