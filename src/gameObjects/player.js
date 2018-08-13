@@ -115,7 +115,8 @@ export default class Player {
       impact_metal_01: this.scene.sound.add('fx_impact_metal_01'),
       impact_metal_02: this.scene.sound.add('fx_impact_metal_02'),
       impact_wood_01: this.scene.sound.add('fx_impact_wood_01'),
-      impact_wood_02: this.scene.sound.add('fx_impact_wood_02')
+      impact_wood_02: this.scene.sound.add('fx_impact_wood_02'),
+      door_open: this.scene.sound.add('fx_door_open')
     }
     Object.keys(this.sounds).forEach(key=>{
       this.sounds[key].volume = 0.4
@@ -372,6 +373,7 @@ export default class Player {
 
   openDoor(door){
     this.status = STATUS.OPENING
+    this.sounds['door_open'].play()
     if(door.position==='top'){
       this.sprite.anims.play('pc-openning')
     }else {

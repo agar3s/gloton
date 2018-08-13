@@ -95,6 +95,7 @@ export default class BootScene extends Scene {
     this.load.spritesheet('box', urlBase + 'assets/box.png', { frameWidth: 16, frameHeight: 16 })
 
     // load audio
+    this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')
     this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
     this.load.audio('fx_impact_metal_01', urlBase+'assets/audio/fx/Impact_Metal_01.ogg')
     this.load.audio('fx_impact_metal_02', urlBase+'assets/audio/fx/Impact_Metal_02.ogg')
