@@ -88,6 +88,14 @@ export default class BootScene extends Scene {
     // load fonts
     this.load.bitmapFont(this.fonts.BM_keney.font, urlBase + 'assets/fonts/keneyFont_0.png', urlBase + 'assets/fonts/keneyFont.fnt')
 
+    // load ui assets
+    this.load.spritesheet('timer', urlBase + 'assets/timer.png', { frameWidth: 41, frameHeight: 32 })
+    this.load.spritesheet('ninja', urlBase + 'assets/ninja.png', { frameWidth: 28, frameHeight: 29 })
+    this.load.spritesheet('mapa', urlBase + 'assets/mapa.png', { frameWidth: 27, frameHeight: 28 })
+    this.load.spritesheet('life', urlBase + 'assets/life.png', { frameWidth: 21, frameHeight: 19 })
+    this.load.spritesheet('backpack', urlBase + 'assets/backpack.png', { frameWidth: 27, frameHeight: 28 })
+    
+
     // prototype assets
     this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })
     this.load.spritesheet('cursor', urlBase + 'assets/cursor.png', { frameWidth: 9, frameHeight: 9 })
