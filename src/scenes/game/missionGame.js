@@ -11,6 +11,8 @@ export default class MissionGameScene extends Scene {
   create(params) {
     super.create(params)
 
+    this.buttonSelect = this.sound.add('fx_button_select')
+
     this.events.on(
       'shutdown',
       () => {
@@ -64,6 +66,7 @@ export default class MissionGameScene extends Scene {
       style: this.fonts.BM_kenneyMiniSquare,
       size: 14,
       onClick: self => {
+        this.buttonSelect.play()
         this.changeToScene('dungeonRoguelikeGameScene')
       }
     })

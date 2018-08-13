@@ -142,6 +142,7 @@ export default class Player {
 
       ninja_fs: this.scene.sound.add('fx_ninja_FS'),
       ninja_hurt: this.scene.sound.add('fx_ninja_hurt'),
+      ninja_shot: this.scene.sound.add('fx_ninja_shot'),
       door_open: this.scene.sound.add('fx_door_open')
     }
     Object.keys(this.sounds).forEach(key=>{
@@ -249,6 +250,7 @@ export default class Player {
     if (inventory.length==0) {
       return
     }
+    this.sounds.ninja_shot.play()
     let index = ~~(Math.random()*inventory.length)
     let itemprops = (inventory.splice(index, 1))[0]
     this.scene.throwItem({

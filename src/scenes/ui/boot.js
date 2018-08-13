@@ -105,6 +105,7 @@ export default class BootScene extends Scene {
     this.load.spritesheet('box', urlBase + 'assets/box.png', { frameWidth: 16, frameHeight: 16 })
 
     // load audio
+    this.load.audio('fx_button_select', urlBase+'assets/audio/fx/UI_ButtonSelect.ogg')
     this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')
     this.load.audio('fx_hook_return_01', urlBase+'assets/audio/fx/Hook_Return_01.ogg')
     this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
@@ -122,6 +123,7 @@ export default class BootScene extends Scene {
     this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
     
     this.load.audio('fx_ninja_FS', urlBase+'assets/audio/fx/Ninja_FS.ogg')
+    this.load.audio('fx_ninja_shot', urlBase+'assets/audio/fx/Ninja_ObjShot.ogg')
     this.load.audio('fx_ninja_hurt', urlBase+'assets/audio/fx/Ninja_Hurt.ogg')
     this.load.audio('fx_skeleton_awake', urlBase+'assets/audio/fx/Skeleton_Awake.ogg')
     this.load.audio('fx_skeleton_stunned', urlBase+'assets/audio/fx/Skeleton_Stunned.ogg')

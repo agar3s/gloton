@@ -14,6 +14,8 @@ export default class MainMenuScene extends Scene {
     this.add.image(0, 0, 'titleBackground').setOrigin(0)
     this.events.on('shutdown', _ => this.shutdown(), this)
 
+    this.buttonSelect = this.sound.add('fx_button_select')
+
     // you can set your button with a custom behaviour
     // by default, onHover and onOut events just tint
     // the sprite
@@ -27,6 +29,7 @@ export default class MainMenuScene extends Scene {
       text: this.getText('start'),
       color: 0xffff00,
       onClick: (self) => {
+        this.buttonSelect.play()
         this.changeToScene('missionGameScene')
       },
       onHover: (self) => {
