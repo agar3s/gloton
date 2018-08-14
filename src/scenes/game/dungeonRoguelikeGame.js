@@ -24,6 +24,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     // lo del dungeon
     this.items = this.add.group()
     this.doors = this.add.group()
+    this.enemies = []
 
     this.setupDungeon()
 
@@ -36,11 +37,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.player.cursor.setDepth(20)
 
     // add an enemy
-    this.enemies = []
-    this.addEnemy({x:this.player.sprite.x + 50, y:this.player.sprite.y})
-    this.addEnemy({x:this.player.sprite.x - 50, y:this.player.sprite.y})
-    this.addEnemy({x:this.player.sprite.x, y:this.player.sprite.y + 50})
-    this.addEnemy({x:this.player.sprite.x, y:this.player.sprite.y - 50})
 
     this.setupPhysics()
 /*
@@ -207,7 +203,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     })
 
 
-    // arribapendiente lo del espacio
+    
 
     // Separate out the rooms into:
     //  - The starting room (index = 0)
@@ -224,8 +220,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
     // Place stuff in the 90% "otherRooms"
     otherRooms.forEach(room => {
       /*this.foregroundLayer.weightedRandomize(x, y, 1, 1, TILES.POT)*/
-      const x1 = room.left + 2
-      const x2 = room.right - 2
+      const x1 = room.left + 3
+      const x2 = room.right - 3
       const y1 = room.top + 5
       const y2 = room.bottom - 4
       var rand = Math.random()
@@ -238,7 +234,27 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }else {
         this.createItemsIn(7, x1, x2, y1, y2)
       }
-    })  
+    })
+    // all rooms even the empty ones muajuajua
+    rooms.forEach(room => {
+      const x1 = room.left + 3
+      const x2 = room.right - 3
+      const y1 = room.top + 5
+      const y2 = room.bottom - 4
+      var rand = Math.random()
+      if(rand<0.3){        
+      }else if(rand<0.4){
+        this.createSkeletons(1, x1, x2, y1, y2)
+      }else if(rand<0.5){
+        this.createSkeletons(2, x1, x2, y1, y2)
+      }else if(rand<0.6){
+        this.createSkeletons(3, x1, x2, y1, y2)
+      }else if(rand<0.7){
+        this.createSkeletons(4, x1, x2, y1, y2)
+      }else if(rand<0.8){
+        this.createSkeletons(2, x1, x2, y1, y2)
+      }
+    })
       
       // colision para el fin del nivel
       // Not exactly correct for the tileset since there are more possible floor tiles, but this will
@@ -325,6 +341,19 @@ export default class DungeonRoguelikeGameScene extends Scene {
         props:item
       })
     }
+  }
+
+  createSkeletons(howMany, x1, x2, y1, y2) {
+    for (var i = 0; i < howMany; i++) {
+      var rand = Math.random()
+      const x = Phaser.Math.Between(x1, x2)
+      const y = Phaser.Math.Between(y1, y2-1)
+      let enemy = this.addEnemy({x:x*16, y:y*16})
+      if(Math.random()>0.9){
+        enemy.wake(true)
+      }
+    }
+    
   }
 
 
@@ -511,7 +540,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
     })
     this.physics.add.overlap(this.player.sprite, this.items, (playerSprite, collider) => {
       if (collider.grabbed) {
-
         this.player.collectItem(collider)
         Phaser.Utils.Array.Remove(this.items.getChildren(), collider)
         if(collider.material=='skeleton'){
@@ -569,9 +597,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     }, null, this)
     this.physics.add.collider(this.items, this.doors)
     this.physics.add.overlap(this.player.handSprite, this.doors, (hand, door)=>{
-      
-        this.player.hookCollidesWall(door)
-    
+      this.player.hookCollidesWall(door)
     })
   }
 

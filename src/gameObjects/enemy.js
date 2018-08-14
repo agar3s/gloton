@@ -108,7 +108,7 @@ export default class Enemy extends Item {
     }
   }
 
-  wake() {
+  wake(silenceWakeup) {
     if(this.status === STATUS.STORED || this.grabbed) {
       return
     }
@@ -118,7 +118,7 @@ export default class Enemy extends Item {
     }
     if(this.status === STATUS.REST) this.hitpoints = 3
     this.anims.play('skeleton-wake')
-    this.sounds.skeleton_awake.play()
+    if(!silenceWakeup) this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
       this.status = STATUS.IDLE
       this.anims.play('skeleton-idle')
@@ -209,9 +209,9 @@ export default class Enemy extends Item {
 
   takesDamage(damage){
     this.hitpoints -= damage
+    this.sounds.skeleton_fs.stop()
     if(this.hitpoints <= 0){
       this.status = STATUS.STUN
-      this.sounds.skeleton_fs.stop()
       this.sounds.skeleton_stunned.play()
       this.anims.play('skeleton-stun')
       this.restoreStun = this.scene.time.delayedCall(5000, this.wake, [], this)
@@ -247,7 +247,7 @@ export default class Enemy extends Item {
       this.sounds[key].stop()
       this.sounds[key].destroy()
     })
-    this.restoreStun.destroy()
+    if(this.restoreStun)this.restoreStun.destroy()
   }
   
   setHighlight(highlighted) {
