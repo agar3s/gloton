@@ -70,6 +70,38 @@ export default class DungeonInventoryHUDScene extends Scene {
     })
     this.input.on('dragend', (pointer, gameObject) => {
       gameObject.clearTint()
+      let coords = {
+        i: ~~((gameObject.x+10)/20),
+        j: ~~((gameObject.y+10)/20)
+      }
+      let offside = coords.i>5 || coords.j>6 || coords.i<0 || coords.j<0
+      //if(gameObject.inSpecialComparment)
+      let newSlot = this.slots[coords.i + coords.j*6]
+      
+      // check if the new slot has space available
+      if(offside || !newSlot.availableSpace) {
+        gameObject.x = gameObject.coords.i*20
+        gameObject.y = gameObject.coords.j*20
+        return
+      }
+
+      // clean the previous slot
+      let previousSlot = this.slots[gameObject.coords.i + gameObject.coords.j*6]
+      previousSlot.availableSpace = true
+      previousSlot.setFrame('ui/inv_cell_normal-empty')
+      
+      // fill the newslot
+      newSlot.availableSpace = false
+      newSlot.setFrame('ui/inv_cell_normal-occuped')
+
+      // update the position coordinates on item
+      gameObject.x = coords.i*20
+      gameObject.y = coords.j*20
+      gameObject.coords = coords
+
+      if(coords.j>6) {
+        console.log('put in the special space')
+      }
     })
 
     this.slots = []
@@ -97,6 +129,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     }
     for (var i = 0; i < 4; i++) {
       let proSlot = this.add.sprite(i*20 + 20, 0, constants.ATLAS_KEY, 'ui/inv_cell_exclusive-empty')
+      proSlot.availableSpace = true
       this.proContainer.add(proSlot)
       this.proSlots.push(proSlot)
     }
@@ -116,11 +149,14 @@ export default class DungeonInventoryHUDScene extends Scene {
       for (var i = 0; i < 6; i++) {
         let index = i + j*6
         let itemprops = items[(this.page*7*6) + index]
+        let currentSlot = this.slots[index]
         if(!itemprops){
-          this.slots[index].setFrame('ui/inv_cell_normal-empty')
+          currentSlot.availableSpace = true
+          currentSlot.setFrame('ui/inv_cell_normal-empty')
           continue
         }
-        this.slots[index].setFrame('ui/inv_cell_normal-occuped')
+        currentSlot.availableSpace = false
+        currentSlot.setFrame('ui/inv_cell_normal-occuped')
 
         let keyFrame = itemprops.type
         let yOffset = 0
@@ -130,7 +166,11 @@ export default class DungeonInventoryHUDScene extends Scene {
         }else {
           keyFrame = `items/${itemprops.type}`
         }
-        this.addItemToDisplay(i*20, j*20+yOffset, keyFrame, itemprops)
+        let item = this.addItemToDisplay(i*20, j*20+yOffset, keyFrame, itemprops)
+        item.coords = {
+          i: i,
+          j: j
+        }
       }
     }
     this.container.add(this.itemsDisplayed)
@@ -167,6 +207,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     this.input.setDraggable(sprite)
 
     this.itemsDisplayed.push(sprite)
+    return sprite
   }
 
   createSlot(x, y) {
@@ -174,7 +215,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     let slot = this.add.sprite(x, y, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
     slot.setData('type', 'button')
     slot.setInteractive(new Phaser.Geom.Rectangle(0, 0, slot.width, slot.height), Phaser.Geom.Rectangle.Contains)
-
+    slot.availableSpace = true
     slot.onClick=()=>{}
     slot.onHover=()=>{
       slot.tint = 0x66ffff
