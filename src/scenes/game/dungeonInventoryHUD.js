@@ -54,9 +54,24 @@ export default class DungeonInventoryHUDScene extends Scene {
         this.displayPage(this.page-1)
       }
     })
-
+    
     this.container = this.add.container(50, 50)
     this.proContainer = this.add.container(50, 200)
+
+    this.input.on('dragstart', (pointer, gameObject) => {
+      gameObject.setTint(0xff0000)
+      this.children.bringToTop(this.container)
+      this.container.bringToTop(gameObject)
+    })
+
+    this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+      gameObject.x = dragX
+      gameObject.y = dragY
+    })
+    this.input.on('dragend', (pointer, gameObject) => {
+      gameObject.clearTint()
+    })
+
     this.slots = []
     this.itemsDisplayed = []
     this.proSlots = []
@@ -149,6 +164,8 @@ export default class DungeonInventoryHUDScene extends Scene {
       this.hideInfo()
     }
 
+    this.input.setDraggable(sprite)
+
     this.itemsDisplayed.push(sprite)
   }
 
@@ -160,10 +177,10 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     slot.onClick=()=>{}
     slot.onHover=()=>{
-      //slot.tint = 0x66ffff
+      slot.tint = 0x66ffff
     }
     slot.onOut=()=>{
-      //slot.tint = 0xffffff
+      slot.tint = 0xffffff
     }
     this.slots.push(slot)
     this.container.add(slot)
