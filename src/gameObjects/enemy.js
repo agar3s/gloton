@@ -9,7 +9,8 @@ const STATUS = {
   ATTACK: 5,
   STUN: 6,
   FIGHTING: 7,
-  ONHIT: 8
+  ONHIT: 8,
+  STORED: 9
 }
 
 export default class Enemy extends Item {
@@ -108,8 +109,14 @@ export default class Enemy extends Item {
   }
 
   wake() {
-    if(this.status === STATUS.REST)
-    this.hitpoints = 3
+    if(this.status === STATUS.STORED || this.grabbed) {
+      return
+    }
+    if(this.status === STATUS.STUN) {
+      this.restoreStun.destroy()
+      this.status = STATUS.REST
+    }
+    if(this.status === STATUS.REST) this.hitpoints = 3
     this.anims.play('skeleton-wake')
     this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
@@ -145,7 +152,7 @@ export default class Enemy extends Item {
 
     let distance = Phaser.Math.Distance.Between(this.x, this.y-this.height/2, player.x, player.y-player.height/2)
 
-    if(distance>16*8) {
+    if(distance>16*6) {
       if(this.status!==STATUS.IDLE){
         this.status = STATUS.IDLE
         this.anims.play('skeleton-idle')
@@ -201,13 +208,13 @@ export default class Enemy extends Item {
   }
 
   takesDamage(damage){
-    console.log('takes damage', damage)
     this.hitpoints -= damage
     if(this.hitpoints <= 0){
       this.status = STATUS.STUN
       this.sounds.skeleton_fs.stop()
       this.sounds.skeleton_stunned.play()
       this.anims.play('skeleton-stun')
+      this.restoreStun = this.scene.time.delayedCall(5000, this.wake, [], this)
     }else{
       this.anims.play('skeleton-hit')
       this.status = STATUS.ONHIT
@@ -235,10 +242,12 @@ export default class Enemy extends Item {
 
   destroy() {
     super.destroy()
+    this.status = STATUS.STORED
     Object.keys(this.sounds).forEach(key => {
       this.sounds[key].stop()
       this.sounds[key].destroy()
     })
+    this.restoreStun.destroy()
   }
   
   setHighlight(highlighted) {
