@@ -102,8 +102,7 @@ export default class Player {
 
     setTimeout(()=>{
       this.scene.input.on('pointerup', pointer => {
-        if(pointer.buttons==1)this.launch()
-        if(pointer.buttons==2)this.expulse()
+        this.handleClick(pointer)
       })
     },500)
 
@@ -160,6 +159,12 @@ export default class Player {
       let itemprops = generateItem()
       gs.stats.inventory.items.push(itemprops)
     }*/
+  }
+
+  handleClick(pointer) {
+    if(gs.stats.hud.inventoryOpen || gs.stats.hud.mapOpen) return
+    if(pointer.buttons==1)this.launch()
+    if(pointer.buttons==2)this.expulse()
   }
 
   update () {

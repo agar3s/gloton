@@ -42,17 +42,12 @@ export default class DungeonGameHUDScene extends Scene {
       this.heartSprites.push(heart)
     }
 
-    this.backpack = this.add.sprite(19, 32 + 8 + 14, 'backpack')
     this.map = this.add.sprite(19, 32 + 28 + 12 + 14, 'mapa')
-
-
-    this.input.keyboard.on('keydown_Q', (event) => {
-      this.sceneManager.overlay('dungeonInventoryHUDScene')
-    })
-
     this.input.keyboard.on('keydown_E', (event) => {
       this.sceneManager.overlay('dungeonMapHUDScene')
     })
+
+    this.setupBackpack()
 
     this.registry.events.on('changedata', this.updateData, this)
     gs.setListener('player.life', (life) => {
@@ -64,6 +59,33 @@ export default class DungeonGameHUDScene extends Scene {
         else this.heartSprites[i].setFrame(2)
       }
     })
+  }
+
+  setupBackpack () {
+    this.backpack = this.add.sprite(19, 32 + 8 + 14, 'backpack')
+    this.backpack.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.backpack.width, this.backpack.height), Phaser.Geom.Rectangle.Contains)
+    this.backpack.setData('type', 'button')
+
+    this.backpack.onHover= () => {
+      this.backpack.tint = 0x00cbff
+    }
+    this.backpack.onOut= () => {
+      this.backpack.tint = 0xffffff
+    }
+    this.backpack.onClick = () => {
+      this.openInventory()
+    }
+
+    this.input.keyboard.on('keydown_Q', (event) => {
+      this.openInventory()
+    })
+  }
+
+  openInventory () {
+    if(!gs.stats.hud.inventoryOpen && !gs.stats.hud.mapOpen) {    
+      this.sceneManager.overlay('dungeonInventoryHUDScene')
+      gs.stats.hud.inventoryOpen = true
+    }
   }
 
   updateData (parent, key, data) {

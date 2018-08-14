@@ -27,6 +27,10 @@ let stats = {
   },
   inventory: {
     items: []
+  },
+  hud: {
+    inventoryOpen: false,
+    mapOpen: false
   }
 }
 function getNames(property) {
