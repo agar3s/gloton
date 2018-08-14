@@ -35,25 +35,44 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     this.page = -1
 
-    this.nextPage = this.createButton({
-      x: 165,
-      y: 50,
-      style: this.fonts.BM_kenneyMiniSquare,
-      text: 'next->',
-      onClick: _ => {
-        this.displayPage(this.page+1)
-      }
-    })
+    this.prevButton = this.add.sprite(170, 50+50, constants.ATLAS_KEY, 'ui/inv_button_prev-normal')
+    this.prevButton.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.prevButton.width, this.prevButton.height), Phaser.Geom.Rectangle.Contains)
+    this.prevButton.setData('type', 'button')
 
-    this.backPage = this.createButton({
-      x: 165,
-      y: 35,
-      style: this.fonts.BM_kenneyMiniSquare,
-      text: '<- back',
-      onClick: _ => {
-        this.displayPage(this.page-1)
-      }
-    })
+    this.prevButton.onHover= () => {
+      this.prevButton.tint = 0x9999ff
+    }
+    this.prevButton.onOut= () => {
+      this.prevButton.tint = 0xffffff
+      this.prevButton.setFrame('ui/inv_button_prev-normal')
+    }
+    this.prevButton.onClick = () => {
+      this.displayPage(this.page-1)
+      this.prevButton.setFrame('ui/inv_button_prev-pressed')
+      setTimeout(()=>{
+        this.prevButton.setFrame('ui/inv_button_prev-normal')
+      }, 200)
+    }
+
+    this.nextButton = this.add.sprite(170, 50+ 60, constants.ATLAS_KEY, 'ui/inv_button_next-normal')
+    this.nextButton.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.nextButton.width, this.nextButton.height), Phaser.Geom.Rectangle.Contains)
+    this.nextButton.setData('type', 'button')
+
+    this.nextButton.onHover= () => {
+      this.nextButton.tint = 0x9999ff
+    }
+    this.nextButton.onOut= () => {
+      this.nextButton.tint = 0xffffff
+      this.nextButton.setFrame('ui/inv_button_next-normal')
+    }
+    this.nextButton.onClick = () => {
+      this.displayPage(this.page+1)
+      this.nextButton.setFrame('ui/inv_button_next-pressed')
+      setTimeout(()=>{
+        this.nextButton.setFrame('ui/inv_button_next-normal')
+      }, 200)
+    }
+
     
     this.container = this.add.container(50, 50)
     this.proContainer = this.add.container(50, 200)

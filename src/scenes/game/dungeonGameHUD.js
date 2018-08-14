@@ -44,7 +44,7 @@ export default class DungeonGameHUDScene extends Scene {
 
     this.map = this.add.sprite(19, 32 + 28 + 12 + 14, 'mapa')
     this.input.keyboard.on('keydown_E', (event) => {
-      this.sceneManager.overlay('dungeonMapHUDScene')
+      //this.sceneManager.overlay('dungeonMapHUDScene')
     })
 
     this.setupBackpack()
@@ -85,6 +85,9 @@ export default class DungeonGameHUDScene extends Scene {
     if(!gs.stats.hud.inventoryOpen && !gs.stats.hud.mapOpen) {    
       this.sceneManager.overlay('dungeonInventoryHUDScene')
       gs.stats.hud.inventoryOpen = true
+    } else if(gs.stats.hud.inventoryOpen) {
+      this.sceneManager.closeMenu('dungeonInventoryHUDScene')
+      gs.stats.hud.inventoryOpen = false
     }
   }
 
