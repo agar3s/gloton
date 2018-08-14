@@ -8,7 +8,8 @@ const STATUS = {
   WALK: 4,
   ATTACK: 5,
   STUN: 6,
-  FIGHTING: 7
+  FIGHTING: 7,
+  ONHIT: 8
 }
 
 export default class Enemy extends Item {
@@ -63,6 +64,18 @@ export default class Enemy extends Item {
         frameRate: 10,
         repeat: 0
       })
+      this.scene.anims.create({
+        key: 'skeleton-hit',
+        frames: this.scene.generateFrameNames('characters/npc', 'skeleton-hit', 2),
+        frameRate: 10,
+        repeat: 0
+      })
+      this.scene.anims.create({
+        key: 'skeleton-stun',
+        frames: this.scene.generateFrameNames('characters/npc', 'skeleton-stun', 2),
+        frameRate: 10,
+        repeat: -1
+      })
     }
     this.tint = 0xffffff
     this.anims.play('skeleton-resting')
@@ -89,6 +102,9 @@ export default class Enemy extends Item {
       y: 0
     }
     this.hitpoints = 3
+    this.props = {
+      type: 'skeleton'
+    }
   }
 
   wake() {
@@ -121,6 +137,8 @@ export default class Enemy extends Item {
     super.update()
     if(this.status === STATUS.REST) return
     if(this.status === STATUS.ATTACK) return
+    if(this.status === STATUS.ONHIT) return
+    if(this.status === STATUS.STUN) return
     // should walk in direction to the player
     //if(this.status == STATUS.IDLE) return
 
@@ -180,15 +198,28 @@ export default class Enemy extends Item {
     console.log('takes damage', damage)
     this.hitpoints -= damage
     if(this.hitpoints <= 0){
-      this.anims.play('skeleton-resting')
-      this.status = STATUS.REST
+      this.status = STATUS.STUN
       this.sounds.skeleton_fs.stop()
+      this.sounds.skeleton_stunned.play()
+      this.anims.play('skeleton-stun')
+    }else{
+      this.anims.play('skeleton-hit')
+      this.status = STATUS.ONHIT
+      this.on('animationcomplete', (animation, frame) => {
+        this.status = STATUS.IDLE
+        this.anims.play('skeleton-idle')
+        this.off('animationcomplete')
+      }, this)
     }
   }
 
   grab() {
     if(this.status === STATUS.REST) {
       this.wake()
+    }
+    if(this.status === STATUS.STUN) {
+      this.grabbed = true
+      return true
     }
     return false
   }
@@ -197,6 +228,7 @@ export default class Enemy extends Item {
   }
 
   destroy() {
+    super.destroy()
     Object.keys(this.sounds).forEach(key => {
       this.sounds[key].stop()
       this.sounds[key].destroy()
