@@ -67,12 +67,12 @@ export default class DungeonInventoryHUDScene extends Scene {
     let items = gs.stats.inventory.items
     for (var j = 0; j < 7; j++) {
       for (var i = 0; i < 6; i++) {
-        //this.add.sprite(i*16, j*16, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
         this.createSlot(i*20, j*20)
       }
     }
     for (var i = 0; i < 4; i++) {
-      let proSlot = this.add.sprite(i*20 + 20, 0, 'slots', 1)
+      let proSlot = this.add.sprite(i*20 + 20, 0, constants.ATLAS_KEY, 'ui/inv_cell_exclusive-empty')
+      //let proSlot = this.add.sprite(i*20 + 20, 0, 'slots', 1)
       this.proContainer.add(proSlot)
     }
   }
@@ -131,7 +131,8 @@ export default class DungeonInventoryHUDScene extends Scene {
   }
 
   createSlot(x, y) {
-    let slot = this.add.sprite(x, y, 'slots', 0)
+    //let slot = this.add.sprite(x, y, 'slots', 0)
+    let slot = this.add.sprite(x, y, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
     slot.setData('type', 'button')
     slot.setInteractive(new Phaser.Geom.Rectangle(0, 0, slot.width, slot.height), Phaser.Geom.Rectangle.Contains)
 
