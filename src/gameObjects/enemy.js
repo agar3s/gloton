@@ -61,7 +61,7 @@ export default class Enemy extends Item {
       this.scene.anims.create({
         key: 'skeleton-alert',
         frames: this.scene.generateFrameNames('characters/npc', 'skeleton-alert', 1),
-        frameRate: 10,
+        duration: 400,
         repeat: 0
       })
       this.scene.anims.create({
@@ -136,6 +136,7 @@ export default class Enemy extends Item {
   update(player) {
     super.update()
     if(this.status === STATUS.REST) return
+    if(this.status === STATUS.ALERT) return
     if(this.status === STATUS.ATTACK) return
     if(this.status === STATUS.ONHIT) return
     if(this.status === STATUS.STUN) return
@@ -158,9 +159,14 @@ export default class Enemy extends Item {
       this.direction.y = Math.sin(angle)
       this.flipX = this.direction.x>0
       if(this.status!== STATUS.WALK){
-        this.sounds.skeleton_fs.play({loop:-1})
-        this.anims.play('skeleton-walk')
-        this.status = STATUS.WALK
+        this.anims.play('skeleton-alert')
+        this.status = STATUS.ALERT
+        this.on('animationcomplete', (animation, frame) => {
+          this.sounds.skeleton_fs.play({loop:-1})
+          this.anims.play('skeleton-walk')
+          this.off('animationcomplete')
+          this.status = STATUS.WALK
+        })
       }
     }
     if(this.status === STATUS.WALK) {
