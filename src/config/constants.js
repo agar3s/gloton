@@ -32,8 +32,8 @@ const RUNNING_STATS = true
 const DAT_GUI_ENABLE = true
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
-//const SCENE_AFTER_BOOT = 'mainMenuScene'
-const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
+const SCENE_AFTER_BOOT = 'mainMenuScene'
+// const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
 
 const TILE_SIZE = 16
 const ATLAS_KEY = 'mochilaAtlas'

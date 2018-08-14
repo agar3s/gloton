@@ -41,20 +41,6 @@ export default class MainMenuScene extends Scene {
       scale: 1.0
     })
 
-    // 2nd option to setup a custom style in a button
-    /* this.options = this.createButton({
-      x: 30,
-      y: 150,
-      style: {
-        font: 'keneyPixel',
-        hoverColor: 0x999666,
-        color: 0xff33ff,
-        scale: 1.2
-      },
-      keyText: 'options',
-      onClick: _ => this.open('optionsScene')
-    }) */
-
     this.credits = this.createButton({
       x: this.cameras.main.width / 2,
       y: 210,
@@ -70,49 +56,12 @@ export default class MainMenuScene extends Scene {
       loop:-1
     })
 
-    this.load = this.createButton({
-      x: 30,
-      y: 250,
-      keyText: 'load',
-      onClick: (self) => {
-        getDataManager().load(null, true).then(data => {
-          if (typeof data === 'object') {
-            console.table(data)
-            gs.setAll('mainScene', data)
-            if(this.constants.DAT_GUI_ENABLE) {
-              tunner.refresh()
-            }
-            this.changeToScene('baseGameScene')
-          }
-          else {
-            console.error(data)
-          }
-        })
-      }
-    })
-
-    this.delete = this.createButton({
-      x: 30,
-      y: 300,
-      keyText: 'delete_data',
-      onClick: (self) => {
-        // remove the data in window.localStorage
-        getDataManager().delete()
-        // destroy the buttons related to saved data
-        this.load.setVisible(false)
-        this.delete.setVisible(false)
-      }
-    })
-
-    if (!getDataManager().isThereStoredData()) {
-      this.load.setVisible(false)
-      this.delete.setVisible(false)
-    }
-
     this.setLanguageButton = this.createButton({
-      x: 30,
-      y: 350,
+      x: this.credits.x + this.credits.width + 32,
+      y: 210,
       keyText: 'language',
+      style: this.fonts.BM_kenneyMiniSquare,
+      size: 12,
       onClick: (self) => {
         this.translator.changeLanguage()
         this.updateLanguageTexts()
@@ -124,10 +73,7 @@ export default class MainMenuScene extends Scene {
 
   updateLanguageTexts () {
     this.start.setText( this.getText('start') )
-    this.options.reloadText()
     this.credits.reloadText()
-    this.load.reloadText()
-    this.delete.reloadText()
     this.setLanguageButton.reloadText()
   }
 

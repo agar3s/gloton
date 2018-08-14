@@ -36,7 +36,19 @@
 
 		"item_ordinary": "that is NORMAL",
 		"item_magic": "that is MAGIC",
-		"item_cursed": "that is CURSED"
+		"item_cursed": "that is CURSED",
+
+		"credits_title": "The legend of the looter and the incredible\nbackpack that never runs out of space",
+		"credits_subtitle": "Made in 72 hours for Ludum Dare 42\nTheme: running out of space",
+		"credits_design_1": "Designed by:",
+		"credits_design_2": "Agar3s and Carenalga",
+		"credits_programming_1": "Programming by:",
+		"credits_programming_2": "Agar3s and Carenalga (a little)",
+		"credits_audio_1": "Audio (music and sfx) by:",
+		"credits_audio_2": "Quiet Gecko",
+		"credits_art_1": "Art by:",
+		"credits_art_2": "Prinfrexita and Carenalga",
+		"credits_fonts": "Fonts from: Kenney Game Assets"
 	},
 	"es": {
 		"newgame": "Nuevo Juego",
@@ -44,7 +56,7 @@
 		"back": "regresar",
 		"start": "iniciar juego",
 		"options": "opciones",
-		"credits": "creditos",
+		"credits": "créditos",
 		"load": "cargar",
 		"delete_data": "eliminar partida guardada",
 		"save_data": "guardar",
@@ -75,6 +87,18 @@
 
 		"item_ordinary": "que sea NORMAL",
 		"item_magic": "que sea MÁGICO(A)",
-		"item_cursed": "que esté MALDITO(A)"
+		"item_cursed": "que esté MALDITO(A)",
+
+		"credits_title": "The legend of the looter and the incredible\nbackpack that never runs out of space",
+		"credits_subtitle": "Hecho en 72 horas para el Ludum Dare 42\nTema: Running out of space",
+		"credits_design_1": "Diseño por:",
+		"credits_design_2": "Agar3s y Carenalga",
+		"credits_programming_1": "Programación por:",
+		"credits_programming_2": "Agar3s y Carenalga (un poco)",
+		"credits_audio_1": "Audio (música y sfx) por:",
+		"credits_audio_2": "Quiet Gecko",
+		"credits_art_1": "Arte por:",
+		"credits_art_2": "Prinfrexita y Carenalga",
+		"credits_fonts": "Fuentes tomadas de: Kenney Game Assets"
 	}
 }
