@@ -33,7 +33,7 @@ export default class DungeonInventoryHUDScene extends Scene {
       }
     })
 
-    this.page = 0
+    this.page = -1
 
     this.nextPage = this.createButton({
       x: 165,
@@ -59,8 +59,13 @@ export default class DungeonInventoryHUDScene extends Scene {
     this.proContainer = this.add.container(50, 200)
 
     this.input.on('dragstart', (pointer, gameObject) => {
-      gameObject.setTint(0xff0000)
-      this.children.bringToTop(this.container)
+      gameObject.setTint(0x9999ff)
+      gameObject.setScale(1.2)
+      if(gameObject.proItem){
+        this.children.bringToTop(this.proContainer)
+      }else{
+        this.children.bringToTop(this.container)
+      }
       this.container.bringToTop(gameObject)
     })
 
@@ -69,43 +74,24 @@ export default class DungeonInventoryHUDScene extends Scene {
       gameObject.y = dragY
     })
     this.input.on('dragend', (pointer, gameObject) => {
+      gameObject.setScale(1)
       gameObject.clearTint()
       let coords = {
         i: ~~((gameObject.x+10)/20),
-        j: ~~((gameObject.y+10)/20)
+        j: ~~((gameObject.y+10 + (gameObject.proItem?10:0))/20)
       }
-      let offside = coords.i>5 || coords.j>6 || coords.i<0 || coords.j<0
-      //if(gameObject.inSpecialComparment)
-      let newSlot = this.slots[coords.i + coords.j*6]
       
-      // check if the new slot has space available
-      if(offside || !newSlot.availableSpace) {
-        gameObject.x = gameObject.coords.i*20
-        gameObject.y = gameObject.coords.j*20
-        return
+      if (gameObject.proItem) {
+        this.handleRelocationProItem(gameObject, coords)
+      } else {
+        this.handleRelocationRegularItem(gameObject, coords)
       }
 
-      // clean the previous slot
-      let previousSlot = this.slots[gameObject.coords.i + gameObject.coords.j*6]
-      previousSlot.availableSpace = true
-      previousSlot.setFrame('ui/inv_cell_normal-empty')
-      
-      // fill the newslot
-      newSlot.availableSpace = false
-      newSlot.setFrame('ui/inv_cell_normal-occuped')
-
-      // update the position coordinates on item
-      gameObject.x = coords.i*20
-      gameObject.y = coords.j*20
-      gameObject.coords = coords
-
-      if(coords.j>6) {
-        console.log('put in the special space')
-      }
     })
 
     this.slots = []
     this.itemsDisplayed = []
+    this.proItemsDisplayed = []
     this.proSlots = []
     this.createSlots()
 
@@ -120,6 +106,132 @@ export default class DungeonInventoryHUDScene extends Scene {
     this.description.setVisible(false)
   }
 
+  handleRelocationRegularItem(item, coords){
+    let offside = coords.i>5 || coords.j>6 || coords.i<0 || coords.j<0
+    let newSlot = this.slots[coords.i + coords.j*6]
+  
+    // check if the new slot has space available
+    if(offside){
+      let insertedOk = false
+      if(coords.i>0&&coords.i<5&&coords.j>6&&coords.j<9) {
+        insertedOk = this.moveItemToSpecialContainer(coords.i-1, item)
+      }
+      if(!insertedOk){
+        this.restoreItemLocation(item)
+      }
+      return
+    } else if (!newSlot.availableSpace) {
+      this.restoreItemLocation(item)
+      return
+    }
+    this.moveItemInsideContainer(newSlot, coords, item)
+  }
+
+  handleRelocationProItem(item, coords){
+    if(item.y<-20)coords.j = coords.j-1
+
+    let offside = coords.i<1 || coords.i>4 ||coords.j!=0
+    let newSlot = this.proSlots[coords.i-1]
+
+    if(offside){
+      let insertedOk = false
+      if(coords.j>-8&&coords.j<0 && coords.i>=0&&coords.i<6) {
+        insertedOk = this.moveItemToRegularContainer(coords, item)
+      }
+      if(!insertedOk){
+        this.restoreItemLocation(item)
+      }
+    }else if(!newSlot.availableSpace){
+      this.restoreItemLocation(item)
+      return
+    }
+    this.restoreItemLocation(item)
+    //coords.i-=1
+    //this.moveItemInsideContainer(newSlot, coords, item, 'exclusive')
+    //item.x += 20
+  }
+
+  moveItemInsideContainer(targetSlot, coords, item, slotType='normal') {
+    // clean the previous slot
+    let previousSlot = this.slots[item.coords.i + item.coords.j*6]
+    previousSlot.availableSpace = true
+    previousSlot.setFrame(`ui/inv_cell_${slotType}-empty`)
+    
+    // fill the newslot
+    targetSlot.availableSpace = false
+    targetSlot.setFrame(`ui/inv_cell_${slotType}-occuped`)
+
+    // update the position coordinates on item
+    item.x = coords.i*20
+    item.y = coords.j*20
+    item.coords = coords
+  }
+
+  moveItemToRegularContainer(coords, item) {
+    coords.j = coords.j+7
+    let index = coords.i + coords.j*6
+    if(!this.slots[index].availableSpace) return false
+
+    let previousSlot = this.proSlots[item.coords.i]
+    previousSlot.availableSpace = true
+    previousSlot.setFrame('ui/inv_cell_exclusive-empty')
+
+    let indexToPut = index+(this.page*7*6)
+    if(indexToPut>=this.itemsDisplayed.length){
+      this.itemsDisplayed.push(item)
+    }else{
+      this.itemsDisplayed.splice(indexToPut, 0, item)
+    }
+
+    this.proContainer.remove(item)
+    item.x = coords.i*20
+    item.y = coords.j*20
+    item.proItem = false
+    item.coords = coords
+    this.container.add(item)
+
+    gs.stats.inventory.items.push(JSON.parse(JSON.stringify(item.props)))
+
+    let exclusiveIndex = gs.stats.inventory.exclusive.indexOf(item.props)
+    gs.stats.inventory.exclusive.splice(exclusiveIndex, 1)
+
+    this.slots[index].availableSpace = false
+    this.slots[index].setFrame('ui/inv_cell_normal-occuped')
+    return true
+  }
+
+  moveItemToSpecialContainer(index, item){
+    if(!this.proSlots[index].availableSpace) return false
+    let previousSlot = this.slots[item.coords.i + item.coords.j*6]
+    previousSlot.availableSpace = true
+    previousSlot.setFrame('ui/inv_cell_normal-empty')
+
+    let itemIndex = this.itemsDisplayed.indexOf(item)
+    this.itemsDisplayed.splice(itemIndex, 1)
+
+    this.container.remove(item)
+    item.x = index*20 + 20
+    item.y = 0
+    item.coords = {i:index, j:0}
+    item.proItem = true
+    this.proContainer.add(item)
+
+    gs.stats.inventory.exclusive.push(JSON.parse(JSON.stringify(item.props)))
+    let mainIndex = gs.stats.inventory.items.indexOf(item.props)
+    gs.stats.inventory.items.splice(mainIndex, 1)
+
+    //
+    this.proSlots[index].availableSpace = false
+    this.proSlots[index].setFrame('ui/inv_cell_exclusive-occuped')
+
+    return true
+  }
+
+  restoreItemLocation(item) {
+    item.x = item.coords.i*20 + (item.proItem?20:0)
+    item.y = item.coords.j*20
+  }
+
   createSlots(){
     let items = gs.stats.inventory.items
     for (var j = 0; j < 7; j++) {
@@ -130,14 +242,42 @@ export default class DungeonInventoryHUDScene extends Scene {
     for (var i = 0; i < 4; i++) {
       let proSlot = this.add.sprite(i*20 + 20, 0, constants.ATLAS_KEY, 'ui/inv_cell_exclusive-empty')
       proSlot.availableSpace = true
+
       this.proContainer.add(proSlot)
       this.proSlots.push(proSlot)
+
+      let itemprops = gs.stats.inventory.exclusive[i]
+      if(!itemprops){
+        proSlot.availableSpace = true
+        proSlot.setFrame('ui/inv_cell_exclusive-empty')
+      }else{
+        proSlot.availableSpace = false
+        proSlot.setFrame('ui/inv_cell_exclusive-occuped')
+
+        let keyFrame = itemprops.type
+        let yOffset = 0
+        if(keyFrame=='skeleton') {
+          keyFrame = 'characters/npc/skeleton-resting-001'
+          yOffset = 8
+        }else {
+          keyFrame = `items/${itemprops.type}`
+        }
+        let item = this.addItemToDisplay(i*20+20, yOffset, keyFrame, itemprops)
+        item.coords = {
+          i: i,
+          j: 0
+        }
+        item.proItem = true
+        this.proContainer.add(item)
+      }
     }
+    
   }
 
   displayPage(page) {
+    if(page < 0) page = 0
+    if(page === this.page) return
     this.page = page
-    if(this.page < 0) this.page = 0
 
     let items = gs.stats.inventory.items
     for (var i = 0; i < this.itemsDisplayed.length; i++) {
@@ -171,6 +311,7 @@ export default class DungeonInventoryHUDScene extends Scene {
           i: i,
           j: j
         }
+        this.itemsDisplayed.push(item)
       }
     }
     this.container.add(this.itemsDisplayed)
@@ -206,7 +347,6 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     this.input.setDraggable(sprite)
 
-    this.itemsDisplayed.push(sprite)
     return sprite
   }
 

@@ -28,7 +28,8 @@ let stats = {
     life: 3
   },
   inventory: {
-    items: []
+    items: [],
+    exclusive: []
   },
   hud: {
     inventoryOpen: false,
