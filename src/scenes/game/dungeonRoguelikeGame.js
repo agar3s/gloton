@@ -520,7 +520,19 @@ export default class DungeonRoguelikeGameScene extends Scene {
       this.player.setRaycastCollider(collider)
     })
 
-    this.physics.add.collider(this.items, this.items)
+    this.physics.add.collider(this.items, this.items, (item1, item2)=>{
+      if(item1.material === 'skeleton') {
+        if(item2.body.velocity.length()>90){
+          item1.takesDamage(1)
+          item2.setVelocity(item2.body.velocity.x*0.1,item2.body.velocity.y*0.1)
+        }
+      }else if(item2.material === 'skeleton') {
+        if(item1.body.velocity.length()>90){
+          item2.takesDamage(1)
+          item1.setVelocity(item1.body.velocity.x*0.1,item1.body.velocity.y*0.1)
+        }
+      }
+    })
 
     this.physics.add.collider(this.items, this.wallsLayer)
     this.physics.add.collider(this.player.sprite, this.wallsLayer)

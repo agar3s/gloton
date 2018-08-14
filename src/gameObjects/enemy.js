@@ -7,8 +7,10 @@ const STATUS = {
   ALERT: 3,
   WALK: 4,
   ATTACK: 5,
-  FIGHTING: 6
+  STUN: 6,
+  FIGHTING: 7
 }
+
 export default class Enemy extends Item {
   constructor(params) {
     super(params)
@@ -66,9 +68,9 @@ export default class Enemy extends Item {
     this.anims.play('skeleton-resting')
     this.status= STATUS.REST
 
-    setTimeout(()=>{
-      this.wake()
-    }, (~~(Math.random()*10000)) + 3000)
+    // setTimeout(()=>{
+    //   this.wake()
+    // }, (~~(Math.random()*10000)) + 3000)
 
     this.material = 'skeleton'
 
@@ -78,7 +80,7 @@ export default class Enemy extends Item {
       skeleton_attack: this.scene.sound.add('fx_skeleton_attack'),
       skeleton_stunned: this.scene.sound.add('fx_skeleton_stunned')
     }
-    Object.keys(this.sounds).forEach(key=>{
+    Object.keys(this.sounds).forEach(key => {
       this.sounds[key].volume = 0.4
     })
 
@@ -86,10 +88,12 @@ export default class Enemy extends Item {
       x: 0,
       y: 0
     }
+    this.hitpoints = 3
   }
 
   wake() {
     if(this.status === STATUS.REST)
+    this.hitpoints = 3
     this.anims.play('skeleton-wake')
     this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
@@ -172,11 +176,31 @@ export default class Enemy extends Item {
     this.setFriction(4, 4)
   }
 
+  takesDamage(damage){
+    console.log('takes damage', damage)
+    this.hitpoints -= damage
+    if(this.hitpoints <= 0){
+      this.anims.play('skeleton-resting')
+      this.status = STATUS.REST
+      this.sounds.skeleton_fs.stop()
+    }
+  }
+
   grab() {
+    if(this.status === STATUS.REST) {
+      this.wake()
+    }
     return false
   }
   release() {
     super.release()
+  }
+
+  destroy() {
+    Object.keys(this.sounds).forEach(key => {
+      this.sounds[key].stop()
+      this.sounds[key].destroy()
+    })
   }
   
   setHighlight(highlighted) {
