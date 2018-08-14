@@ -68,8 +68,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     for (var j = 0; j < 7; j++) {
       for (var i = 0; i < 6; i++) {
         //this.add.sprite(i*16, j*16, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
-        let slot = this.add.sprite(i*20, j*20, 'slots', 0)
-        this.container.add(slot)
+        this.createSlot(i*20, j*20)
       }
     }
     for (var i = 0; i < 4; i++) {
@@ -101,19 +100,49 @@ export default class DungeonInventoryHUDScene extends Scene {
         }else {
           keyFrame = `items/${itemprops.type}`
         }
-        let sprite = new Item({
-          scene: this,
-          key: constants.ATLAS_KEY,
-          frame: keyFrame,
-          x: i*20,
-          y: j*20 + yOffset,
-          props: itemprops
-        })
-        this.itemsDisplayed.push(sprite)
+        this.addItemToDisplay(i*20, j*20+yOffset, keyFrame, itemprops)
       }
     }
     this.container.add(this.itemsDisplayed)
 
+  }
+
+  addItemToDisplay(x, y, keyFrame, props) {
+    let sprite = new Item({
+      scene: this,
+      key: constants.ATLAS_KEY,
+      frame: keyFrame,
+      x: x,
+      y: y,
+      props: props
+    })
+    sprite.setData('type', 'button')
+    sprite.setInteractive(new Phaser.Geom.Rectangle(0, 0, sprite.width, sprite.height), Phaser.Geom.Rectangle.Contains)
+
+    sprite.onClick=()=>{}
+    sprite.onHover=()=>{
+      sprite.tint = 0xff66ff
+    }
+    sprite.onOut=()=>{
+      sprite.tint = 0xffffff
+    }
+
+    this.itemsDisplayed.push(sprite)
+  }
+
+  createSlot(x, y) {
+    let slot = this.add.sprite(x, y, 'slots', 0)
+    slot.setData('type', 'button')
+    slot.setInteractive(new Phaser.Geom.Rectangle(0, 0, slot.width, slot.height), Phaser.Geom.Rectangle.Contains)
+
+    slot.onClick=()=>{}
+    slot.onHover=()=>{
+      //slot.tint = 0x66ffff
+    }
+    slot.onOut=()=>{
+      //slot.tint = 0xffffff
+    }
+    this.container.add(slot)
   }
 
   updateData (parent, key, data) {
