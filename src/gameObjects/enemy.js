@@ -102,10 +102,18 @@ export default class Enemy extends Item {
       x: 0,
       y: 0
     }
-    this.hitpoints = 3
     this.props = {
-      type: 'skeleton'
+      type: 'skeleton',
+      speed: 30,
+      baseHP: 3,
+      sightRadius: 7
     }
+
+    this.props.speed = params.props.speed || this.props.speed
+    this.props.baseHP = params.props.baseHP || this.props.baseHP
+    this.props.sightRadius = params.props.sightRadius || this.props.sightRadius
+
+    this.hitpoints = this.props.baseHP
   }
 
   wake(silenceWakeup) {
@@ -116,7 +124,7 @@ export default class Enemy extends Item {
       this.restoreStun.destroy()
       this.status = STATUS.REST
     }
-    if(this.status === STATUS.REST) this.hitpoints = 3
+    if(this.status === STATUS.REST) this.hitpoints = this.props.baseHP
     this.anims.play('skeleton-wake')
     if(!silenceWakeup) this.sounds.skeleton_awake.play()
     this.on('animationcomplete', (animation, frame) => {
@@ -152,7 +160,7 @@ export default class Enemy extends Item {
 
     let distance = Phaser.Math.Distance.Between(this.x, this.y-this.height/2, player.x, player.y-player.height/2)
 
-    if(distance>16*6) {
+    if(distance>16*this.props.sightRadius) {
       if(this.status!==STATUS.IDLE){
         this.status = STATUS.IDLE
         this.anims.play('skeleton-idle')
@@ -177,7 +185,7 @@ export default class Enemy extends Item {
       }
     }
     if(this.status === STATUS.WALK) {
-      this.setVelocity(30*this.direction.x, 30*this.direction.y)
+      this.setVelocity(this.props.speed*this.direction.x, this.props.speed*this.direction.y)
     }
   }
 
