@@ -40,8 +40,11 @@ export default class DungeonInventoryHUDScene extends Scene {
   displayPage() {
     let items = gs.stats.inventory.items
     for (var j = 0; j < 12; j++) {
-      for (var i = 0; i < 8; i++) {
-        let itemprops = items[i + j*8]
+      for (var i = 0; i < 6; i++) {
+
+        this.add.sprite(i*16, j*16, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
+
+        let itemprops = items[i + j*6]
         if(!itemprops) continue
         let keyFrame = itemprops.type
         if(keyFrame=='skeleton') {
