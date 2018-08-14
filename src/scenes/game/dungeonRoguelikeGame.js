@@ -491,11 +491,17 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.items.add(enemy)
     
     this.enemies.push(enemy)
+    return enemy
   }
 
   throwItem (props) {
     props.scene = this
-    let item = this.addItem(props)
+    let item
+    if(props.props.type === 'skeleton') {
+      item = this.addEnemy(props)
+    } else {
+      item = this.addItem(props)
+    }
     item.body.setVelocity(props.vx, props.vy)
   }
 

@@ -259,23 +259,15 @@ export default class Player {
     let index = ~~(Math.random()*inventory.length)
     let itemprops = (inventory.splice(index, 1))[0]
 
-    if(itemprops.type === 'skeleton'){
-      console.log('skeleton')
-    }else {
-      this.scene.throwItem({
-        x: this.anchorHand.x,
-        y: this.anchorHand.y,
-        key: constants.ATLAS_KEY,
-        frame: `items/${itemprops.type}`,
-        vx: Math.cos(this.handSprite.rotation)*500,
-        vy: Math.sin(this.handSprite.rotation)*500,
-        props: itemprops
-      })
-    }
-    /*
-    let index = ~~(Math.random()*9)
-    let itemprops = generateItem()
-    */
+    this.scene.throwItem({
+      x: this.anchorHand.x,
+      y: this.anchorHand.y,
+      key: constants.ATLAS_KEY,
+      frame: `items/${itemprops.type}`,
+      vx: Math.cos(this.handSprite.rotation)*500,
+      vy: Math.sin(this.handSprite.rotation)*500,
+      props: itemprops
+    })
   }
 
   resetKeys() {
