@@ -220,6 +220,20 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-hit-001.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-hit-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,6,8,11</rect>
+                <key>scale9Paddings</key>
+                <rect>4,6,8,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../../sprites/characters/npc/skeleton-idle-001.png</key>
             <key type="filename">../../sprites/characters/npc/skeleton-idle-002.png</key>
             <key type="filename">../../sprites/characters/npc/skeleton-idle-003.png</key>
@@ -258,6 +272,20 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../../sprites/characters/npc/skeleton-stun-001.png</key>
+            <key type="filename">../../sprites/characters/npc/skeleton-stun-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,5,11,9</rect>
+                <key>scale9Paddings</key>
+                <rect>6,5,11,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../../sprites/characters/npc/skeleton-wake-001.png</key>
             <key type="filename">../../sprites/characters/npc/skeleton-wake-002.png</key>
             <key type="filename">../../sprites/characters/npc/skeleton-wake-003.png</key>
@@ -285,6 +313,20 @@
                 <rect>4,6,9,11</rect>
                 <key>scale9Paddings</key>
                 <rect>4,6,9,11</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../sprites/characters/pc/dead-001.png</key>
+            <key type="filename">../../sprites/characters/pc/dead-002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,1</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,5,11,11</rect>
+                <key>scale9Paddings</key>
+                <rect>6,5,11,11</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
