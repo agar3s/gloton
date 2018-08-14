@@ -33,6 +33,7 @@
 		"item_shield": "A SHIELD",
 		"item_sword": "A SWORD",
 		"item_wood": "A piece of WOOD",
+		"item_skeleton": "A SKELETON",
 
 		"item_ordinary": "that is NORMAL",
 		"item_magic": "that is MAGIC",
@@ -84,6 +85,7 @@
 		"item_shield": "Un ESCUDO",
 		"item_sword": "Una ESPADA",
 		"item_wood": "Un trozo de MADERA",
+		"item_skeleton": "Un ESQUELETO",
 
 		"item_ordinary": "que sea NORMAL",
 		"item_magic": "que sea MÁGICO(A)",

@@ -57,10 +57,20 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     this.container = this.add.container(50, 50)
     this.proContainer = this.add.container(50, 200)
+    this.slots = []
     this.itemsDisplayed = []
+    this.proSlots = []
     this.createSlots()
 
     this.displayPage(0)
+
+    this.description = this.add.bitmapText(
+      180,
+      60,
+      this.fonts.BM_kenneyMiniSquare.font,
+      '---'
+    )
+    this.description.setVisible(false)
   }
 
   createSlots(){
@@ -72,8 +82,8 @@ export default class DungeonInventoryHUDScene extends Scene {
     }
     for (var i = 0; i < 4; i++) {
       let proSlot = this.add.sprite(i*20 + 20, 0, constants.ATLAS_KEY, 'ui/inv_cell_exclusive-empty')
-      //let proSlot = this.add.sprite(i*20 + 20, 0, 'slots', 1)
       this.proContainer.add(proSlot)
+      this.proSlots.push(proSlot)
     }
   }
 
@@ -89,9 +99,14 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     for (var j = 0; j < 7; j++) {
       for (var i = 0; i < 6; i++) {
+        let index = i + j*6
+        let itemprops = items[(this.page*7*6) + index]
+        if(!itemprops){
+          this.slots[index].setFrame('ui/inv_cell_normal-empty')
+          continue
+        }
+        this.slots[index].setFrame('ui/inv_cell_normal-occuped')
 
-        let itemprops = items[(this.page*7*6) + i + j*6]
-        if(!itemprops) continue
         let keyFrame = itemprops.type
         let yOffset = 0
         if(keyFrame=='skeleton') {
@@ -119,12 +134,19 @@ export default class DungeonInventoryHUDScene extends Scene {
     sprite.setData('type', 'button')
     sprite.setInteractive(new Phaser.Geom.Rectangle(0, 0, sprite.width, sprite.height), Phaser.Geom.Rectangle.Contains)
 
+    sprite.displayed = false
     sprite.onClick=()=>{}
     sprite.onHover=()=>{
+      if(sprite.displayed) return
+      sprite.displayed = true
       sprite.tint = 0xff66ff
+      this.displayInfo(sprite)
     }
     sprite.onOut=()=>{
+      if(!sprite.displayed) return
+      sprite.displayed = false
       sprite.tint = 0xffffff
+      this.hideInfo()
     }
 
     this.itemsDisplayed.push(sprite)
@@ -143,6 +165,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     slot.onOut=()=>{
       //slot.tint = 0xffffff
     }
+    this.slots.push(slot)
     this.container.add(slot)
   }
 
@@ -154,6 +177,20 @@ export default class DungeonInventoryHUDScene extends Scene {
 
   updateLanguageTexts () {
     this.back.reloadText()
+  }
+
+  displayInfo(item) {
+
+    let text = this.getText('mission_item_desc', [
+      this.getText(`item_${item.props.typeKey}`),
+      this.getText(`item_${item.props.special}`)
+    ])
+    this.description.setText(text)
+    this.description.setVisible(true)
+  }
+
+  hideInfo() {
+    this.description.setVisible(false)
   }
 
 }

@@ -106,7 +106,9 @@ export default class Enemy extends Item {
       type: 'skeleton',
       speed: 30,
       baseHP: 3,
-      sightRadius: 7
+      sightRadius: 7,
+      typeKey: 'skeleton',
+      special: 'cursed'
     }
 
     this.props.speed = params.props.speed || this.props.speed
