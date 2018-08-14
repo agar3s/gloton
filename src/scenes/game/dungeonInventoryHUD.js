@@ -34,17 +34,25 @@ export default class DungeonInventoryHUDScene extends Scene {
     })
 
     this.container = this.add.container(50, 50)
-    this.displayPage()
+    this.displayPage(0)
+
+    this.proContainer = this.add.container(50, 200)
+    for (var i = 0; i < 4; i++) {
+      let proSlot = this.add.sprite(i*20 + 20, 0, 'slots', 1)
+      this.proContainer.add(proSlot)
+    }
   }
 
-  displayPage() {
+  displayPage(page) {
     let items = gs.stats.inventory.items
-    for (var j = 0; j < 12; j++) {
+    for (var j = 0; j < 7; j++) {
       for (var i = 0; i < 6; i++) {
 
-        this.add.sprite(i*16, j*16, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
+        //this.add.sprite(i*16, j*16, constants.ATLAS_KEY, 'ui/inv_cell_normal-empty')
+        let slot = this.add.sprite(i*20, j*20, 'slots', 0)
+        this.container.add(slot)
 
-        let itemprops = items[i + j*6]
+        let itemprops = items[(page*7*6) + i + j*6]
         if(!itemprops) continue
         let keyFrame = itemprops.type
         if(keyFrame=='skeleton') {
@@ -56,13 +64,14 @@ export default class DungeonInventoryHUDScene extends Scene {
           scene: this,
           key: constants.ATLAS_KEY,
           frame: keyFrame,
-          x: i*16,
-          y: j*16,
+          x: i*20,
+          y: j*20,
           props: itemprops
         })
         this.container.add(sprite)
       }
     }
+
   }
 
   updateData (parent, key, data) {
