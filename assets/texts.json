@@ -49,7 +49,12 @@
 		"credits_audio_2": "Quiet Gecko",
 		"credits_art_1": "Art by:",
 		"credits_art_2": "Prinfrexita and Carenalga",
-		"credits_fonts": "Fonts from: Kenney Game Assets"
+		"credits_fonts": "Fonts from: Kenney Game Assets",
+
+		"end_success": "A great-looter is you!!!",
+		"end_failure": "You're the shame of looters...",
+		"end_tryAgain_success": "Do it again, babeee",
+		"end_tryAgain_failure": "Try again"
 	},
 	"es": {
 		"newgame": "Nuevo Juego",
@@ -101,6 +106,11 @@
 		"credits_audio_2": "Quiet Gecko",
 		"credits_art_1": "Arte por:",
 		"credits_art_2": "Prinfrexita y Carenalga",
-		"credits_fonts": "Fuentes tomadas de: Kenney Game Assets"
+		"credits_fonts": "Fuentes tomadas de: Kenney Game Assets",
+
+		"end_success": "¡¡¡Eres el mejor\nsaqueador!!!",
+		"end_failure": "Has fallado como saqueador...",
+		"end_tryAgain_success": "Hacerlo de nuevo",
+		"end_tryAgain_failure": "Volver a intentar"
 	}
 }

@@ -13,6 +13,10 @@ export default class MissionGameScene extends Scene {
 
     this.buttonSelect = this.sound.add('fx_button_select')
 
+    // reset the target items and winning condition
+    gs.stats.game.targetItems = []
+    gs.stats.game.win = false
+
     this.events.on(
       'shutdown',
       () => {
@@ -56,12 +60,13 @@ export default class MissionGameScene extends Scene {
         ]),
         12
       )
+      gs.stats.game.targetItems.push(item)
     }
     // └───────────────────────────────────────────────────────────────────────┘
 
     this.next = this.createButton({
-      x: 30,
-      y: 200,
+      x: 10,
+      y: 215,
       keyText: 'next',
       style: this.fonts.BM_kenneyMiniSquare,
       size: 14,
