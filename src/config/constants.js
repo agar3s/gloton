@@ -7,14 +7,14 @@
   this valus loaded in the constructor.
 */
 
-const SCALE = 1
+const SCALE = 2
 const BACKGROUND_COLOR = 0x060608
 
 // time in milliseconds to keep visible the "splash" scene
 const TIME_SPLASH = 200
 
 // time in milliseconds to keep visible the "made with" scene
-const TIME_MADE_WITH = 200
+const TIME_MADE_WITH = 1200
 
 // displays the scene's title on the scene
 // useful to test navigation, you can delete
@@ -26,15 +26,16 @@ const DISPLAY_SCENE_TITLE = false
 const FAKE_LOADER_ACTIVE = false
 
 // display stats
-const RUNNING_STATS = true
+const RUNNING_STATS = false
 
 // display dat.gui plugin
-const DAT_GUI_ENABLE = true
+const DAT_GUI_ENABLE = false
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
 //const SCENE_AFTER_BOOT = 'mainMenuScene'
 //const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
-const SCENE_AFTER_BOOT = 'missionGameScene'
+//const SCENE_AFTER_BOOT = 'missionGameScene'
+const SCENE_AFTER_BOOT = 'madeWithScene'
 
 const TILE_SIZE = 16
 const ATLAS_KEY = 'mochilaAtlas'

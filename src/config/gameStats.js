@@ -5,7 +5,8 @@ let stats = {
     backgroundColor: '#000',
     debug: false,
     targetItems: [],
-    success: false
+    success: false,
+    win: false
   },
   mainScene: {
     rotationRatio: 0.01,

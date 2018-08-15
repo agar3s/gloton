@@ -55,7 +55,7 @@
 
 		"end_success": "A great-looter is you!!!",
 		"end_failure": "You're the shame of looters...",
-		"end_tryAgain_success": "Do it again, babeee",
+		"end_tryAgain_success": "Next mission, babeee",
 		"end_tryAgain_failure": "Try again",
 		"not_ready":"I'm not ready to leave the dungeon",
 		"your_mission": "your mission"
@@ -116,7 +116,7 @@
 
 		"end_success": "¡¡¡Eres el mejor\nsaqueador!!!",
 		"end_failure": "Has fallado como saqueador...",
-		"end_tryAgain_success": "Hacerlo de nuevo",
+		"end_tryAgain_success": "Siguiente misión",
 		"end_tryAgain_failure": "Volver a intentar",
 		"not_ready": "No estoy listo para salir del calabozo",
 		"your_mission": "Tu misión"

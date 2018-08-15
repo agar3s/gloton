@@ -46,6 +46,7 @@ export default class DungeonGameHUDScene extends Scene {
     this.input.keyboard.on('keydown_E', (event) => {
       //this.sceneManager.overlay('dungeonMapHUDScene')
     })
+    this.map.setVisible(false)
 
     this.setupBackpack()
 
@@ -114,6 +115,7 @@ export default class DungeonGameHUDScene extends Scene {
       let mins = ~~(time/60)
       let seconds = time%60
 
+      this.registry.set('musicRate', 1.15)
       if(mins == 0){
         if(seconds == 59){
           this.timerHandlerData.hurryUp = true

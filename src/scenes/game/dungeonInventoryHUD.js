@@ -424,7 +424,12 @@ export default class DungeonInventoryHUDScene extends Scene {
           this.getText(`item_${item.special}`)
         ])
       )
-      text.tint = 0x12aa99
+      if(item.collectedByType>0){
+        text.tint = 0xffa300
+        text.setText(`${text.text} X${item.collectedByType}`)
+      } else {
+        text.tint = 0x12aa99
+      }
     })
   }
 

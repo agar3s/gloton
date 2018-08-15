@@ -15,6 +15,15 @@ export default class MissionGameScene extends Scene {
 
     // reset the target items and winning condition
     gs.stats.game.targetItems = []
+    gs.stats.inventory.items = []
+    gs.stats.inventory.exclusive = [{
+      material:'stone',
+      type: 'phone',
+      variations: 1,
+      typeKey: 'phone',
+      special: 'mypowers',
+      disposable: false
+    }]
     gs.stats.game.win = false
 
     this.events.on(

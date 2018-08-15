@@ -518,8 +518,16 @@ export default class DungeonRoguelikeGameScene extends Scene {
       gs.set('hud.endMissionConfirmationOpen', false)
     }else if(!gs.stats.hud.exit.wasTouch && gs.stats.hud.exit.isTouching){
       // llegue a la puerta
-      gs.stats.hud.exit.wasTouch = true
-      gs.set('hud.endMissionConfirmationOpen', true)
+
+      //check if the mission is complete
+      let missingItems = gs.stats.game.targetItems.some(item => !item.collectedByType)
+      if(missingItems){
+        gs.stats.hud.exit.wasTouch = true
+        gs.set('hud.endMissionConfirmationOpen', true)
+      }else{
+        gs.stats.game.win = true
+        this.gameOver()
+      }
     }
     gs.stats.hud.exit.isTouching = false
   }

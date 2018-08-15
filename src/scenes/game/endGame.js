@@ -21,8 +21,10 @@ export default class EndGameScene extends Scene {
     graphics.fillStyle(0x1e1f30, 0.8)
     graphics.fillRect(0, 0, 320, 240)
 
-    this.add.image(81, 69, 'gameOverTitle').setOrigin(0)
-    this.add.image(121, 164, 'gameOverNinja').setOrigin(0)
+    if(!gs.stats.game.win){
+      this.add.image(81, 69, 'gameOverTitle').setOrigin(0)
+      this.add.image(121, 164, 'gameOverNinja').setOrigin(0)
+    }
 
     // big text
     this.add
@@ -49,6 +51,9 @@ export default class EndGameScene extends Scene {
         this.changeToScene('missionGameScene')
       }
     })
+    if(gs.stats.game.win){
+      this.next.x -= 60
+    }
   }
 
   shutdown() {

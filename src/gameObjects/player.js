@@ -275,6 +275,15 @@ export default class Player {
       vy: Math.sin(this.handSprite.rotation)*500,
       props: itemprops
     })
+
+    let rawItem = JSON.parse(JSON.stringify(itemprops))
+    //check if that was one one of the goals
+    for (var i = 0; i < gs.stats.game.targetItems.length; i++) {
+      let target = gs.stats.game.targetItems[i]
+      if(target.typeKey===rawItem.typeKey && target.special === rawItem.special){
+        target.collectedByType--
+      }
+    }
   }
 
   resetKeys() {
@@ -344,7 +353,7 @@ export default class Player {
 
   drawHand() {
     this.graphics.clear()
-    this.graphics.lineStyle(2, 0x12aa99, 1)
+    this.graphics.lineStyle(2, 0x8b93af, 1)
     this.graphics.save()
     this.graphics.beginPath()
     this.graphics.moveTo(this.anchorHand.x, this.anchorHand.y)
@@ -402,7 +411,16 @@ export default class Player {
     this.handSprite.body.setVelocityX(0)
     this.handSprite.body.setVelocityY(0)
     
-    gs.stats.inventory.items.push(JSON.parse(JSON.stringify(this.hookedItem.props)))
+    let rawItem = JSON.parse(JSON.stringify(this.hookedItem.props))
+    gs.stats.inventory.items.push(rawItem)
+    //check if the item is one of the goals
+
+    for (var i = 0; i < gs.stats.game.targetItems.length; i++) {
+      let target = gs.stats.game.targetItems[i]
+      if(target.typeKey===rawItem.typeKey && target.special === rawItem.special){
+        target.collectedByType = target.collectedByType?(target.collectedByType+1):1
+      }
+    }
 
     this.hookedItem.release()
     this.hookedItem = undefined
