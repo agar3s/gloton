@@ -58,7 +58,14 @@
 		"end_tryAgain_success": "Next mission, babeee",
 		"end_tryAgain_failure": "Try again",
 		"not_ready":"I'm not ready to leave the dungeon",
-		"your_mission": "your mission"
+		"your_mission": "your mission",
+
+		"tutorial_next": "Gimme a mission!",
+		"tutorial_step_1": "WASD to move\nand the mouse to aim",
+		"tutorial_step_2": "Click to shoot your\nmechanic-hook-arm",
+		"tutorial_step_3": "Right click to throw\nitems from your\nunlimited-backpack",
+		"tutorial_step_4": "Q to open your\nunlimited-backpack",
+		"tutorial_step_5": "drag items here if you\ndon't want to throw them"
 	},
 	"es": {
 		"newgame": "Nuevo Juego",
@@ -119,6 +126,13 @@
 		"end_tryAgain_success": "Siguiente misión",
 		"end_tryAgain_failure": "Volver a intentar",
 		"not_ready": "No estoy listo para salir del calabozo",
-		"your_mission": "Tu misión"
+		"your_mission": "Tu misión",
+
+		"tutorial_next": "¡Dame una misión!",
+		"tutorial_step_1": "WASD para mover y\nel ratón para apuntar",
+		"tutorial_step_2": "Clic para disparar tu\nbrazogancho-mecánico",
+		"tutorial_step_3": "Clic derecho para\nlanzar objetos de la\nmaletasinfondo",
+		"tutorial_step_4": "Q para abrir tu\nmaletasinfondo",
+		"tutorial_step_5": "arrastra objetos aquí\nsi no quieres lanzarlos"
 	}
 }

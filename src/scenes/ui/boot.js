@@ -99,6 +99,9 @@ export default class BootScene extends Scene {
     this.load.image('titleBackground', 'assets/pantalla_inicio.png')
     this.load.image('gameOverTitle', 'assets/game_over.png')
     this.load.image('gameOverNinja', 'assets/dead_looter.png')
+    // this.load.image('tutorial', 'assets/tutorial.png')
+    this.load.image('tutorial_es', 'assets/tutorial_es.png')
+    this.load.image('tutorial_en', 'assets/tutorial_en.png')
 
     // prototype assets
     this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })

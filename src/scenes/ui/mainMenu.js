@@ -30,7 +30,7 @@ export default class MainMenuScene extends Scene {
       color: 0xffff00,
       onClick: (self) => {
         this.buttonSelect.play()
-        this.changeToScene('missionGameScene')
+        this.changeToScene('tutorialScene')
       },
       onHover: (self) => {
         self.setTint(0xff99ff)
