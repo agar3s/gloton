@@ -14,14 +14,6 @@ export default class DungeonGameHUDScene extends Scene {
     this.titleText.y += 20
     this.titleText.x += 20
 
-    /*this.pause = this.createButton({
-      x: 0,
-      y: 0,
-      keyText: 'pause',
-      onClick: (self) => {
-        this.sceneManager.overlay('pauseScene')
-      }
-    })*/
 
     this.timerSprite = this.add.sprite(25,21,'timer')
     this.timerText = this.add.bitmapText(
@@ -115,7 +107,6 @@ export default class DungeonGameHUDScene extends Scene {
       let mins = ~~(time/60)
       let seconds = time%60
 
-      this.registry.set('musicRate', 1.15)
       if(mins == 0){
         if(seconds == 59){
           this.timerHandlerData.hurryUp = true
@@ -123,11 +114,11 @@ export default class DungeonGameHUDScene extends Scene {
           this.timerHandlerData.intensity = 29
         } else if(seconds == 30){
           this.timerHandlerData.intensity = 15
-          this.registry.set('musicRate', 1.333)
+          this.registry.set('musicRate', 1.15)
         } else if(seconds == 15){
           this.timerHandlerData.intensity = 7
         } else if(seconds == 5){
-          this.registry.set('musicRate', 1.5)
+          this.registry.set('musicRate', 1.333)
           this.timerHandlerData.intensity = 3
         }
       }

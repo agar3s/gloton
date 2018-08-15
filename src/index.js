@@ -12,13 +12,12 @@ import OptionsScene from './scenes/ui/options'
 import CreditsScene from './scenes/ui/credits'
 import TutorialScene from './scenes/ui/tutorial'
 
-import DungeonGameScene from './scenes/game/dungeonGame'
+
 import DungeonGameHUDScene from './scenes/game/dungeonGameHUD'
 import DungeonInventoryHUDScene from './scenes/game/dungeonInventoryHUD'
 import DungeonMapHUDScene from './scenes/game/dungeonMapHUD'
-import FailGameScene from './scenes/game/failGame'
+
 import MissionGameScene from './scenes/game/missionGame'
-import SuccessGameScene from './scenes/game/successGame'
 import WorldGameScene from './scenes/game/worldGame'
 import DungeonRoguelikeGameScene from './scenes/game/dungeonRoguelikeGame'
 import TestLevelScene from './scenes/game/testLevel'
@@ -56,13 +55,10 @@ window.game = new Phaser.Game({
     OptionsScene,
     CreditsScene,
     TutorialScene,
-    DungeonGameScene,
     DungeonGameHUDScene,
     DungeonInventoryHUDScene,
     DungeonMapHUDScene,
-    FailGameScene,
     MissionGameScene,
-    SuccessGameScene,
     WorldGameScene,
     TestLevelScene,
     DungeonRoguelikeGameScene,
