@@ -79,6 +79,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }
     }, this)
 
+    gs.stats.hud.inventoryOpen = false
+    gs.stats.hud.mapOpen = false
   }
 
   setupDungeon () {

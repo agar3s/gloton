@@ -365,8 +365,10 @@ export default class Player {
     
     // break this chain!
     if(this.hand.length>gs.stats.player.chainLength){
-      this.hookedItem.release()
-      this.hookedItem = undefined
+      if(this.hookedItem){
+        this.hookedItem.release()
+        this.hookedItem = undefined
+      }
     }
     return angle
   }
