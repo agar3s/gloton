@@ -654,6 +654,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.music.stop()
     this.sceneManager.pauseGame()
     this.sceneManager.overlay('endGameScene')
+    this.player.stopFx()
   }
 
   openEndMissionConf() {

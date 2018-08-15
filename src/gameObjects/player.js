@@ -300,6 +300,13 @@ export default class Player {
   destroy() {
     this.sprite.destroy()
     this.cursor.destroy()
+    this.stopFx()
+  }
+
+  stopFx() {
+    Object.keys(this.sounds).forEach(key=>{
+      this.sounds[key].stop()
+    })
   }
 
   updateHand (angle) {
