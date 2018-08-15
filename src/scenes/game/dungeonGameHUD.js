@@ -49,6 +49,14 @@ export default class DungeonGameHUDScene extends Scene {
 
     this.setupBackpack()
 
+    this.messageDisplay = this.add.bitmapText(
+      90,
+      140,
+      this.fonts.BM_kenneyMiniSquare.font,
+      this.getText('not_ready')
+    )
+    this.messageDisplay.setVisible(false)
+
     this.registry.events.on('changedata', this.updateData, this)
     gs.setListener('player.life', (life) => {
       let integerLife = ~~life
@@ -58,6 +66,10 @@ export default class DungeonGameHUDScene extends Scene {
         else if(integerLife==i && dotFive==0.5) this.heartSprites[i].setFrame(1)
         else this.heartSprites[i].setFrame(2)
       }
+    })
+
+    gs.setListener('hud.endMissionConfirmationOpen', (status)=>{
+      this.messageDisplay.setVisible(status)
     })
   }
 

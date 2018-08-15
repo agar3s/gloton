@@ -3,7 +3,7 @@
 let stats = {
   game: {
     backgroundColor: '#000',
-    debug: false,
+    debug: true,
     targetItems: [],
     success: false
   },
@@ -40,7 +40,12 @@ let stats = {
   },
   hud: {
     inventoryOpen: false,
-    mapOpen: false
+    mapOpen: false,
+    endMissionConfirmationOpen: false,
+    exit: {
+      isTouching: false,
+      wasTouch: false
+    }
   }
 }
 function getNames(property) {

@@ -278,12 +278,8 @@ export default class DungeonInventoryHUDScene extends Scene {
 
         let keyFrame = itemprops.type
         let yOffset = 0
-        if(keyFrame=='skeleton') {
-          keyFrame = 'characters/npc/skeleton-resting-001'
-          yOffset = 8
-        }else {
-          keyFrame = `items/${itemprops.type}`
-        }
+        
+        keyFrame = `items/${itemprops.type}`
         let item = this.addItemToDisplay(i*20+20, yOffset, keyFrame, itemprops)
         item.coords = {
           i: i,
@@ -322,12 +318,8 @@ export default class DungeonInventoryHUDScene extends Scene {
 
         let keyFrame = itemprops.type
         let yOffset = 0
-        if(keyFrame=='skeleton') {
-          keyFrame = 'characters/npc/skeleton-resting-001'
-          yOffset = 8
-        }else {
-          keyFrame = `items/${itemprops.type}`
-        }
+        keyFrame = `items/${itemprops.type}`
+        
         let item = this.addItemToDisplay(i*20, j*20+yOffset, keyFrame, itemprops)
         item.coords = {
           i: i,
@@ -418,7 +410,7 @@ export default class DungeonInventoryHUDScene extends Scene {
       180,
       25,
       this.fonts.BM_kenneyMiniSquare.font,
-      'your mission',
+      this.getText('your_mission'),
       12
     )
 

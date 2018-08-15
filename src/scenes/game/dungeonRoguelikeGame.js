@@ -203,8 +203,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
     })
 
 
-    
-
     // Separate out the rooms into:
     //  - The starting room (index = 0)
     //  - A random room to be designated as the end room (with stairs and nothing else)
@@ -216,6 +214,15 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
     // Place the stairs
     this.foregroundLayer.putTileAt(TILES.STAIRS, endRoom.centerX, endRoom.centerY)
+  
+    this.exitSprite = this.physics.add.sprite(
+      map.tileToWorldX(startRoom.centerX),
+      map.tileToWorldX(startRoom.centerY-2),
+      constants.ATLAS_KEY,
+      'mazes/maze01/entrance'
+    )
+    this.exitSprite.setDepth(1)
+
 
     // Place stuff in the 90% "otherRooms"
     otherRooms.forEach(room => {
@@ -489,6 +496,21 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
     // update enemies
     this.enemies.forEach(enemy => enemy.update(this.player.sprite))
+
+    this.handleExitUpdate()
+  }
+
+  handleExitUpdate () {
+    if(gs.stats.hud.exit.wasTouch && !gs.stats.hud.exit.isTouching) {
+      // me fui de la puerta
+      gs.stats.hud.exit.wasTouch = false
+      gs.set('hud.endMissionConfirmationOpen', false)
+    }else if(!gs.stats.hud.exit.wasTouch && gs.stats.hud.exit.isTouching){
+      // llegue a la puerta
+      gs.stats.hud.exit.wasTouch = true
+      gs.set('hud.endMissionConfirmationOpen', true)
+    }
+    gs.stats.hud.exit.isTouching = false
   }
 
   updateLanguageTexts () {
@@ -502,6 +524,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.add.updateList.add(item)
     this.physics.add.world.enableBody(item, Phaser.Physics.Arcade.DYNAMIC_BODY)
     item.setProperties()
+    item.setDepth(2)
     this.items.add(item)
     return item
   }
@@ -599,6 +622,25 @@ export default class DungeonRoguelikeGameScene extends Scene {
     this.physics.add.overlap(this.player.handSprite, this.doors, (hand, door)=>{
       this.player.hookCollidesWall(door)
     })
+
+    this.physics.add.overlap(this.player.sprite, this.exitSprite, () => {
+      gs.stats.hud.exit.isTouching = true
+    })
+
+  }
+
+  gameOver () {
+    console.log('display the game over')
+  }
+
+  openEndMissionConf() {
+    if(!gs.stats.hud.endMissionConfirmationOpen) {
+      this.sceneManager.overlay('dungeonInventoryHUDScene')
+      gs.stats.hud.endMissionConfirmationOpen = true
+    } else if(gs.stats.hud.endMissionConfirmationOpen) {
+      this.sceneManager.closeMenu('dungeonInventoryHUDScene')
+      gs.stats.hud.endMissionConfirmationOpen = false
+    }
   }
 
   generateFrameNames(path, animationId, end) {
