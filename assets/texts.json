@@ -34,10 +34,12 @@
 		"item_sword": "A SWORD",
 		"item_wood": "A piece of WOOD",
 		"item_skeleton": "A SKELETON",
+		"item_phone": "My PHONE",
 
 		"item_ordinary": "that is NORMAL",
 		"item_magic": "that is MAGIC",
 		"item_cursed": "that is CURSED",
+		"item_mypowers": "that opens doors",
 
 		"credits_title": "The legend of the looter and the incredible\nbackpack that never runs out of space",
 		"credits_subtitle": "Made in 72 hours for Ludum Dare 42\nTheme: running out of space",
@@ -91,10 +93,12 @@
 		"item_sword": "Una ESPADA",
 		"item_wood": "Un trozo de MADERA",
 		"item_skeleton": "Un ESQUELETO",
+		"item_phone": "MI TELEFONO",
 
 		"item_ordinary": "que sea NORMAL",
 		"item_magic": "que sea MÁGICO(A)",
 		"item_cursed": "que esté MALDITO(A)",
+		"item_mypowers": "que abre puertas",
 
 		"credits_title": "The legend of the looter and the incredible\nbackpack that never runs out of space",
 		"credits_subtitle": "Hecho en 72 horas para el Ludum Dare 42\nTema: Running out of space",

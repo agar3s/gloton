@@ -35,7 +35,7 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     this.page = -1
 
-    this.prevButton = this.add.sprite(170, 50+50, constants.ATLAS_KEY, 'ui/inv_button_prev-normal')
+    this.prevButton = this.add.sprite(160, 30+50, constants.ATLAS_KEY, 'ui/inv_button_prev-normal')
     this.prevButton.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.prevButton.width, this.prevButton.height), Phaser.Geom.Rectangle.Contains)
     this.prevButton.setData('type', 'button')
 
@@ -54,7 +54,7 @@ export default class DungeonInventoryHUDScene extends Scene {
       }, 200)
     }
 
-    this.nextButton = this.add.sprite(170, 50+ 60, constants.ATLAS_KEY, 'ui/inv_button_next-normal')
+    this.nextButton = this.add.sprite(160, 30+ 60, constants.ATLAS_KEY, 'ui/inv_button_next-normal')
     this.nextButton.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.nextButton.width, this.nextButton.height), Phaser.Geom.Rectangle.Contains)
     this.nextButton.setData('type', 'button')
 
@@ -74,8 +74,8 @@ export default class DungeonInventoryHUDScene extends Scene {
     }
 
     
-    this.container = this.add.container(50, 50)
-    this.proContainer = this.add.container(50, 200)
+    this.container = this.add.container(40, 50)
+    this.proContainer = this.add.container(40, 200)
 
     this.input.on('dragstart', (pointer, gameObject) => {
       gameObject.setTint(0x9999ff)
@@ -116,9 +116,11 @@ export default class DungeonInventoryHUDScene extends Scene {
 
     this.displayPage(0)
 
+    this.displayGoals()
+
     this.description = this.add.bitmapText(
       180,
-      60,
+      140,
       this.fonts.BM_kenneyMiniSquare.font,
       '---'
     )
@@ -235,6 +237,7 @@ export default class DungeonInventoryHUDScene extends Scene {
     item.proItem = true
     this.proContainer.add(item)
 
+    
     gs.stats.inventory.exclusive.push(JSON.parse(JSON.stringify(item.props)))
     let mainIndex = gs.stats.inventory.items.indexOf(item.props)
     gs.stats.inventory.items.splice(mainIndex, 1)
@@ -408,6 +411,29 @@ export default class DungeonInventoryHUDScene extends Scene {
 
   hideInfo() {
     this.description.setVisible(false)
+  }
+
+  displayGoals() {
+    this.add.bitmapText(
+      180,
+      25,
+      this.fonts.BM_kenneyMiniSquare.font,
+      'your mission',
+      12
+    )
+
+    gs.stats.game.targetItems.forEach((item, index) => {
+      let text = this.add.bitmapText(
+        180,
+        45+(12*index),
+        this.fonts.BM_kenneyMiniSquare.font,
+        this.getText('mission_item_desc', [
+          this.getText(`item_${item.typeKey}`),
+          this.getText(`item_${item.special}`)
+        ])
+      )
+      text.tint = 0x12aa99
+    })
   }
 
 }

@@ -29,7 +29,14 @@ let stats = {
   },
   inventory: {
     items: [],
-    exclusive: []
+    exclusive: [{
+      material:'stone',
+      type: 'phone',
+      variations: 1,
+      typeKey: 'phone',
+      special: 'mypowers',
+      disposable: false
+    }]
   },
   hud: {
     inventoryOpen: false,
