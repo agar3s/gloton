@@ -98,6 +98,9 @@ export default class BootScene extends Scene {
     this.load.spritesheet('backpack', urlBase + 'assets/backpack.png', { frameWidth: 27, frameHeight: 28 })
     this.load.spritesheet('slots', urlBase + 'assets/slots.png', { frameWidth: 18, frameHeight: 18 })
     this.load.image('titleBackground', 'assets/pantalla_inicio.png')
+    // this.load.image('tutorial', 'assets/tutorial.png')
+    this.load.image('tutorial_es', 'assets/tutorial_es.png')
+    this.load.image('tutorial_en', 'assets/tutorial_en.png')
 
     // prototype assets
     this.load.spritesheet('player', urlBase + 'assets/player_test.png', { frameWidth: 16, frameHeight: 16 })

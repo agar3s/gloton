@@ -54,7 +54,14 @@
 		"end_success": "A great-looter is you!!!",
 		"end_failure": "You're the shame of looters...",
 		"end_tryAgain_success": "Do it again, babeee",
-		"end_tryAgain_failure": "Try again"
+		"end_tryAgain_failure": "Try again",
+
+		"tutorial_next": "Gimme a mission!",
+		"tutorial_step_1": "WASD to move\nand the mouse to aim",
+		"tutorial_step_2": "Click to shoot your\nmechanic-hook-arm",
+		"tutorial_step_3": "Right click to throw\nitems from your\nunlimited-backpack",
+		"tutorial_step_4": "Q to open your\nunlimited-backpack",
+		"tutorial_step_5": "drag items here if you\ndon't want to throw them"
 	},
 	"es": {
 		"newgame": "Nuevo Juego",
@@ -111,6 +118,13 @@
 		"end_success": "¡¡¡Eres el mejor\nsaqueador!!!",
 		"end_failure": "Has fallado como saqueador...",
 		"end_tryAgain_success": "Hacerlo de nuevo",
-		"end_tryAgain_failure": "Volver a intentar"
+		"end_tryAgain_failure": "Volver a intentar",
+
+		"tutorial_next": "¡Dame una misión!",
+		"tutorial_step_1": "WASD para mover y\nel ratón para apuntar",
+		"tutorial_step_2": "Clic para disparar tu\nbrazogancho-mecánico",
+		"tutorial_step_3": "Clic derecho para\nlanzar objetos de la\nmaletasinfondo",
+		"tutorial_step_4": "Q para abrir tu\nmaletasinfondo",
+		"tutorial_step_5": "arrastra objetos aquí\nsi no quieres lanzarlos"
 	}
 }

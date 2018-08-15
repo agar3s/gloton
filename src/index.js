@@ -10,6 +10,7 @@ import MadeWithScene from './scenes/ui/madeWith'
 import MainMenuScene from './scenes/ui/mainMenu'
 import OptionsScene from './scenes/ui/options'
 import CreditsScene from './scenes/ui/credits'
+import TutorialScene from './scenes/ui/tutorial'
 
 import DungeonGameScene from './scenes/game/dungeonGame'
 import DungeonGameHUDScene from './scenes/game/dungeonGameHUD'
@@ -54,6 +55,7 @@ window.game = new Phaser.Game({
     MainMenuScene,
     OptionsScene,
     CreditsScene,
+    TutorialScene,
     DungeonGameScene,
     DungeonGameHUDScene,
     DungeonInventoryHUDScene,
