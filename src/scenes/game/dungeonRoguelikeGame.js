@@ -73,6 +73,12 @@ export default class DungeonRoguelikeGameScene extends Scene {
       loop:-1
     })
 
+    this.registry.events.on('changedata', (parent, key, data)=>{
+      if(key==='musicRate'){
+        this.music.rate = data
+      }
+    }, this)
+
   }
 
   setupDungeon () {
@@ -476,8 +482,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
   shutdown() {
     this.events.off('shutdown')
     this.player.destroy()
-    this.music.stop()
-    this.music.destroy()
   }
 
   pause () {
@@ -638,6 +642,10 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
   gameOver () {
     console.log('display the game over')
+
+    this.music.stop()
+    this.sceneManager.pauseGame()
+    this.sceneManager.overlay('endGameScene')
   }
 
   openEndMissionConf() {

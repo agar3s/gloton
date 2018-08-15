@@ -32,7 +32,7 @@ export default class DungeonGameHUDScene extends Scene {
     )
     this.timerText.setTint(0x00cbff)
     this.elapsedSeconds = 0
-    this.maxTime = 3 * 60
+    this.maxTime = 179
     
     this.ninjaSprite = this.add.sprite(19, 240 - 19,'ninja')
 
@@ -113,7 +113,7 @@ export default class DungeonGameHUDScene extends Scene {
       let time = this.maxTime - this.elapsedSeconds
       let mins = ~~(time/60)
       let seconds = time%60
-      
+
       if(mins == 0){
         if(seconds == 59){
           this.timerHandlerData.hurryUp = true
@@ -121,9 +121,11 @@ export default class DungeonGameHUDScene extends Scene {
           this.timerHandlerData.intensity = 29
         } else if(seconds == 30){
           this.timerHandlerData.intensity = 15
+          this.registry.set('musicRate', 1.333)
         } else if(seconds == 15){
           this.timerHandlerData.intensity = 7
         } else if(seconds == 5){
+          this.registry.set('musicRate', 1.5)
           this.timerHandlerData.intensity = 3
         }
       }

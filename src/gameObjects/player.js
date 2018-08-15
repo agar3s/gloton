@@ -160,6 +160,7 @@ export default class Player {
       let itemprops = generateItem()
       gs.stats.inventory.items.push(itemprops)
     }*/
+    gs.stats.player.life = 3
   }
 
   handleClick(pointer) {
@@ -469,6 +470,7 @@ export default class Player {
       this.sprite.off('animationcomplete')
     }, this)
 
+    console.log('life:', gs.stats.player.life)
     if(gs.stats.player.life<=0){
       this.scene.gameOver()
     }
