@@ -242,7 +242,7 @@ export default class Player {
     this.sounds.hook_shot.play()
     // lock the hand/cursor
     this.hand.locked = true
-    this.hand.lenght = 0
+    this.hand.length = 0
     this.hand.going = true
 
     if(gs.stats.player.raycast){
@@ -313,15 +313,15 @@ export default class Player {
   }
 
   updatePushingHand (angle) {
-    this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
-    this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.anchorHand.x
-    this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.anchorHand.y
+    this.hand.length += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
+    this.handSprite.x = (Math.cos(angle))*this.hand.length + this.anchorHand.x
+    this.handSprite.y = (Math.sin(angle))*this.hand.length + this.anchorHand.y
 
     let distanceToTarget = Phaser.Math.Distance.Squared(this.anchorHand.x, this.anchorHand.y, this.cursor.x, this.cursor.y)
-    if(gs.stats.player.chaintoTarget && (this.hand.lenght*this.hand.lenght >= distanceToTarget)) {
+    if(gs.stats.player.chaintoTarget && (this.hand.length*this.hand.length >= distanceToTarget)) {
       this.hand.going = false
-    }else if(this.hand.lenght > gs.stats.player.chainLength) {
-      this.hand.lenght = gs.stats.player.chainLength
+    }else if(this.hand.length > gs.stats.player.chainLength) {
+      this.hand.length = gs.stats.player.chainLength
       this.hand.going = false
       // llego al limit
       this.sounds.hook_shot.stop()
@@ -331,7 +331,6 @@ export default class Player {
   }
   
   updatePullingHand (angle) {
-    console.log('pulling object')
     if(this.hookedItem) {
       angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.hookedItem.x, this.hookedItem.y)
       
@@ -339,16 +338,28 @@ export default class Player {
       this.handSprite.x = this.hookedItem.x
       this.hookedItem.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
       this.handSprite.y = this.hookedItem.y
-      
+      this.hand.length = Phaser.Math.Distance.Between(
+        this.handSprite.x,
+        this.handSprite.y,
+        this.sprite.x,
+        this.sprite.y
+      )
     }else {
-      this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
-      this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.anchorHand.x
-      this.handSprite.y = (Math.sin(angle))*this.hand.lenght + this.anchorHand.y
+      this.hand.length += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
+      this.handSprite.x = (Math.cos(angle))*this.hand.length + this.anchorHand.x
+      this.handSprite.y = (Math.sin(angle))*this.hand.length + this.anchorHand.y
     }
-    if(this.hand.lenght <= 0) {
+    
+    if(this.hand.length <= 0) {
       this.hand.locked = false
       this.sounds.hook_return.play()
       this.graphics.clear()
+    }
+    
+    // break this chain!
+    if(this.hand.length>gs.stats.player.chainLength){
+      this.hookedItem.release()
+      this.hookedItem = undefined
     }
     return angle
   }
