@@ -331,13 +331,15 @@ export default class Player {
   }
   
   updatePullingHand (angle) {
+    console.log('pulling object')
     if(this.hookedItem) {
-      angle = Phaser.Math.Angle.Between(this.anchorHand.x, this.anchorHand.y, this.handSprite.x, this.handSprite.y)
+      angle = Phaser.Math.Angle.Between(this.sprite.x, this.sprite.y, this.hookedItem.x, this.hookedItem.y)
       
       this.hookedItem.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
-      this.handSprite.body.setVelocityX(Math.cos(angle + Math.PI)*40*gs.stats.player.chainSpeed)
+      this.handSprite.x = this.hookedItem.x
       this.hookedItem.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
-      this.handSprite.body.setVelocityY(Math.sin(angle + Math.PI)*40*gs.stats.player.chainSpeed)
+      this.handSprite.y = this.hookedItem.y
+      
     }else {
       this.hand.lenght += gs.stats.player.chainSpeed*(this.hand.going?1:-1)
       this.handSprite.x = (Math.cos(angle))*this.hand.lenght + this.anchorHand.x
