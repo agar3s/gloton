@@ -47,6 +47,9 @@ let stats = {
       isTouching: false,
       wasTouch: false
     }
+  },
+  permanentObjects: {
+    mainMusic: undefined
   }
 }
 function getNames(property) {

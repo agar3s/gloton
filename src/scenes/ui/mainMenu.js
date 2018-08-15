@@ -1,6 +1,7 @@
 import Scene from '../scene'
 import getDataManager from '../../managers/dataManager'
 import gs from '../../config/gameStats'
+import constants from '../../config/constants'
 import tunner from '../../utils/tunner'
 
 export default class MainMenuScene extends Scene {
@@ -47,14 +48,13 @@ export default class MainMenuScene extends Scene {
       keyText: 'credits',
       style: this.fonts.BM_kenneyMiniSquare,
       size: 12,
-      onClick: _ => this.open('creditsScene')
+      onClick: _ => {
+        this.open('creditsScene')
+        //gs.stats.permanentObjects.mainMusic.stop()
+      }
     })
 
-    this.music = this.sound.add('mx_title')
-    this.music.volume = 0.5
-    this.music.play({
-      loop:-1
-    })
+    
 
     this.setLanguageButton = this.createButton({
       x: this.credits.x + this.credits.width + 32,
@@ -68,7 +68,7 @@ export default class MainMenuScene extends Scene {
       }
     })
 
-
+    console.log(this.cameras.main)
   }
 
   updateLanguageTexts () {
@@ -79,8 +79,7 @@ export default class MainMenuScene extends Scene {
 
   shutdown() {
     this.events.off('shutdown')
-    this.music.stop()
-    this.music.destroy()
+    gs.stats.permanentObjects.mainMusic.stop()
   }
 
 }

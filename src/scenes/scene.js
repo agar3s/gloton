@@ -64,6 +64,7 @@ export default class Scene extends Phaser.Scene {
         object.onOut()
       }
     })
+
   }
 
   open (sceneKey, data) {
