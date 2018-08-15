@@ -57,7 +57,6 @@ export default class DungeonGameHUDScene extends Scene {
     )
     this.messageDisplay.setVisible(false)
 
-    this.registry.events.on('changedata', this.updateData, this)
     gs.setListener('player.life', (life) => {
       let integerLife = ~~life
       let dotFive = life - integerLife
@@ -71,6 +70,12 @@ export default class DungeonGameHUDScene extends Scene {
     gs.setListener('hud.endMissionConfirmationOpen', (status)=>{
       this.messageDisplay.setVisible(status)
     })
+
+    this.timerHandlerData = {
+      hurryUp: false,
+      counter: 0,
+      intensity: 29
+    }
   }
 
   setupBackpack () {
@@ -108,6 +113,21 @@ export default class DungeonGameHUDScene extends Scene {
       let time = this.maxTime - this.elapsedSeconds
       let mins = ~~(time/60)
       let seconds = time%60
+      
+      if(mins == 0){
+        if(seconds == 59){
+          this.timerHandlerData.hurryUp = true
+          this.timerHandlerData.counter = 0
+          this.timerHandlerData.intensity = 29
+        } else if(seconds == 30){
+          this.timerHandlerData.intensity = 15
+        } else if(seconds == 15){
+          this.timerHandlerData.intensity = 7
+        } else if(seconds == 5){
+          this.timerHandlerData.intensity = 3
+        }
+      }
+
       if(seconds<10) seconds = '0'+seconds
       this.timerText.setText(`0${mins}:${seconds}`)
       this.elapsedSeconds = data
@@ -115,7 +135,14 @@ export default class DungeonGameHUDScene extends Scene {
   }
   
   // dont  call the super update function....
-  update() {}
+  update() {
+    if(this.timerHandlerData.hurryUp){
+      this.timerHandlerData.counter++
+      if(this.timerHandlerData.counter%this.timerHandlerData.intensity==0){
+        this.timerText.tint = (this.timerHandlerData.counter%2==0)?0x00cbff:0xffffff
+      }
+    }
+  }
 
   updateLanguageTexts () {
     this.pause.reloadText()

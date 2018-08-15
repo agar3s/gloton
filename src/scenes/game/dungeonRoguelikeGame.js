@@ -59,7 +59,14 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
     //start timer
 
-    this.timer = this.time.addEvent({ delay: 3*60000, loop: false})
+    this.timer = this.time.addEvent({
+      delay: 3*60000,
+      loop: false,
+      callback: () => {
+        this.gameOver('times up!')
+      },
+      callbackScope: this
+    })
     this.music = this.sound.add('mx_main')
     this.music.volume = 0.2
     this.music.play({

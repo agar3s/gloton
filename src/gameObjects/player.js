@@ -470,7 +470,7 @@ export default class Player {
     }, this)
 
     if(gs.stats.player.life<=0){
-      console.log('game over')
+      this.scene.gameOver()
     }
   }
 
