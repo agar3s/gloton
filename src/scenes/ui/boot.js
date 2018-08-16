@@ -109,6 +109,22 @@ export default class BootScene extends Scene {
     this.load.spritesheet('hand', urlBase + 'assets/hand.png', { frameWidth: 5, frameHeight: 5 })
     this.load.spritesheet('box', urlBase + 'assets/box.png', { frameWidth: 16, frameHeight: 16 })
 
+    // load title in parts
+    this.load.image('title_the_legend_of',urlBase + 'assets/title/the_legend_of.png')
+    this.load.image('title_the', urlBase + 'assets/title/the.png')
+    this.load.image('title_looter', urlBase + 'assets/title/looter.png')
+    this.load.image('title_and', urlBase + 'assets/title/and.png')
+    this.load.image('title_the_2', urlBase + 'assets/title/the_2.png')
+    this.load.image('title_incredible',urlBase + 'assets/title/incredible.png')
+    this.load.image('title_backpack', urlBase + 'assets/title/backpack.png')
+    this.load.image('title_that', urlBase + 'assets/title/that.png')
+    this.load.image('title_never', urlBase + 'assets/title/never.png')
+    this.load.image('title_runs', urlBase + 'assets/title/runs.png')
+    this.load.image('title_out_of', urlBase + 'assets/title/out_of.png')
+    this.load.image('title_space', urlBase + 'assets/title/space.png')
+    this.load.image('fondo_pantalla_inicio', urlBase + 'assets/title/fondo_pantalla_inicio.png')
+    this.load.image('ninja_pantalla_inicio', urlBase + 'assets/title/ninja_pantalla_inicio.png')
+
     // load audio
     this.load.audio('fx_button_select', urlBase+'assets/audio/fx/UI_ButtonSelect.ogg')
     this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')

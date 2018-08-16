@@ -8,6 +8,7 @@ import SplashScene from './scenes/ui/splash'
 import MadeWithScene from './scenes/ui/madeWith'
 
 import MainMenuScene from './scenes/ui/mainMenu'
+import MainMenuProScene from './scenes/ui/mainMenuPro'
 import OptionsScene from './scenes/ui/options'
 import CreditsScene from './scenes/ui/credits'
 import TutorialScene from './scenes/ui/tutorial'
@@ -52,6 +53,7 @@ window.game = new Phaser.Game({
     SplashScene,
     MadeWithScene,
     MainMenuScene,
+    MainMenuProScene,
     OptionsScene,
     CreditsScene,
     TutorialScene,

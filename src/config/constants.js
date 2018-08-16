@@ -7,7 +7,7 @@
   this valus loaded in the constructor.
 */
 
-const SCALE = 2
+const SCALE = 1
 const BACKGROUND_COLOR = 0x060608
 
 // time in milliseconds to keep visible the "splash" scene
@@ -33,8 +33,8 @@ const DAT_GUI_ENABLE = true
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
 //const SCENE_AFTER_BOOT = 'mainMenuScene'
-const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
-//const SCENE_AFTER_BOOT = 'missionGameScene'
+//const SCENE_AFTER_BOOT = 'dungeonRoguelikeGameScene'
+const SCENE_AFTER_BOOT = 'mainMenuProScene'
 //const SCENE_AFTER_BOOT = 'madeWithScene'
 
 const TILE_SIZE = 16
