@@ -5,7 +5,7 @@ export default class MadeWithScene extends Scene {
   constructor () {
     super({key: 'madeWithScene'})
     this.timesplash = this.constants.TIME_MADE_WITH
-    this.nextScene = 'mainMenuScene'
+    this.nextScene = 'mainMenuProScene'
   }
 
   create (params) {
@@ -19,12 +19,6 @@ export default class MadeWithScene extends Scene {
     this.time.delayedCall(this.timesplash, () => {
       this.changeToScene(this.nextScene)
     }, [], this)
-
-    gs.stats.permanentObjects.mainMusic = this.sound.add('mx_title')
-    gs.stats.permanentObjects.mainMusic.volume = 0.5
-    gs.stats.permanentObjects.mainMusic.play({
-      loop:-1
-    })
 
     //this.cameras.main.width *= this.constants.SCALE
     //this.cameras.main.height *= this.constants.SCALE

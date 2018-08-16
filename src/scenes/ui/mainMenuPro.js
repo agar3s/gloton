@@ -178,18 +178,7 @@ export default class MainMenuProScene extends Scene {
       }
     })
 
-
-    //this.start.setVisible(false)
-    //this.setLanguageButton.setVisible(false)
-    //this.credits.setVisible(false)
-
-    setTimeout(()=>{
-      this.start.setVisible(true)
-      this.setLanguageButton.setVisible(true)
-      this.credits.setVisible(true)
-    }, 7000)
-
-    this.add.bitmapText(
+    this.ldjam = this.add.bitmapText(
       100,
       230,
       this.fonts.BM_kenneyMiniSquare.font,
@@ -197,17 +186,39 @@ export default class MainMenuProScene extends Scene {
       8
     )
 
+    this.startShadow.setVisible(false)
+    this.start.setVisible(false)
+    this.setLanguageButton.setVisible(false)
+    this.credits.setVisible(false)
+    this.ldjam.setVisible(false)
+
+    setTimeout(() => {
+      this.startShadow.setVisible(true)
+      this.start.setVisible(true)
+      this.setLanguageButton.setVisible(true)
+      this.credits.setVisible(true)
+      this.ldjam.setVisible(true)
+
+      gs.stats.permanentObjects.mainMusic = this.sound.add('mx_title')
+      gs.stats.permanentObjects.mainMusic.volume = 0.5
+      gs.stats.permanentObjects.mainMusic.play({
+        loop:-1
+      })
+    }, 7000)
+
+
   }
 
   updateLanguageTexts () {
     this.start.setText( this.getText('start') )
     this.credits.reloadText()
     this.setLanguageButton.reloadText()
+    this.startShadow.setText(this.getText('start'))
   }
 
   shutdown() {
     this.events.off('shutdown')
-    //gs.stats.permanentObjects.mainMusic.stop()
+    gs.stats.permanentObjects.mainMusic.stop()
   }
 
 }
