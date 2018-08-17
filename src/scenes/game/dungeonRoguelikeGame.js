@@ -294,6 +294,8 @@ export default class DungeonRoguelikeGameScene extends Scene {
       })
     })
 
+    this.foregroundLayer.setAlpha(0.85)
+
     // starts the player?
     // Place the player in the first room
     const playerRoom = startRoom
