@@ -108,7 +108,9 @@ export default class Enemy extends Item {
       baseHP: 3,
       sightRadius: 7,
       typeKey: 'skeleton',
-      special: 'cursed'
+      special: 'cursed',
+      color: 0xffffff,
+      damage: 0.5
     }
 
     this.props.speed = params.props.speed || this.props.speed
@@ -116,10 +118,15 @@ export default class Enemy extends Item {
     this.props.sightRadius = params.props.sightRadius || this.props.sightRadius
 
     this.hitpoints = this.props.baseHP
+    this.damage = this.props.damage
   }
 
   wake(silenceWakeup) {
-    if(this.status === STATUS.STORED || this.grabbed) {
+    if(this.grabbed || 
+      this.status === STATUS.STORED || 
+      this.status === STATUS.IDLE ||
+      this.status === STATUS.WALK ||
+      this.status === STATUS.ATTACK ) {
       return
     }
     if(this.status === STATUS.STUN) {
@@ -268,5 +275,8 @@ export default class Enemy extends Item {
   
   setHighlight(highlighted) {
     super.setHighlight(highlighted)
+    if(!highlighted) {
+      this.tint = this.props.color
+    }
   }
 }

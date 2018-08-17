@@ -436,12 +436,18 @@ export default class Player {
     let rawItem = JSON.parse(JSON.stringify(this.hookedItem.props))
     gs.stats.inventory.items.push(rawItem)
     //check if the item is one of the goals
-
+    let totalCollected = 0
     for (var i = 0; i < gs.stats.game.targetItems.length; i++) {
       let target = gs.stats.game.targetItems[i]
       if(target.typeKey===rawItem.typeKey && target.special === rawItem.special){
         target.collectedByType = target.collectedByType?(target.collectedByType+1):1
       }
+      if(target.collectedByType>0){
+        totalCollected +=1
+      }
+    }
+    if(totalCollected>=2){
+      this.scene.wakeUpEnemies()
     }
 
     this.hookedItem.release()
@@ -498,10 +504,10 @@ export default class Player {
     this.setStatus(STATUS.IDLE)
   }
 
-  getHit () {
+  getHit (damage) {
     if(this.status === STATUS.HIT) return
     this.setStatus(STATUS.HIT)
-    gs.set('player.life', gs.stats.player.life-0.5)
+    gs.set('player.life', gs.stats.player.life - damage)
     this.sprite.anims.play('pc-hit')
     this.sounds.ninja_hurt.play()
     this.scene.cameras.main.shake(150, 0.005, 0.004)

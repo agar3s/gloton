@@ -257,6 +257,16 @@ export default class DungeonRoguelikeGameScene extends Scene {
         y: roomB.centerY*16,
         props: itemB
       })
+      let enemyB = this.addEnemy({x:(roomB.centerX)*16, y:(roomB.centerY-1)*16})
+      enemyB.wake(true)
+      enemyB.setScale(1.4)
+      enemyB.props.color = 0xff4444
+      enemyB.tint = 0xff4444
+      enemyB.props.baseHP = 200
+      enemyB.hitpoints = 200
+      enemyB.props.sightRadius = 10
+      enemyB.damage = 1
+      enemyB.props.speed = 40
 
       let itemC = gs.stats.game.targetItems[2]
       let indexC = ~~(Math.random()*otherRooms.length)
@@ -389,7 +399,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
   hitPlayer(enemy){
     let distance = Phaser.Math.Distance.Between(enemy.x, enemy.y-enemy.height/2, this.player.sprite.x, this.player.sprite.y-this.player.sprite.height/2) 
     if(distance<18) {
-      this.player.getHit()
+      this.player.getHit(enemy.damage)
     }else {
       
     }
@@ -724,5 +734,9 @@ export default class DungeonRoguelikeGameScene extends Scene {
       zeroPad: 3,
       prefix: `${path}/${animationId}-`
     })
+  }
+
+  wakeUpEnemies() {
+    this.enemies.forEach(enemy => enemy.wake())
   }
 }
