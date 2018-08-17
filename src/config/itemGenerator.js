@@ -67,7 +67,7 @@ const BASE = {
   }
 }
 
-let generateItem = () => {
+let generateItem = (skipItemsArray) => {
   // get a random object type
   let keys = Object.keys(BASE)
   let index = ~~(Math.random()*keys.length)
@@ -77,6 +77,17 @@ let generateItem = () => {
   base.typeKey = base.type
   base.type = `${base.type}-${variationType}`
   base.special = SPECIAL[Object.keys(SPECIAL)[~~(Math.random()*Object.keys(SPECIAL).length)]]
+
+  // if you want to skip a specific item, pass a parameter
+  if(skipItemsArray){
+    for (var i = 0; i < skipItemsArray.length; i++) {
+      let skipItem = skipItemsArray[i]
+      let equal = Object.keys(skipItem).every(key => base[key] === skipItem[key])
+      if(equal) {
+        return generateItem(skipItemsArray)
+      }
+    }
+  }
 
   return base
 }

@@ -57,8 +57,11 @@ export default class MissionGameScene extends Scene {
     this.invitationTxt.setOrigin(0.5, 0)
 
     // generate and item and set it as the mission for the player
+    let targetItems = []
     for (let task = 0; task < 3; task++) {
-      const item = generateItem()
+      const item = generateItem(targetItems)
+      targetItems.push(item)
+
       this.add.bitmapText(
         10,
         80+20+(15*task),
@@ -69,8 +72,8 @@ export default class MissionGameScene extends Scene {
         ]),
         12
       )
-      gs.stats.game.targetItems.push(item)
     }
+    gs.stats.game.targetItems = targetItems
     // └───────────────────────────────────────────────────────────────────────┘
 
     this.next = this.createButton({

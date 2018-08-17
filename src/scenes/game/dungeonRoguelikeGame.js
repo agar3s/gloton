@@ -228,7 +228,53 @@ export default class DungeonRoguelikeGameScene extends Scene {
     const otherRooms = Phaser.Utils.Array.Shuffle(rooms).slice(0, rooms.length * 0.9)
 
     // Place the stairs
-    this.foregroundLayer.putTileAt(TILES.STAIRS, endRoom.centerX, endRoom.centerY)
+    //this.foregroundLayer.putTileAt(TILES.STAIRS, endRoom.centerX, endRoom.centerY)
+    // put one of the items with four skeleton guardian
+    if(gs.stats.game.targetItems.length>0){
+      let itemA = gs.stats.game.targetItems[0]
+      console.log(gs.stats.game.targetItems)
+      this.addItem({
+        scene: this,
+        key: constants.ATLAS_KEY,
+        frame: `items/${itemA.type}`,
+        x: endRoom.centerX*16,
+        y: endRoom.centerY*16,
+        props: itemA
+      })
+      this.addEnemy({x:(endRoom.centerX+1)*16, y:(endRoom.centerY)*16}).wake(true)
+      this.addEnemy({x:(endRoom.centerX-1)*16, y:(endRoom.centerY)*16}).wake(true)
+      this.addEnemy({x:(endRoom.centerX)*16, y:(endRoom.centerY+1)*16}).wake(true)
+      this.addEnemy({x:(endRoom.centerX)*16, y:(endRoom.centerY-1)*16}).wake(true)
+      
+      let itemB = gs.stats.game.targetItems[1]
+      let indexB = ~~(Math.random()*otherRooms.length)
+      let roomB = otherRooms[indexB]
+      this.addItem({
+        scene: this,
+        key: constants.ATLAS_KEY,
+        frame: `items/${itemB.type}`,
+        x: roomB.centerX*16,
+        y: roomB.centerY*16,
+        props: itemB
+      })
+
+      let itemC = gs.stats.game.targetItems[2]
+      let indexC = ~~(Math.random()*otherRooms.length)
+      while(indexC === indexB){
+        indexC = ~~(Math.random()*otherRooms.length)
+      }
+      let roomC = otherRooms[indexC]
+      this.addItem({
+        scene: this,
+        key: constants.ATLAS_KEY,
+        frame: `items/${itemC.type}`,
+        x: roomC.centerX*16,
+        y: roomC.centerY*16,
+        props: itemC
+      })
+    }
+
+
   
     this.exitSprite = this.physics.add.sprite(
       map.tileToWorldX(startRoom.centerX),
@@ -355,7 +401,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
       const x = Phaser.Math.Between(x1, x2)
       const y = Phaser.Math.Between(y1, y2)
 
-      let item = generateItem()
+      let item = generateItem(gs.stats.game.targetItems)
       this.addItem({
         scene:this,
         key: constants.ATLAS_KEY,

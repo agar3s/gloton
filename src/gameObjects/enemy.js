@@ -255,7 +255,13 @@ export default class Enemy extends Item {
     this.status = STATUS.STORED
     Object.keys(this.sounds).forEach(key => {
       this.sounds[key].stop()
-      this.sounds[key].destroy()
+      try{
+        this.sounds[key].destroy()
+      }catch(excption){
+        console.log(excption)
+        console.log('is null', this.sounds[key])
+      }
+      delete this.sounds[key]
     })
     if(this.restoreStun)this.restoreStun.destroy()
   }
