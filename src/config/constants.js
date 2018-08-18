@@ -29,7 +29,7 @@ const FAKE_LOADER_ACTIVE = false
 const RUNNING_STATS = false
 
 // display dat.gui plugin
-const DAT_GUI_ENABLE = true
+const DAT_GUI_ENABLE = false
 
 const LOCALSTORAGE_KEY = 'phaser3-jamBoilerplate'
 //const SCENE_AFTER_BOOT = 'mainMenuScene'
