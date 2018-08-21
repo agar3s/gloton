@@ -143,6 +143,16 @@ export default class BootScene extends Scene {
     this.load.audio('fx_impact_wood_01', urlBase+'assets/audio/fx/Impact_Wood_01.ogg')
     this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
     
+    this.load.audio('fx_bounce_wood_01', urlBase+'assets/audio/fx/Bounce_Wood_01.ogg')
+    this.load.audio('fx_bounce_wood_02', urlBase+'assets/audio/fx/Bounce_Wood_02.ogg')
+    this.load.audio('fx_bounce_stone_01', urlBase+'assets/audio/fx/Bounce_Stone_01.ogg')
+    this.load.audio('fx_bounce_stone_02', urlBase+'assets/audio/fx/Bounce_Stone_02.ogg')
+    this.load.audio('fx_bounce_metal_01', urlBase+'assets/audio/fx/Bounce_Metal_01.ogg')
+    this.load.audio('fx_bounce_metal_02', urlBase+'assets/audio/fx/Bounce_Metal_02.ogg')
+    this.load.audio('fx_bounce_crystal_01', urlBase+'assets/audio/fx/Bounce_Glass_01.ogg')
+    this.load.audio('fx_bounce_crystal_02', urlBase+'assets/audio/fx/Bounce_Glass_02.ogg')
+    
+
     this.load.audio('fx_ninja_FS', urlBase+'assets/audio/fx/Ninja_FS.ogg')
     this.load.audio('fx_ninja_shot', urlBase+'assets/audio/fx/Ninja_ObjShot.ogg')
     this.load.audio('fx_ninja_hurt', urlBase+'assets/audio/fx/Ninja_Hurt.ogg')

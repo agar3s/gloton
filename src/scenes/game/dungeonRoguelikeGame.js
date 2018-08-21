@@ -670,7 +670,11 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }
     })
 
-    this.physics.add.collider(this.items, this.wallsLayer)
+    this.physics.add.collider(this.items, this.wallsLayer, (item, wall) => {
+      if(item.material) {
+        item.collideWithWall()
+      }
+    })
     this.physics.add.collider(this.player.sprite, this.wallsLayer)
     this.physics.add.overlap(this.player.handSprite, this.wallsLayer, (hand, wall) => {
       if(wall.collides) {
