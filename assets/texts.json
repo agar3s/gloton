@@ -35,11 +35,13 @@
     "item_wood": "A piece of WOOD",
     "item_skeleton": "A SKELETON",
     "item_phone": "My PHONE",
+    "item_heart": "A HEART",
 
     "item_ordinary": "that is NORMAL",
     "item_magic": "that is MAGIC",
     "item_cursed": "that is CURSED",
     "item_mypowers": "that opens doors",
+    "item_heals": "that heals damage",
 
     "credits_title": "The legend of the looter and the incredible\nbackpack that never runs out of space",
     "credits_subtitle": "Made in 72 hours for Ludum Dare 42\nTheme: running out of space",

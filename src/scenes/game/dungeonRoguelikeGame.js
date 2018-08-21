@@ -312,6 +312,23 @@ export default class DungeonRoguelikeGameScene extends Scene {
       }else {
         this.createItemsIn(7, x1, x2, y1, y2)
       }
+      let doors = room.getDoorLocations()
+      if(doors.length === 1) {
+        // place a heart there
+        this.addItem({
+          scene: this,
+          key: constants.ATLAS_KEY,
+          frame: `items/heart-0`,
+          x: (x1+4)*16,
+          y: (y1+4)*16,
+          props: {
+            material: 'crystal',
+            type: 'heart-0',
+            typeKey: 'heart',
+            special: 'heals'
+          }
+        })
+      }
     })
     // all rooms even the empty ones muajuajua
     rooms.forEach(room => {
@@ -713,8 +730,6 @@ export default class DungeonRoguelikeGameScene extends Scene {
   }
 
   gameOver (timesup) {
-    console.log('display the game over')
-
     gs.stats.game.timesup = timesup
     this.music.stop()
     this.sceneManager.pauseGame()
