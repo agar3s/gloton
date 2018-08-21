@@ -68,7 +68,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
       callbackScope: this
     })
     this.music = this.sound.add('mx_main')
-    this.music.volume = 0.2
+    this.music.volume = 0.4
     this.music.play({
       loop:-1
     })

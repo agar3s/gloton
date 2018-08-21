@@ -234,7 +234,7 @@ export default class Enemy extends Item {
       this.status = STATUS.STUN
       this.sounds.skeleton_stunned.play()
       this.anims.play('skeleton-stun')
-      this.restoreStun = this.scene.time.delayedCall(5000, this.wake, [], this)
+      this.restoreStun = this.scene.time.delayedCall(10000, this.wake, [], this)
     }else{
       this.anims.play('skeleton-hit')
       this.sounds.skeleton_hurt.play()

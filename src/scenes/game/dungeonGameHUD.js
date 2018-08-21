@@ -112,13 +112,13 @@ export default class DungeonGameHUDScene extends Scene {
           this.timerHandlerData.hurryUp = true
           this.timerHandlerData.counter = 0
           this.timerHandlerData.intensity = 29
+          this.registry.set('musicRate', 1.15)
         } else if(seconds == 30){
           this.timerHandlerData.intensity = 15
-          this.registry.set('musicRate', 1.15)
+          this.registry.set('musicRate', 1.333)
         } else if(seconds == 15){
           this.timerHandlerData.intensity = 7
         } else if(seconds == 5){
-          this.registry.set('musicRate', 1.333)
           this.timerHandlerData.intensity = 3
         }
       }
