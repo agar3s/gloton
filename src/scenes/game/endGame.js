@@ -21,9 +21,14 @@ export default class EndGameScene extends Scene {
     graphics.fillStyle(0x1e1f30, 0.8)
     graphics.fillRect(0, 0, 320, 240)
 
-    if(!gs.stats.game.win){
-      this.add.image(81, 69, 'gameOverTitle').setOrigin(0)
-      this.add.image(121, 164, 'gameOverNinja').setOrigin(0)
+    if (!gs.stats.game.win) {
+      if (gs.stats.game.timesup) {
+        this.add.image(160, 90, 'timerTimesup').setOrigin(0.5)
+        this.add.image(160, 120, 'timesUpTitle').setOrigin(0.5)
+      } else {
+        this.add.image(81, 69, 'gameOverTitle').setOrigin(0)
+        this.add.image(121, 164, 'gameOverNinja').setOrigin(0)
+      }
     }
 
     // big text

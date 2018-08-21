@@ -712,9 +712,10 @@ export default class DungeonRoguelikeGameScene extends Scene {
 
   }
 
-  gameOver () {
+  gameOver (timesup) {
     console.log('display the game over')
 
+    gs.stats.game.timesup = timesup
     this.music.stop()
     this.sceneManager.pauseGame()
     this.sceneManager.overlay('endGameScene')

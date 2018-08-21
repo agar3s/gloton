@@ -134,7 +134,7 @@ export default class DungeonGameHUDScene extends Scene {
     if(this.timerHandlerData.hurryUp){
       this.timerHandlerData.counter++
       if(this.timerHandlerData.counter%this.timerHandlerData.intensity==0){
-        this.timerText.tint = (this.timerHandlerData.counter%2==0)?0x00cbff:0xffffff
+        this.timerText.tint = (this.timerHandlerData.counter%2==0)?0x00cbff:0xff0000
       }
     }
   }
