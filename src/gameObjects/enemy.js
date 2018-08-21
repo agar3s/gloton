@@ -92,7 +92,9 @@ export default class Enemy extends Item {
       skeleton_awake: this.scene.sound.add('fx_skeleton_awake'),
       skeleton_fs: this.scene.sound.add('fx_skeleton_fs'),
       skeleton_attack: this.scene.sound.add('fx_skeleton_attack'),
-      skeleton_stunned: this.scene.sound.add('fx_skeleton_stunned')
+      skeleton_stunned: this.scene.sound.add('fx_skeleton_stunned'),
+      skeleton_hurt: this.scene.sound.add('fx_skeleton_hurt'),
+      skeleton_alarm: this.scene.sound.add('fx_skeleton_alarm')
     }
     Object.keys(this.sounds).forEach(key => {
       this.sounds[key].volume = 0.4
@@ -184,6 +186,7 @@ export default class Enemy extends Item {
       this.flipX = this.direction.x>0
       if(this.status!== STATUS.WALK){
         this.anims.play('skeleton-alert')
+        this.sounds.skeleton_alarm.play()
         this.status = STATUS.ALERT
         this.on('animationcomplete', (animation, frame) => {
           this.sounds.skeleton_fs.play({loop:-1})
@@ -234,6 +237,7 @@ export default class Enemy extends Item {
       this.restoreStun = this.scene.time.delayedCall(5000, this.wake, [], this)
     }else{
       this.anims.play('skeleton-hit')
+      this.sounds.skeleton_hurt.play()
       this.status = STATUS.ONHIT
       this.on('animationcomplete', (animation, frame) => {
         this.status = STATUS.IDLE

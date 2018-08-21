@@ -130,6 +130,7 @@ export default class BootScene extends Scene {
     this.load.audio('fx_door_open', urlBase+'assets/audio/fx/Door_Open.ogg')
     this.load.audio('fx_hook_return_01', urlBase+'assets/audio/fx/Hook_Return_01.ogg')
     this.load.audio('fx_hook_shot_01', urlBase+'assets/audio/fx/Hook_Shot_01.ogg')
+
     this.load.audio('fx_impact_fail_01', urlBase+'assets/audio/fx/Impact_HookFail_01.ogg')
     this.load.audio('fx_impact_fail_02', urlBase+'assets/audio/fx/Impact_HookFail_02.ogg')
     this.load.audio('fx_impact_skeleton_01', urlBase+'assets/audio/fx/Impact_Skeleton_01.ogg')
@@ -141,8 +142,7 @@ export default class BootScene extends Scene {
     this.load.audio('fx_impact_crystal_01', urlBase+'assets/audio/fx/Impact_Crystal_01.ogg')
     this.load.audio('fx_impact_crystal_02', urlBase+'assets/audio/fx/Impact_Crystal_02.ogg')
     this.load.audio('fx_impact_wood_01', urlBase+'assets/audio/fx/Impact_Wood_01.ogg')
-    this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')
-    
+    this.load.audio('fx_impact_wood_02', urlBase+'assets/audio/fx/Impact_Wood_02.ogg')    
     this.load.audio('fx_bounce_wood_01', urlBase+'assets/audio/fx/Bounce_Wood_01.ogg')
     this.load.audio('fx_bounce_wood_02', urlBase+'assets/audio/fx/Bounce_Wood_02.ogg')
     this.load.audio('fx_bounce_stone_01', urlBase+'assets/audio/fx/Bounce_Stone_01.ogg')
@@ -163,6 +163,9 @@ export default class BootScene extends Scene {
     this.load.audio('fx_skeleton_stunned', urlBase+'assets/audio/fx/Skeleton_Stunned.ogg')
     this.load.audio('fx_skeleton_fs', urlBase+'assets/audio/fx/Skeleton_FS.ogg')
     this.load.audio('fx_skeleton_attack', urlBase+'assets/audio/fx/Skeleton_Attack.ogg')
+    this.load.audio('fx_skeleton_attack', urlBase+'assets/audio/fx/Skeleton_Attack.ogg')
+    this.load.audio('fx_skeleton_hurt', urlBase+'assets/audio/fx/Skeleton_Hurt.ogg')
+    this.load.audio('fx_skeleton_alarm', urlBase+'assets/audio/fx/Skeleton_Alarm.ogg')
 
     // load music 
     this.load.audio('mx_main', urlBase+'assets/audio/mx/LD42_MainTheme.ogg')
