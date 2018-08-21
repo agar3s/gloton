@@ -30,8 +30,8 @@ const BASE = {
     variations: 2
   },
   DIAMOND: {
-    material: MATERIAL.WOOD,
-    type: TYPE.CHEST,
+    material: MATERIAL.CRYSTAL,
+    type: TYPE.DIAMOND,
     variations: 2
   },
   METAL: {
