@@ -434,7 +434,11 @@ export default class Player {
     this.handSprite.body.setVelocityY(0)
     
     let rawItem = JSON.parse(JSON.stringify(this.hookedItem.props))
-    gs.stats.inventory.items.push(rawItem)
+    if(rawItem.typeKey=='heart' && gs.stats.player.life < gs.stats.player.maxlife){
+      gs.set('player.life', gs.stats.player.life + 0.5)
+    } else {
+      gs.stats.inventory.items.push(rawItem)
+    }
     //check if the item is one of the goals
     let totalCollected = 0
     for (var i = 0; i < gs.stats.game.targetItems.length; i++) {
