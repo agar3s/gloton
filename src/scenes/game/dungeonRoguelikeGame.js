@@ -60,7 +60,7 @@ export default class DungeonRoguelikeGameScene extends Scene {
     //start timer
 
     this.timer = this.time.addEvent({
-      delay: 3*60000,
+      delay: gs.stats.game.countdown,
       loop: false,
       callback: () => {
         this.gameOver('times up!')

@@ -6,7 +6,8 @@ let stats = {
     debug: false,
     targetItems: [],
     success: false,
-    win: false
+    win: false,
+    countdown: 5*60*1000
   },
   mainScene: {
     rotationRatio: 0.01,

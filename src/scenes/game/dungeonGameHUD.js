@@ -20,11 +20,11 @@ export default class DungeonGameHUDScene extends Scene {
       14,
       21,
       this.fonts.BM_kenneyMiniSquare.font,
-      '03:00'
+      '??:??'
     )
     this.timerText.setTint(0x00cbff)
     this.elapsedSeconds = 0
-    this.maxTime = 179
+    this.maxTime = (~~(gs.stats.game.countdown/1000))-1
     
     this.ninjaSprite = this.add.sprite(19, 240 - 19,'ninja')
 
